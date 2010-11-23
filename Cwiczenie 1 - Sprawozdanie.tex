@@ -53,6 +53,21 @@ Przekształcenie z równania różniczkowego na równanie stanu: %COPY
 \end{itemize}
 
 \item Inercyjny 2-rzędu
+\begin{itemize}
+\item Transmitancja
+	\begin{eqnarray}
+		G(s)= {k \over \left({T_{1}s + 1}\right) \left({T_{2}s + 1}\right)} = {Y(s) \over U(s)}
+	\end{eqnarray}
+\item Równanie różniczkowe
+	\begin{eqnarray}
+		Y(s) = {k \over {\left({T_{1}s + 1}\right) \left({T_{2}s + 1}\right)}} U(s)\\
+		\nonumber Y(s)\left({T_{1}s + 1}\right) \left({T_{2}s + 1}\right)= kU(s)\\
+		\nonumber T_{1}T_{2}s^{2}Y(s) + \left({T_{1} + T_{2}}\right) s Y(s) + Y(s)= kU(s)\\
+		\nonumber T_{1}T_{2}\ddot{y}(t) + \left({T_{1} + T_{2}}\right) \dot{y}(t) + y(t)= k u(t)
+	\end{eqnarray}
+\item Równanie stanu
+
+\end{itemize}
 
 \item Całkujący rzeczywisty
 
