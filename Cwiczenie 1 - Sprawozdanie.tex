@@ -19,7 +19,7 @@ Tworzenie opisów (modeli) matematycznych obiektów sterowania, a także wykorzy
 \item Inercyjny 1-rzędu
 
 \begin{itemize}
-\item math	
+\item Transmitancja	
 	\begin{eqnarray}
 		G(s)= {k \over {Ts + 1}} = {Y(s) \over U(s)}
 	\end{eqnarray}
@@ -71,6 +71,66 @@ Przekształcenie z równania różniczkowego na równanie stanu: %COPY
 
 \item Całkujący rzeczywisty
 
+\begin{itemize}
+\item Transmitancja	
+	\begin{eqnarray}
+		G(s)= {k \over {s \left( Ts + 1 \right) }} = {Y(s) \over U(s)}
+	\end{eqnarray}
+\item Równanie różniczkowe
+	\begin{eqnarray} 
+		Y(s) = {k \over {s \left( Ts + 1 \right) }} U(s)\\ \label{eq:calk_rozn}
+		\nonumber Ts^{2}Y(s) + sY(s) = kU(s)\\
+		\nonumber T\ddot{y}(t) + \dot{y}(t) = ku(t)
+	\end{eqnarray}
+\item Równanie stanu
+\newline Ogólna postać równania stanu: %COPY
+	\begin{eqnarray}
+		\left\{
+			\begin{array}{l}
+				x(t) = Ax(t) + Bu(t)\\
+				y(t) = C^{T}x(t)
+			\end{array} \right.
+	\end{eqnarray}
+Ponieważ na wyjściu obiektu jest pochodna 2-go rzędu to wektor stanu x(t) będzie reprezentowany przez wektor dwuelementowy.
+ 	\begin{eqnarray}
+		\nonumber x(t) = \left[ 
+			\begin{array}{l}x_{1}(t)\\
+				x_{2}(t)
+			\end{array}
+		\right] = \left[ 
+			\begin{array}{l}
+				y(t)\\
+				\dot{y}(t)
+			\end{array}
+		\right]
+	\end{eqnarray}
+A parametry A, B i C będą miały postać:
+	\begin{eqnarray}
+		\nonumber A = \left[ 
+			\begin{array}{ll} a_{11} & a_{12}\\
+				a_{21} & a_{22}
+			\end{array}
+		\right], B = \left[ 
+			\begin{array}{l}
+				b_{1}\\
+				b_{2}
+			\end{array}
+		\right], C = \left[ 
+			\begin{array}{l}
+				c_{1}\\
+				c_{2}
+			\end{array}
+		\right]
+	\end{eqnarray}
+Przekształcenie \ref{eq:calk_rozn} z równania różniczkowego na równanie stanu: %COPY
+	\begin{eqnarray}
+		T\dot{y}(t) + y(t) = ku(t)\\
+		\nonumber T\dot{x}(t) + x(t) = ku(t)\\
+		\nonumber T\dot{x}(t) = ku(t) - x(t)\\
+		\nonumber \dot{x}(t) = -{x \over T}(t) + {k \over T}u(t)
+	\end{eqnarray}
+\end{itemize}
+
 \item Różniczkujący rzeczywisty
 \begin{itemize}
 \item Transmitancja
@@ -92,6 +152,7 @@ Przekształcenie z równania różniczkowego na równanie stanu: %COPY
 \end{itemize}
 
 \section{Zadanie 2 \textit{\small Wyznaczanie charakterystyk czasowych}}\label{sec:zad2}
+
 \section{Zadanie 3 \textit{\small Wyznaczanie parametrów członów dynamicznych}}\label{sec:zad3}
 
 \end{document}
