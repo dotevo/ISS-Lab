@@ -1,0 +1,68 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+\title{Sprawozdanie ISS\newline\small Ćwiczenie 1: Podstawy tworzenia opisów i modelowania obiektów sterowania}
+
+\author{Adam Jordanek 168139, Tomasz Klimek 168092}
+
+\begin{document}
+\maketitle
+
+\section{Wstęp}\label{sec:wstęp}
+%TODO skopiowane z listy (trzeba to przerobić)
+Tworzenie opisów (modeli) matematycznych obiektów sterowania, a także wykorzystanie tych opisów do badania i analizy (modelowania) obiektów – są istotnymi czynnościami w trakcie projektowania informatycznych systemów sterowania. Do realizacji tych czynności w praktyce inżynierskiej powszechnie stosuje się narzędzie informatyczne Matlab wraz ze specjalistycznym oprogramowaniem dodatkowym (tzw. toolbox’y) oraz nakładką Simulink.
+
+\section{Zadanie 1 \textit{\small Tworzenie modeli matematycznych}}\label{sec:zad1}
+
+\begin{itemize}
+\item Inercyjny 1-rzędu
+
+\begin{itemize}
+\item math	
+	\begin{eqnarray}
+		G(s)= {k \over {Ts + 1}} = {Y(s) \over U(s)}
+	\end{eqnarray}
+\item Równanie różniczkowe
+	\begin{eqnarray}
+		Y(s) = {k \over {Ts + 1}} U(s)\\
+		\nonumber TsY(s) + Y(s) = kU(s)\\
+		\nonumber T\dot{y}(t) + y(t) = ku(t)
+	\end{eqnarray}
+\item Równanie stanu
+\newline Ogólna postać równania stanu: %COPY
+	\begin{eqnarray}
+		\left\{
+			\begin{array}{l}
+				x(t) = Ax(t) + Bu(t)\\
+				y(t) = C^{T}x(t)
+			\end{array} \right.
+	\end{eqnarray}
+Ponieważ na wyjściu obiektu jest pochodna 1-go rzędu to wektor stanu x(t) będzie reprezentowany przez wektor jednoelementowy x(t)=y(t). Można wprowadzić więc zapis:
+	\begin{eqnarray}
+		\dot{x}(t) = ax(t) + bu(t)\\
+		\nonumber y(t) = x(t)
+	\end{eqnarray}
+Przekształcenie z równania różniczkowego na równanie stanu: %COPY
+	\begin{eqnarray}
+		T\dot{y}(t) + y(t) = ku(t)\\
+		\nonumber T\dot{x}(t) + x(t) = ku(t)\\
+		\nonumber T\dot{x}(t) = ku(t) - x(t)\\
+		\nonumber \dot{x}(t) = -{x \over T}(t) + {k \over T}u(t)
+	\end{eqnarray}
+\end{itemize}
+
+\item Inercyjny 2-rzędu
+
+\item Całkujący rzeczywisty
+
+\item Różniczkujący rzeczywisty
+
+\item Proporcjonalny
+
+\end{itemize}
+
+\section{Zadanie 2 \textit{\small Wyznaczanie charakterystyk czasowych}}\label{sec:zad2}
+\section{Zadanie 3 \textit{\small Wyznaczanie parametrów członów dynamicznych}}\label{sec:zad3}
+
+\end{document}
