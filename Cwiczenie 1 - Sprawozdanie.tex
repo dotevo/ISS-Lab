@@ -25,30 +25,38 @@ Tworzenie opisów (modeli) matematycznych obiektów sterowania, a także wykorzy
 	\end{eqnarray}
 \item Równanie różniczkowe
 	\begin{eqnarray}
-		Y(s) = {k \over {Ts + 1}} U(s)\\
+		\nonumber Y(s) = {k \over {Ts + 1}} U(s)\\ 
 		\nonumber TsY(s) + Y(s) = kU(s)\\
-		\nonumber T\dot{y}(t) + y(t) = ku(t)
+		T\dot{y}(t) + y(t) = ku(t) \label{eq:iter_rozn}
 	\end{eqnarray}
 \item Równanie stanu
-\newline Ogólna postać równania stanu: %COPY
+\newline Ogólna postać równania stanu:
 	\begin{eqnarray}
-		\left\{
-			\begin{array}{l}
-				x(t) = Ax(t) + Bu(t)\\
-				y(t) = C^{T}x(t)
-			\end{array} \right.
+		\nonumber \left\{ \begin{array}{l}
+			\dot{x}(t) = Ax(t) + Bu(t)\\
+			y(t) = C^{T}x(t)
+		\end{array} \right.
 	\end{eqnarray}
-Ponieważ na wyjściu obiektu jest pochodna 1-go rzędu to wektor stanu x(t) będzie reprezentowany przez wektor jednoelementowy x(t)=y(t). Można wprowadzić więc zapis:
+W równaniu różniczkowym wyjście obiektu jest najwyżej w pierwszej pochodnej, więc mamy do czynienia z obiektem stopnia pierwszego, a wektor stanu x(t) będzie reprezentowany przez jednoelementowy wektor $x(t) = y(t)$, parametry A, B i C będą zwykłymi parametrami liczbowymi, a równanie stanu można zapisać jako:
 	\begin{eqnarray}
-		\dot{x}(t) = ax(t) + bu(t)\\
-		\nonumber y(t) = x(t)
+		\nonumber \left\{ \begin{array}{l}
+			\dot{x}(t) = ax(t) + bu(t)\\
+			y(t) = cx(t)
+		\end{array} \right.
 	\end{eqnarray}
-Przekształcenie z równania różniczkowego na równanie stanu: %COPY
+Aby uzyskać równanie stanu wystarczy zauważyć, że c=1, oraz przekształcić równanie \ref{eq:iter_rozn} w następujący sposób:
 	\begin{eqnarray}
-		T\dot{y}(t) + y(t) = ku(t)\\
+		\nonumber T\dot{y}(t) + y(t) = ku(t)\\
 		\nonumber T\dot{x}(t) + x(t) = ku(t)\\
-		\nonumber T\dot{x}(t) = ku(t) - x(t)\\
-		\nonumber \dot{x}(t) = -{x \over T}(t) + {k \over T}u(t)
+		\nonumber T\dot{x}(t) = - x(t) + u(t)\\
+		\dot{x}(t) = -{1 \over T}x(t) + {k \over T}u(t)
+	\end{eqnarray}
+W ten sposób przyrównując otrzymaliśmy gotowe równanie stanu.
+	\begin{eqnarray}
+		\left\{ \begin{array}{l}
+			\dot{x}(t) = -{1 \over T}x(t) + {k \over T}u(t)\\
+			y(t) = x(t)
+		\end{array} \right.
 	\end{eqnarray}
 \end{itemize}
 
@@ -60,10 +68,10 @@ Przekształcenie z równania różniczkowego na równanie stanu: %COPY
 	\end{eqnarray}
 \item Równanie różniczkowe
 	\begin{eqnarray}
-		Y(s) = {k \over {\left({T_{1}s + 1}\right) \left({T_{2}s + 1}\right)}} U(s)\\
+		\nonumber Y(s) = {k \over {\left({T_{1}s + 1}\right) \left({T_{2}s + 1}\right)}} U(s)\\
 		\nonumber Y(s)\left({T_{1}s + 1}\right) \left({T_{2}s + 1}\right)= kU(s)\\
 		\nonumber T_{1}T_{2}s^{2}Y(s) + \left({T_{1} + T_{2}}\right) s Y(s) + Y(s)= kU(s)\\
-		\nonumber T_{1}T_{2}\ddot{y}(t) + \left({T_{1} + T_{2}}\right) \dot{y}(t) + y(t)= k u(t)
+		T_{1}T_{2}\ddot{y}(t) + \left({T_{1} + T_{2}}\right) \dot{y}(t) + y(t)= k u(t)
 	\end{eqnarray}
 \item Równanie stanu
 %TODO
@@ -78,20 +86,20 @@ Przekształcenie z równania różniczkowego na równanie stanu: %COPY
 	\end{eqnarray}
 \item Równanie różniczkowe
 	\begin{eqnarray} 
-		Y(s) = {k \over {s \left( Ts + 1 \right) }} U(s)\\ \label{eq:calk_rozn}
+		\nonumber Y(s) = {k \over {s \left( Ts + 1 \right) }} U(s)\\ \label{eq:calk_rozn}
 		\nonumber Ts^{2}Y(s) + sY(s) = kU(s)\\
-		\nonumber T\ddot{y}(t) + \dot{y}(t) = ku(t)
+		T\ddot{y}(t) + \dot{y}(t) = ku(t)
 	\end{eqnarray}
 \item Równanie stanu
-\newline Ogólna postać równania stanu: %COPY
+\newline Ogólna postać równania stanu:
 	\begin{eqnarray}
-		\left\{
+		\nonumber \left\{
 			\begin{array}{l}
 				x(t) = Ax(t) + Bu(t)\\
 				y(t) = C^{T}x(t)
 			\end{array} \right.
 	\end{eqnarray}
-Ponieważ na wyjściu obiektu jest pochodna 2-go rzędu to wektor stanu x(t) będzie reprezentowany przez wektor dwuelementowy.
+W równaniu różniczkowym wyjście obiektu jest najwyżej w drugiej pochodnej, więc mamy do czynienia z obiektem stopnia drugiego, a wektor stanu x(t) będzie reprezentowany przez dwuelementowy wektor:
  	\begin{eqnarray}
 		\nonumber x(t) = \left[ 
 			\begin{array}{l}x_{1}(t)\\
@@ -104,10 +112,11 @@ Ponieważ na wyjściu obiektu jest pochodna 2-go rzędu to wektor stanu x(t) bę
 			\end{array}
 		\right]
 	\end{eqnarray}
-A parametry A, B i C będą miały postać:
+Parametry A, B i C będą natomiast miały postać:
 	\begin{eqnarray}
 		\nonumber A = \left[ 
-			\begin{array}{ll} a_{11} & a_{12}\\
+			\begin{array}{ll}
+				a_{11} & a_{12}\\
 				a_{21} & a_{22}
 			\end{array}
 		\right], B = \left[ 
@@ -122,12 +131,34 @@ A parametry A, B i C będą miały postać:
 			\end{array}
 		\right]
 	\end{eqnarray}
-Przekształcenie \ref{eq:calk_rozn} z równania różniczkowego na równanie stanu: %COPY
+Aby uzyskać równanie stanu przekształcamy równanie \ref{eq:calk_rozn} otrzynując:
 	\begin{eqnarray}
-		T\dot{y}(t) + y(t) = ku(t)\\
+		\nonumber T\ddot{y}(t) + \dot{y}(t) = ku(t)\\
 		\nonumber T\dot{x}(t) + x(t) = ku(t)\\
 		\nonumber T\dot{x}(t) = ku(t) - x(t)\\
-		\nonumber \dot{x}(t) = -{x \over T}(t) + {k \over T}u(t)
+		\dot{x}(t) = -{x \over T}(t) + {k \over T}u(t)
+	\end{eqnarray}
+Z otrzymanego równania możemy wywnioskować wartości parametrów A, B i C, oraz zapisać ostateczną postać równania stanu:
+	\begin{eqnarray}
+		\left\{
+			\begin{array}{l}
+				x(t) = \left[ 
+			\begin{array}{ll}
+				0 & 1\\
+				0 & -{1 \over T}
+			\end{array}
+		\right] x(t) + \left[ 
+			\begin{array}{l}
+				0\\
+				{k \over T}
+			\end{array}
+		\right] u(t)\\
+				y(t) = \left[ 
+			\begin{array}{ll}
+				1 & 0
+			\end{array}
+		\right]x(t)
+			\end{array} \right.
 	\end{eqnarray}
 \end{itemize}
 
