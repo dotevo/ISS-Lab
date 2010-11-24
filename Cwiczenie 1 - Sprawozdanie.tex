@@ -390,22 +390,30 @@ Po porównaniu wyniku przekształceń z równaniem \ref{eq:rozn_rozn} widzimy, �
 \section{Zadanie 2 \textit{\small Wyznaczanie charakterystyk czasowych}}\label{sec:zad2}
 
 \begin{itemize}
+\item Przy użyciu funkcji impulse(...) i step(...) w programie Matlab
+\begin{itemize}
 \item Inercyjny I rzędu
-\newline \includegraphics[scale=0.8]{CW1-inercyjny1-impuls.eps}
-\newline \includegraphics[scale=0.8]{CW1-inercyjny1-skok.eps}
-\item Inercyjny II rzędu
-\newline \includegraphics[scale=0.8]{CW1-inercyjny2-impuls.eps}
-\newline \includegraphics[scale=0.8]{CW1-inercyjny2-skok.eps}
-\item Całkujący rzeczywisty
-\newline \includegraphics[scale=0.8]{CW1-calkujacy-impuls.eps}
-\newline \includegraphics[scale=0.8]{CW1-calkujacy-skok.eps}
-\item Różniczkujący rzeczywisty
-\newline \includegraphics[scale=0.8]{CW1-rozniczkujacy-impuls.eps}
-\newline \includegraphics[scale=0.8]{CW1-rozniczkujacy-skok.eps}
-\item Proporcjonalny
-\newline \includegraphics[scale=0.8]{CW1-proporcjonalny-impuls.eps}
-\newline \includegraphics[scale=0.8]{CW1-proporcjonalny-skok.eps}
+\newline \includegraphics[scale=0.9]{CW1-inercyjny1-impuls.eps}\newline Charakterystyka impulsowa
+\newline \includegraphics[scale=0.9]{CW1-inercyjny1-skok.eps}\newline Charakterystyka skokowa
+\newpage
+\item Inercyjny II rzędu 
+\newline \includegraphics[scale=0.9]{CW1-inercyjny2-impuls.eps}\newline Charakterystyka impulsowa
+\newline \includegraphics[scale=0.9]{CW1-inercyjny2-skok.eps}\newline Charakterystyka skokowa  
+\newpage
+\item Całkujący rzeczywisty 
+\newline \includegraphics[scale=0.9]{CW1-calkujacy-impuls.eps}\newline Charakterystyka impulsowa
+\newline \includegraphics[scale=0.9]{CW1-calkujacy-skok.eps}\newline Charakterystyka skokowa  
+\newpage
+\item Różniczkujący rzeczywisty 
+\newline \includegraphics[scale=0.9]{CW1-rozniczkujacy-impuls.eps}\newline Charakterystyka impulsowa
+\newline \includegraphics[scale=0.9]{CW1-rozniczkujacy-skok.eps}\newline Charakterystyka skokowa  
+\newpage
+\item Proporcjonalny 
+\newline \includegraphics[scale=0.9]{CW1-proporcjonalny-impuls.eps}\newline Charakterystyka impulsowa
+\newline \includegraphics[scale=0.9]{CW1-proporcjonalny-skok.eps}\newline Charakterystyka skokowa  
 \end{itemize}
+
+\item Przy użyciu własnych funkcji mImpulse(...) i mStep(...)
 
 	\begin{eqnarray} 
 		\dot{x}(t=n \Delta t ) = {x_{n+1}-x_{n} \over {\Delta t}}
@@ -431,59 +439,61 @@ Po porównaniu wyniku przekształceń z równaniem \ref{eq:rozn_rozn} widzimy, �
 	\end{eqnarray}\\
 	Taki układ można już zastosować do napisania funkcji:
 \begin{lstlisting}[caption=funkcja mImpulse.m]
-function p=mImpulse( A,B,C, dt, n)
+function p=mImpulse(A,B,C,D,dt,n)
 	y = zeros(1,n);
 	x = zeros(size(A),n);
 	x(1,1)=1;
 	t = 0:dt:dt*(n-1);
 	u=1;
 	for i=1:n
-		y(1,i) = C*x(:,i);
+		y(1,i) = C*x(:,i) + D*u;
 		x(:,i+1) = (A*x(:,i)+B*u)*dt + x(:,i);
 		u = 0;
 	end
 	p=plot(t,y(1,:))
 end
 \end{lstlisting}
-Funkcja zwraca wykres charakterystyki impulsowej. Na wejście dostaje parametry opisu A,B,C,
-wartość dyskretnego przejścia dt oraz ilość kroków (przedział wykresu [0, dt*(n-1)]). Po pierwszej
-iteracji wartość u jest zmieniana z 1 na 0 co odpowiada impulsowi. %COPY
+Nasz funkcja tworzy wykres charakterystyki impulsowej na podstawie parametrów A,B,C i D będących parametrami rówania stanu (obliczonymi w poprzednim zadaniu) oraz długość kroku i ich ilość. Po pierwszej iteracji u jest zamienione z 1 na 0 tak aby zasymulować impuls.
 
 \begin{lstlisting}[caption=funkcja mStep.m]
-function p=mStep( A,B,C, dt, n)
+function p=mStep(A,B,C,D,dt,n)
 	y = zeros(1,n);
 	x = zeros(size(A),n);
 	t = 0:dt:dt*(n-1);
 	u=1;
 	for i=1:n
-		y(1,i) = C*x(:,i);
+		y(1,i) = C*x(:,i) + D*u;
 		x(:,i+1) = (A*x(:,i)+B*u)*dt + x(:,i);
 	end
 	p=plot(t,y(1,:))
 end
 \end{lstlisting}
-Funkcja zwraca wykres charakterystyki skokowej. Na wejście dostaje parametry opisu A,B,C, wartość
-dyskretnego przejścia dt oraz ilość kroków (przedział wykresu [0, dt*(n-1)]). Wartość u stale jest
-równa 1 co odpowiada sygnałowi skoku.%COPY
+Nasz funkcja tworzy wykres charakterystyki skokowej na podstawie parametrów A,B,C i D będących parametrami rówania stanu (obliczonymi w poprzednim zadaniu) oraz długość kroku i ich ilość. Wartość u jest zawsze równa 1 symulując funkcję jednostkową.
 
-
-%\begin{itemize}
-%\item Inercyjny I rzędu
-%\newline \includegraphics[scale=0.8]{CW1-inercyjny1-mimpuls.eps}
-%\newline \includegraphics[scale=0.8]{CW1-inercyjny1-mskok.eps}
-%\item Inercyjny II rzędu
-%\newline \includegraphics[scale=0.8]{CW1-inercyjny2-mimpuls.eps}
-%\newline \includegraphics[scale=0.8]{CW1-inercyjny2-mskok.eps}
-%\item Całkujący rzeczywisty
-%\newline \includegraphics[scale=0.8]{CW1-calkujacy-mimpuls.eps}
-%\newline \includegraphics[scale=0.8]{CW1-calkujacy-mskok.eps}
-%\item Różniczkujący rzeczywisty
-%\newline \includegraphics[scale=0.8]{CW1-rozniczkujacy-mimpuls.eps}
-%\newline \includegraphics[scale=0.8]{CW1-rozniczkujacy-mskok.eps}
-%\item Proporcjonalny
-%\newline \includegraphics[scale=0.8]{CW1-proporcjonalny-mimpuls.eps}
-%\newline \includegraphics[scale=0.8]{CW1-proporcjonalny-mskok.eps}
-%\end{itemize}
+\newpage 
+\begin{itemize}
+\item Inercyjny I rzędu
+\newline \includegraphics[scale=0.9]{CW1-inercyjny1-mimpuls.eps}\newline Charakterystyka impulsowa
+\newline \includegraphics[scale=0.9]{CW1-inercyjny1-mskok.eps}\newline Charakterystyka skokowa
+\newpage  
+\item Inercyjny II rzędu
+\newline \includegraphics[scale=0.9]{CW1-inercyjny2-mimpuls.eps}\newline Charakterystyka impulsowa
+\newline \includegraphics[scale=0.9]{CW1-inercyjny2-mskok.eps}\newline Charakterystyka skokowa
+\newpage
+\item Całkujący rzeczywisty
+\newline \includegraphics[scale=0.9]{CW1-calkujacy-mimpuls.eps}\newline Charakterystyka impulsowa
+\newline \includegraphics[scale=0.9]{CW1-calkujacy-mskok.eps}\newline Charakterystyka skokowa
+\newpage
+\item Różniczkujący rzeczywisty
+\newline \includegraphics[scale=0.9]{CW1-rozniczkujacy-mimpuls.eps}\newline Charakterystyka impulsowa
+\newline \includegraphics[scale=0.9]{CW1-rozniczkujacy-mskok.eps}\newline Charakterystyka skokowa
+\newpage
+\item Proporcjonalny 
+\newline \includegraphics[scale=0.9]{CW1-proporcjonalny-mimpuls.eps}\newline Charakterystyka impulsowa
+\newline \includegraphics[scale=0.9]{CW1-proporcjonalny-mskok.eps}\newline Charakterystyka skokowa
+  
+\end{itemize}
+\end{itemize}
 
 \section{Zadanie 3 \textit{\small Wyznaczanie parametrów członów dynamicznych}}\label{sec:zad3}
 
@@ -509,5 +519,43 @@ Wyliczamy dla punktu t=0:
 Przedstawiamy pochodną dla t=0 jako współczynnik kierunkowy stycznej (s(t)). Załóżmy, że dla t’
 dana styczna osiąga wartość 0 (przecina oś Ot). Wartość tego współczynnika ma wartość (wiemy
 także, że s(0)=g(0)):
+	\begin{eqnarray} 
+		{s(t_{2})- s(t_{1}) \over {t_{2} -t_{1}}}={s(t')- s(0) \over {t' -0}}={s(0) \over t'}={g(0) \over t'}
+	\end{eqnarray}\\
+	Podstawiając:
+	\begin{eqnarray} 
+		-{g(0) \over t'}= - {1 \over T} g(0)
+	\end{eqnarray}\\
+	Wychodzi:
+	\begin{eqnarray} 
+		T=t'
+	\end{eqnarray}\\
+Interpretacja: wartość parametru T odczytujemy jako argument przecięcia się interpolowanej stycznej
+w punkcie t=0 z osią Ot. Mając T wyliczamy k ze wzoru: 
+	\begin{eqnarray} 
+		k = g (0)T
+	\end{eqnarray}
+	%Wykres itp
+	
+	Charakterystyka skokowa:
+	\begin{eqnarray} 
+			h(t)= k(1- e^{-{1 \over T}})
+	\end{eqnarray}		
+Aby odczytać wartość k i T postępujemy w następujący sposób:
+Bierzemy granicę wartości funkcji
+	\begin{eqnarray} 
+		\lim_{t \to \infty}{h(t)} = \lim_{t \to \infty}{k(1-e^{-{t \over T}})} 
+	\end{eqnarray}	
+A więc wartość k odpowiada równaniu asymptoty poziomej w nieskończoności y(t)=k
+Aby obliczyć T obliczamy pochodną h(t)
+	\begin{eqnarray} 
+		\dot{h}(t)={k \over T}e^{-{t \over T}}
+	\end{eqnarray}	
+
+\section{Wnioski}\label{sec:wnioski}
+
+1. parametry opisu stanu mogą być różne, a dalej równoznaczne
+2. 
+
 
 \end{document}
