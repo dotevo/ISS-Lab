@@ -58,6 +58,14 @@ W ten sposób przyrównując otrzymaliśmy gotowe równanie stanu.
 			y(t) = x(t)
 		\end{array} \right.
 	\end{eqnarray}
+\item Opis w Matlabie
+\newline Opis za pomocą równania stanu w Matlabie uzyskuje się przez podanie współczynników wielomianów $Y(s)$ oraz $U(s)$ z transmitancji (zaczynając od najwyższej) do funkcji $tf2ss(Y, U)$, która zwróci parametry równania stanu.
+Ponieważ w Matlabie nie możemy stosować stałych jak k, czy T, podamy w ich miejsce wartości liczbowe.
+\newline\newline Dla $k=1$, $T=2$
+\newline $>>[A,B,C] = tf2ss([1], [2 \ 1])$
+\newline Zwraca wynik:
+$A = -0.5, B = 1, C = 0.5000$
+
 \end{itemize}
 
 \item Inercyjny 2-rzędu
@@ -74,16 +82,7 @@ W ten sposób przyrównując otrzymaliśmy gotowe równanie stanu.
 		T_{1}T_{2}\ddot{y}(t) + \left({T_{1} + T_{2}}\right) \dot{y}(t) + y(t)= k u(t)
 	\end{eqnarray}
 \item Równanie stanu
-\newline Ogólna postać równania stanu:
-	\begin{eqnarray}
-		\nonumber \left\{
-			\begin{array}{l}
-				x(t) = Ax(t) + Bu(t)\\
-				y(t) = C^{T}x(t)
-			\end{array} \right.
-	\end{eqnarray}
-	
-	
+%TODO
 \end{itemize}
 
 \item Całkujący rzeczywisty
@@ -100,18 +99,11 @@ W ten sposób przyrównując otrzymaliśmy gotowe równanie stanu.
 		T\ddot{y}(t) + \dot{y}(t) = ku(t)
 	\end{eqnarray}
 \item Równanie stanu
-\newline Ogólna postać równania stanu:
-	\begin{eqnarray}
-		\nonumber \left\{
-			\begin{array}{l}
-				x(t) = Ax(t) + Bu(t)\\
-				y(t) = C^{T}x(t)
-			\end{array} \right.
-	\end{eqnarray}
-W równaniu różniczkowym wyjście obiektu jest najwyżej w drugiej pochodnej, więc mamy do czynienia z obiektem stopnia drugiego, a wektor stanu x(t) będzie reprezentowany przez dwuelementowy wektor:
+\newline W równaniu różniczkowym wyjście obiektu jest najwyżej w drugiej pochodnej, więc mamy do czynienia z obiektem stopnia drugiego, a wektor stanu x(t) będzie reprezentowany przez dwuelementowy wektor:
  	\begin{eqnarray}
 		\nonumber x(t) = \left[ 
-			\begin{array}{l}x_{1}(t)\\
+			\begin{array}{l}
+				x_{1}(t)\\
 				x_{2}(t)
 			\end{array}
 		\right] = \left[ 
@@ -170,6 +162,12 @@ Z otrzymanego równania możemy wywnioskować wartości parametrów A, B i C, or
 			\end{array} \right.
 	\end{eqnarray}
 \end{itemize}
+\item Opis w Matlabie
+\newline Opis uzyskamy analogicznie jak w poprzednich przykładach.
+\newline\newline Dla $k=1$, $T=2$
+\newline $>>[A,B,C] = tf2ss([1], [2 \ 1 \ 0])$
+\newline Zwraca wynik:
+$A = \left[ \begin{array}{ll} -0.5 & 0\\ 1 & 0 \end{array} \right], B = \left[ \begin{array}{l} 1\\ 0 \end{array} \right], C = \left[ \begin{array}{ll} 0 & 0.5 \end{array} \right]$
 
 \item Różniczkujący rzeczywisty
 \begin{itemize}
