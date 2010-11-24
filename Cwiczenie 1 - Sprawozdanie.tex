@@ -65,6 +65,18 @@ Ponieważ w Matlabie nie możemy stosować stałych jak k, czy T, podamy w ich m
 \newline $>>[A,B,C] = tf2ss([1], [2 \ 1])$
 \newline Zwraca wynik:
 $A = -0.5, B = 1, C = 0.5000$
+\newline \newline Parametry zwrócone przez Matlaba różnią się od obliczonych przez nas prawdopodobnie dlatego, że Matlab przyjął inny wektor x(t) na samym początku. Jednak oba opisy są równoważne, ponieważ można przedstawić je w taki sposób:
+		\begin{eqnarray}
+		\nonumber \left\{ \begin{array}{l}
+			\dot{x}(t) = -0.5x(t) + u(t)\\
+			y(t) = 0.5x(t)
+		\end{array} \right.\\
+		\nonumber \dot{y}(t) = 0.5\dot{x}(t)\\
+		\nonumber \dot{y}(t) = -0.25x(t) + 0.5u(t)\\
+		\nonumber \dot{y}(t) = -0.5y(t) + 0.5u(t)\\
+		2\dot{y}(t) + y(t) = u(t)
+	\end{eqnarray}
+Po porównaniu wyniku przekształceń z równaniem \ref{eq:iter_rozn} widzimy, że $k=1$, $T=2$, czyli tak jak założyliśmy.
 
 \end{itemize}
 
@@ -150,8 +162,21 @@ Z otrzymanego równania możemy wywnioskować wartości parametrów A, B i C, or
 \newline $>>[A,B,C] = tf2ss([1], [2 \ 3 \ 1])$
 \newline Zwraca wynik:
 $A = \left[ \begin{array}{ll} -1.5 & -0.5\\ 1 & 0 \end{array} \right], B = \left[ \begin{array}{l} 1\\ 0 \end{array} \right], C = \left[ \begin{array}{ll} 0 & 0.5 \end{array} \right]$
-
+\newline \newline Parametry zwrócone przez Matlaba różnią się od obliczonych przez nas prawdopodobnie dlatego, że Matlab przyjął inny wektor x(t) na samym początku. Jednak oba opisy są równoważne, ponieważ można przedstawić je w taki sposób:
+	\begin{eqnarray}
+		\nonumber \left\{ \begin{array}{l}
+			\dot{x_{1}}(t) = -1.5x_{1}(t) -0.5x_{2} + u(t)\\
+			\dot{x_{2}}(t) = x_{1}\\
+			y(t) = 0.5x(t)
+		\end{array} \right. \\
+		\nonumber \ddot{y}(t) = 0.5\ddot{x_{2}}(t)\\
+		\nonumber \ddot{y}(t) = 0.5\dot{x_{1}}(t)\\
+		\nonumber \ddot{y}(t) = -0.75x_{1}(t) -0.25x_{2}(t) + 0.5u(t)\\
+		\nonumber \ddot{y}(t) = -1,5\dot{y}(t) -0.5y(t) + 0.5u(t)\\
+		2\ddot{y}(t) + 3\dot{y}(t) + y(t) = u(t)
+	\end{eqnarray}
 \end{itemize}
+Po porównaniu wyniku przekształceń z równaniem \ref{eq:inerc_rozn} widzimy, że $T_{1}T_{2}=2$, $T_{1} + T_{2}=3$, czyli tak pasuje do założonych.
 
 \item Całkujący rzeczywisty
 
@@ -235,6 +260,20 @@ Z otrzymanego równania możemy wywnioskować wartości parametrów A, B i C, or
 \newline $>>[A,B,C] = tf2ss([1], [2 \ 1 \ 0])$
 \newline Zwraca wynik:
 $A = \left[ \begin{array}{ll} -0.5 & 0\\ 1 & 0 \end{array} \right], B = \left[ \begin{array}{l} 1\\ 0 \end{array} \right], C = \left[ \begin{array}{ll} 0 & 0.5 \end{array} \right]$
+\newline \newline Parametry zwrócone przez Matlaba różnią się od obliczonych przez nas prawdopodobnie dlatego, że Matlab przyjął inny wektor x(t) na samym początku. Jednak oba opisy są równoważne, ponieważ można przedstawić je w taki sposób:
+	\begin{eqnarray}
+		\nonumber \left\{ \begin{array}{l}
+			\dot{x_{1}}(t) = -0.5x_{1}(t) + u(t)\\
+			\dot{x_{2}}(t) = x_{1}\\
+			y(t) = 0.5x(t)
+		\end{array} \right. \\
+		\nonumber \ddot{y}(t) = 0.5\ddot{x_{2}}(t)\\
+		\nonumber \ddot{y}(t) = 0.5\dot{x_{1}}(t)\\
+		\nonumber \ddot{y}(t) = -0.25x_{1}(t) + 0.5u(t)\\
+		\nonumber \ddot{y}(t) = -0,5\dot{y}(t) + 0.5u(t)\\
+		2\ddot{y}(t) + \dot{y}(t) = u(t)
+	\end{eqnarray}
+Po porównaniu wyniku przekształceń z równaniem \ref{eq:calk_rozn} widzimy, że $k=1$, $T=2$, czyli tak jak założyliśmy.
 
 \end{itemize}
 
@@ -270,6 +309,15 @@ $A = \left[ \begin{array}{ll} -0.5 & 0\\ 1 & 0 \end{array} \right], B = \left[ \
 \end{itemize}
 
 \section{Zadanie 2 \textit{\small Wyznaczanie charakterystyk czasowych}}\label{sec:zad2}
+
+\begin{itemize}
+\item Inercyjny I rzędu
+\item Inercyjny II rzędu
+
+\item Inercyjny I rzędu
+\item Inercyjny I rzędu
+\item Inercyjny I rzędu
+\end{itemize}
 
 \section{Zadanie 3 \textit{\small Wyznaczanie parametrów członów dynamicznych}}\label{sec:zad3}
 
