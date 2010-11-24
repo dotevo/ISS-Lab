@@ -1,10 +1,46 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{polski}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+\addtolength{\hoffset}{-1cm}
+\addtolength{\voffset}{-2cm}
+\addtolength{\textwidth}{2cm}
+\addtolength{\textheight}{3cm}
+
 
 \title{Sprawozdanie ISS\newline\small Ćwiczenie 1: Podstawy tworzenia opisów i modelowania obiektów sterowania}
 
 \author{Adam Jordanek 168139, Tomasz Klimek 168092}
+
+\lstset{
+    language=Matlab,
+    basicstyle=\scriptsize,
+    aboveskip={1.5\baselineskip},
+    columns=fixed,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=4,
+    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=single,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    identifierstyle=\ttfamily,
+    keywordstyle=\color[rgb]{0,0,1},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    captionpos=b,
+    escapeinside={\%*}{*)}
+}
+
+
 
 \begin{document}
 \maketitle
@@ -64,7 +100,7 @@ Ponieważ w Matlabie nie możemy stosować stałych jak k, czy T, podamy w ich m
 \newline\newline Dla $k=1$, $T=2$
 \newline $>>[A,B,C] = tf2ss([1], [2 \ 1])$
 \newline Zwraca wynik:
-$A = -0.5, B = 1, C = 0.5000$
+$A = -0.5, B = 1, C = 0.5$
 \newline \newline Parametry zwrócone przez Matlaba różnią się od obliczonych przez nas prawdopodobnie dlatego, że Matlab przyjął inny wektor x(t) na samym początku. Jednak oba opisy są równoważne, ponieważ można przedstawić je w taki sposób:
 		\begin{eqnarray}
 		\nonumber \left\{ \begin{array}{l}
@@ -285,12 +321,53 @@ Po porównaniu wyniku przekształceń z równaniem \ref{eq:calk_rozn} widzimy, �
 	\end{eqnarray}
 \item Równanie różniczkowe
 	\begin{eqnarray}
-		Y(s) = {ks \over \left({Ts + 1}\right)}  U(s)\\
+		\nonumber Y(s) = {ks \over \left({Ts + 1}\right)}  U(s)\\
 		\nonumber TsY(s)+Y(s)=k s U(s)\\
-		\nonumber T\dot{y}(t)+y=k\dot{u}(t)
+		T\dot{y}(t)+y=k\dot{u}(t) \label{eq:rozn_rozn}
 	\end{eqnarray}
 \item Równanie stanu
-%TODO
+\newline W równaniu różniczkowym wyjście obiektu jest najwyżej w pierwszej pochodnej, więc mamy do czynienia z obiektem stopnia pierwszego, jednak ponieważ wejście również jest w pierwszej pochodnej, więc wektor stanu x(t) będzie reprezentowany przez jednoelementowy wektor $x(t) = y(t) + \alpha u(t)$, parametry A, B, C i D będą zwykłymi parametrami liczbowymi, a równanie stanu można zapisać jako:
+	\begin{eqnarray}
+		\nonumber \left\{ \begin{array}{l}
+			\dot{x}(t) = ax(t) + bu(t)\\
+			y(t) = cx(t) + du(t)
+		\end{array} \right.\\
+		\nonumber \left\{ \begin{array}{l}
+			\dot{y}(t) + \alpha \dot{u}(t) = ay(t) + a\alpha u(t) + bu(t)\\
+			y(t) = cy(t) + c\alpha u(t) + du(t)
+		\end{array} \right.\\
+	\end{eqnarray}
+Aby uzyskać równanie stanu wystarczy zauważyć, że $c=1$, $d = -\alpha$, oraz przekształcić równanie \ref{eq:rozn_rozn} w następujący sposób:
+	\begin{eqnarray}
+		\nonumber T\dot{y}(t) + y(t) = k\dot{u}(t)\\
+		\dot{y}(t) + {1 \over T}y(t) = {k \over T}\dot{u}(t)
+	\end{eqnarray}
+Z tej postaci możemy już wywnioskować wartości pozostałych parametrów i podać gotowe równanie stanu.
+	\begin{eqnarray}
+		\left\{ \begin{array}{l}
+			\dot{x}(t) = -{1 \over T}x(t) - {k \over T^{2}}u(t)\\
+			y(t) = x(t) + {k \over T}u(t)
+		\end{array} \right.
+	\end{eqnarray}
+\item Opis w Matlabie
+\newline Opis uzyskamy analogicznie jak w poprzednich przykładach.
+\newline\newline Dla $k=1$, $T=2$
+\newline $>>[A,B,C,D] = tf2ss([1 \ 0], [2 \ 1])$
+\newline Zwraca wynik:
+$A = -0.5, B = 1, C = -0.25, D = 0.5$
+\newline \newline Parametry zwrócone przez Matlaba różnią się od obliczonych przez nas prawdopodobnie dlatego, że Matlab przyjął inny wektor x(t) na samym początku. Jednak oba opisy są równoważne, ponieważ można przedstawić je w taki sposób:
+		\begin{eqnarray}
+		\nonumber \left\{ \begin{array}{l}
+			\dot{x}(t) = -0.5x(t) + u(t)\\
+			y(t) = -0.25x(t) + 0.5u(t)
+		\end{array} \right.\\
+		\nonumber \dot{y}(t) = -0.25\dot{x}(t) + 0.5\dot{u}(t)\\
+		\nonumber \dot{y}(t) = 0.0125x(t) - 0.25u(t) + 0.5\dot{u}(t)\\
+		\nonumber \dot{y}(t) = 0.25u(t) - 0.5y(t) - 0.25u(t) + 0.5\dot{u}(t)\\
+		2\dot{y}(t) + y(t) = \dot{u}(t)
+	\end{eqnarray}
+Po porównaniu wyniku przekształceń z równaniem \ref{eq:rozn_rozn} widzimy, że $k=1$, $T=2$, czyli tak jak założyliśmy.
+
 \end{itemize}
 
 \item Proporcjonalny
@@ -304,6 +381,8 @@ Po porównaniu wyniku przekształceń z równaniem \ref{eq:calk_rozn} widzimy, �
 		\nonumber Y(s) = k U(s)\\ \label{eq:prop_rozn}
 		y(t)= ku(t)
 	\end{eqnarray}
+\item Równanie stanu
+	Nie ma opisu w przestrzeni stanów.
 \end{itemize}
 
 \end{itemize}
@@ -312,13 +391,122 @@ Po porównaniu wyniku przekształceń z równaniem \ref{eq:calk_rozn} widzimy, �
 
 \begin{itemize}
 \item Inercyjny I rzędu
+\newline \includegraphics[scale=0.8]{CW1-inercyjny1-impuls.png}
+\newline \includegraphics[scale=0.8]{CW1-inercyjny1-skok.png}
 \item Inercyjny II rzędu
+\newline \includegraphics[scale=0.8]{CW1-inercyjny2-impuls.png}
+\newline \includegraphics[scale=0.8]{CW1-inercyjny2-skok.png}
+\item Całkujący rzeczywisty
+\newline \includegraphics[scale=0.8]{CW1-calkujacy-impuls.png}
+\newline \includegraphics[scale=0.8]{CW1-calkujacy-skok.png}
+\item Różniczkujący rzeczywisty
+\newline \includegraphics[scale=0.8]{CW1-rozniczkujacy-impuls.png}
+\newline \includegraphics[scale=0.8]{CW1-rozniczkujacy-skok.png}
+\item Proporcjonalny
+\newline \includegraphics[scale=0.8]{CW1-proporcjonalny-impuls.png}
+\newline \includegraphics[scale=0.8]{CW1-proporcjonalny-skok.png}
+\end{itemize}
 
+	\begin{eqnarray} 
+		\dot{x}(t=n \Delta t ) = {x_{n+1}-x_{n} \over {\Delta t}}
+	\end{eqnarray}
+	\begin{eqnarray} 
+		x_{n}=x(t=n \Delta t)
+	\end{eqnarray}
+	\begin{eqnarray} 
+		u_{n}=u(t=n \Delta t)
+	\end{eqnarray}
+	\begin{eqnarray} 
+		y_{n}=y(t=n \Delta t)
+	\end{eqnarray}\\
+	Dodatkowo korzystamy z:\\
+	\begin{eqnarray} 
+		\nonumber \dot{x}_{n}=Ax_{n}+Bu_{n}
+		\nonumber y_{n}=Cx_{n}
+	\end{eqnarray}\\
+	Otrzymujemy układ dyskretny:\\
+	\begin{eqnarray} 
+		\nonumber {x}_{n+1}=(Ax_{n}+Bu_{n}) \Delta t +x_{n}
+		\nonumber y_{n}=Cx_{n}
+	\end{eqnarray}\\
+	Taki układ można już zastosować do napisania funkcji:
+\begin{lstlisting}[caption=funkcja mImpulse.m]
+function p=mImpulse( A,B,C, dt, n)
+	y = zeros(1,n);
+	x = zeros(size(A),n);
+	x(1,1)=1;
+	t = 0:dt:dt*(n-1);
+	u=1;
+	for i=1:n
+		y(1,i) = C*x(:,i);
+		x(:,i+1) = (A*x(:,i)+B*u)*dt + x(:,i);
+		u = 0;
+	end
+	p=plot(t,y(1,:))
+end
+\end{lstlisting}
+Funkcja zwraca wykres charakterystyki impulsowej. Na wejście dostaje parametry opisu A,B,C,
+wartość dyskretnego przejścia dt oraz ilość kroków (przedział wykresu [0, dt*(n-1)]). Po pierwszej
+iteracji wartość u jest zmieniana z 1 na 0 co odpowiada impulsowi. %COPY
+
+\begin{lstlisting}[caption=funkcja mStep.m]
+function p=mStep( A,B,C, dt, n)
+	y = zeros(1,n);
+	x = zeros(size(A),n);
+	t = 0:dt:dt*(n-1);
+	u=1;
+	for i=1:n
+		y(1,i) = C*x(:,i);
+		x(:,i+1) = (A*x(:,i)+B*u)*dt + x(:,i);
+	end
+	p=plot(t,y(1,:))
+end
+\end{lstlisting}
+Funkcja zwraca wykres charakterystyki skokowej. Na wejście dostaje parametry opisu A,B,C, wartość
+dyskretnego przejścia dt oraz ilość kroków (przedział wykresu [0, dt*(n-1)]). Wartość u stale jest
+równa 1 co odpowiada sygnałowi skoku.%COPY
+
+\begin{itemize}
 \item Inercyjny I rzędu
-\item Inercyjny I rzędu
-\item Inercyjny I rzędu
+\newline \includegraphics[scale=0.8]{CW1-inercyjny1-mimpuls.png}
+\newline \includegraphics[scale=0.8]{CW1-inercyjny1-mskok.png}
+\item Inercyjny II rzędu
+\newline \includegraphics[scale=0.8]{CW1-inercyjny2-mimpuls.png}
+\newline \includegraphics[scale=0.8]{CW1-inercyjny2-mskok.png}
+\item Całkujący rzeczywisty
+\newline \includegraphics[scale=0.8]{CW1-calkujacy-mimpuls.png}
+\newline \includegraphics[scale=0.8]{CW1-calkujacy-mskok.png}
+\item Różniczkujący rzeczywisty
+\newline \includegraphics[scale=0.8]{CW1-rozniczkujacy-mimpuls.png}
+\newline \includegraphics[scale=0.8]{CW1-rozniczkujacy-mskok.png}
+\item Proporcjonalny
+\newline \includegraphics[scale=0.8]{CW1-proporcjonalny-mimpuls.png}
+\newline \includegraphics[scale=0.8]{CW1-proporcjonalny-mskok.png}
 \end{itemize}
 
 \section{Zadanie 3 \textit{\small Wyznaczanie parametrów członów dynamicznych}}\label{sec:zad3}
+
+Przepisane dla inercyjnego:
+	\begin{eqnarray} 
+		g(t)={k \over T} e^{-{t \over T}}
+	\end{eqnarray}\\
+	
+Aby odczytać wartość k i T postępujemy w następujący sposób:
+Wyliczamy dla punktu t=0:
+
+	\begin{eqnarray} 
+		g(0)={k \over T}
+	\end{eqnarray}\\
+	Liczymy pochodną:
+	\begin{eqnarray} 
+		\dot{g}(t)=-{k \over T^{2}} e^{-{t \over T}}
+	\end{eqnarray}\\
+	Obliczamy wartość pochodnej w punkcjie t=0
+	\begin{eqnarray} 
+		\dot{g}(0)=-{k \over T^{2}}=-{1 \over T^{2}}g(0)
+	\end{eqnarray}\\
+Przedstawiamy pochodną dla t=0 jako współczynnik kierunkowy stycznej (s(t)). Załóżmy, że dla t’
+dana styczna osiąga wartość 0 (przecina oś Ot). Wartość tego współczynnika ma wartość (wiemy
+także, że s(0)=g(0)):
 
 \end{document}
