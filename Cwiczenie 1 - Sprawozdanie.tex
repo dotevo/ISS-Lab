@@ -16,7 +16,7 @@ Tworzenie opisów (modeli) matematycznych obiektów sterowania, a także wykorzy
 \section{Zadanie 1 \textit{\small Tworzenie modeli matematycznych}}\label{sec:zad1}
 
 \begin{itemize}
-\item Inercyjny 1-rzędu
+\item Inercyjny I rzędu
 
 \begin{itemize}
 \item Transmitancja	
@@ -68,7 +68,7 @@ $A = -0.5, B = 1, C = 0.5000$
 
 \end{itemize}
 
-\item Inercyjny 2-rzędu
+\item Inercyjny II rzędu
 \begin{itemize}
 \item Transmitancja
 	\begin{eqnarray}
@@ -79,10 +79,78 @@ $A = -0.5, B = 1, C = 0.5000$
 		\nonumber Y(s) = {k \over {\left({T_{1}s + 1}\right) \left({T_{2}s + 1}\right)}} U(s)\\
 		\nonumber Y(s)\left({T_{1}s + 1}\right) \left({T_{2}s + 1}\right)= kU(s)\\
 		\nonumber T_{1}T_{2}s^{2}Y(s) + \left({T_{1} + T_{2}}\right) s Y(s) + Y(s)= kU(s)\\
-		T_{1}T_{2}\ddot{y}(t) + \left({T_{1} + T_{2}}\right) \dot{y}(t) + y(t)= k u(t)
+		T_{1}T_{2}\ddot{y}(t) + \left({T_{1} + T_{2}}\right) \dot{y}(t) + y(t)= ku(t) \label{eq:inerc_rozn}
 	\end{eqnarray}
 \item Równanie stanu
-%TODO
+\newline W równaniu różniczkowym wyjście obiektu jest najwyżej w drugiej pochodnej, więc mamy do czynienia z obiektem stopnia drugiego, a wektor stanu x(t) będzie reprezentowany przez dwuelementowy wektor:
+ 	\begin{eqnarray}
+		\nonumber x(t) = \left[ 
+			\begin{array}{l}
+				x_{1}(t)\\
+				x_{2}(t)
+			\end{array}
+		\right] = \left[ 
+			\begin{array}{l}
+				y(t)\\
+				\dot{y}(t)
+			\end{array}
+		\right]
+	\end{eqnarray}
+Parametry A, B i C będą natomiast miały postać:
+	\begin{eqnarray}
+		\nonumber A = \left[ 
+			\begin{array}{ll}
+				a_{11} & a_{12}\\
+				a_{21} & a_{22}
+			\end{array}
+		\right], B = \left[ 
+			\begin{array}{l}
+				b_{1}\\
+				b_{2}
+			\end{array}
+		\right], C = \left[ 
+			\begin{array}{l}
+				c_{1}\\
+				c_{2}
+			\end{array}
+		\right]
+	\end{eqnarray}
+Aby uzyskać równanie stanu przekształcamy równanie \ref{eq:inerc_rozn} otrzynując:
+	\begin{eqnarray}
+		\nonumber T_{1}T_{2}\ddot{y}(t) + \left({T_{1} + T_{2}}\right) \dot{y}(t) + y(t)= ku(t)\\
+		\nonumber T_{1}T_{2}\dot{x_{2}}(t) + \left({T_{1} + T_{2}}\right) x_{2}(t) + x_{1}(t)= ku(t)\\
+		\nonumber T_{1}T_{2}\dot{x_{2}}(t) = - \left({T_{1} + T_{2}}\right) x_{2}(t) - x_{1}(t) + ku(t)\\
+		\dot{x_{2}}(t) = -{{T_{1} + T_{2}} \over T_{1}T_{2}}x_{2}(t) -{1 \over T_{1}T_{2}}x_{1}(1) + {k \over T_{1}T_{2}}u(t)
+	\end{eqnarray}
+Z otrzymanego równania możemy wywnioskować wartości parametrów A, B i C, oraz zapisać ostateczną postać równania stanu:
+	\begin{eqnarray}
+		\left\{
+			\begin{array}{l}
+				x(t) = \left[ 
+			\begin{array}{ll}
+				0 & 1\\
+				-{1 \over T_{1}T_{2}} & -{{T_{1} + T_{2}} \over T_{1}T_{2}}
+			\end{array}
+		\right] x(t) + \left[ 
+			\begin{array}{l}
+				0\\
+				{k \over T_{1}T_{2}}
+			\end{array}
+		\right] u(t)\\
+				y(t) = \left[ 
+			\begin{array}{ll}
+				1 & 0
+			\end{array}
+		\right]x(t)
+			\end{array} \right.
+	\end{eqnarray}
+\item Opis w Matlabie
+\newline Opis uzyskamy analogicznie jak w poprzednich przykładach.
+\newline\newline Dla $k=1$, $T=2$
+\newline $>>[A,B,C] = tf2ss([1], [2 \ 3 \ 1])$
+\newline Zwraca wynik:
+$A = \left[ \begin{array}{ll} -1.5 & -0.5\\ 1 & 0 \end{array} \right], B = \left[ \begin{array}{l} 1\\ 0 \end{array} \right], C = \left[ \begin{array}{ll} 0 & 0.5 \end{array} \right]$
+
 \end{itemize}
 
 \item Całkujący rzeczywisty
@@ -94,9 +162,9 @@ $A = -0.5, B = 1, C = 0.5000$
 	\end{eqnarray}
 \item Równanie różniczkowe
 	\begin{eqnarray} 
-		\nonumber Y(s) = {k \over {s \left( Ts + 1 \right) }} U(s)\\ \label{eq:calk_rozn}
+		\nonumber Y(s) = {k \over {s \left( Ts + 1 \right) }} U(s)\\ 
 		\nonumber Ts^{2}Y(s) + sY(s) = kU(s)\\
-		T\ddot{y}(t) + \dot{y}(t) = ku(t)
+		T\ddot{y}(t) + \dot{y}(t) = ku(t) \label{eq:calk_rozn}
 	\end{eqnarray}
 \item Równanie stanu
 \newline W równaniu różniczkowym wyjście obiektu jest najwyżej w drugiej pochodnej, więc mamy do czynienia z obiektem stopnia drugiego, a wektor stanu x(t) będzie reprezentowany przez dwuelementowy wektor:
@@ -135,9 +203,9 @@ Parametry A, B i C będą natomiast miały postać:
 Aby uzyskać równanie stanu przekształcamy równanie \ref{eq:calk_rozn} otrzynując:
 	\begin{eqnarray}
 		\nonumber T\ddot{y}(t) + \dot{y}(t) = ku(t)\\
-		\nonumber T\dot{x}(t) + x(t) = ku(t)\\
-		\nonumber T\dot{x}(t) = ku(t) - x(t)\\
-		\dot{x}(t) = -{x \over T}(t) + {k \over T}u(t)
+		\nonumber T\dot{x_{2}}(t) + x_{2}(t) = ku(t)\\
+		\nonumber T\dot{x_{2}}(t) = - x_{2}(t) + ku(t)\\
+		\dot{x_{2}}(t) = -{1 \over T}x_{2}(t) + {k \over T}u(t)
 	\end{eqnarray}
 Z otrzymanego równania możemy wywnioskować wartości parametrów A, B i C, oraz zapisać ostateczną postać równania stanu:
 	\begin{eqnarray}
@@ -161,13 +229,14 @@ Z otrzymanego równania możemy wywnioskować wartości parametrów A, B i C, or
 		\right]x(t)
 			\end{array} \right.
 	\end{eqnarray}
-\end{itemize}
 \item Opis w Matlabie
 \newline Opis uzyskamy analogicznie jak w poprzednich przykładach.
 \newline\newline Dla $k=1$, $T=2$
 \newline $>>[A,B,C] = tf2ss([1], [2 \ 1 \ 0])$
 \newline Zwraca wynik:
 $A = \left[ \begin{array}{ll} -0.5 & 0\\ 1 & 0 \end{array} \right], B = \left[ \begin{array}{l} 1\\ 0 \end{array} \right], C = \left[ \begin{array}{ll} 0 & 0.5 \end{array} \right]$
+
+\end{itemize}
 
 \item Różniczkujący rzeczywisty
 \begin{itemize}
