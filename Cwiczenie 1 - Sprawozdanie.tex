@@ -1,10 +1,42 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{polski}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+
 
 \title{Sprawozdanie ISS\newline\small Ćwiczenie 1: Podstawy tworzenia opisów i modelowania obiektów sterowania}
 
 \author{Adam Jordanek 168139, Tomasz Klimek 168092}
+
+\lstset{
+    language=Matlab,
+    basicstyle=\scriptsize,
+    aboveskip={1.5\baselineskip},
+    columns=fixed,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=4,
+    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=single,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    identifierstyle=\ttfamily,
+    keywordstyle=\color[rgb]{0,0,1},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    captionpos=b,
+    escapeinside={\%*}{*)}
+}
+
+
 
 \begin{document}
 \maketitle
@@ -196,12 +228,91 @@ $A = \left[ \begin{array}{ll} -0.5 & 0\\ 1 & 0 \end{array} \right], B = \left[ \
 		\nonumber Y(s) = k U(s)\\ \label{eq:prop_rozn}
 		y(t)= ku(t)
 	\end{eqnarray}
+\item Równanie stanu
+	Nie ma opisu w przestrzeni stanów.
 \end{itemize}
 
 \end{itemize}
 
 \section{Zadanie 2 \textit{\small Wyznaczanie charakterystyk czasowych}}\label{sec:zad2}
+\begin{enumerate}
+\item A. Uzyskanie charakterystyki impulsowej i charakterystyki skokowej w formie wykresu
+ przy wykorzystaniu odpowiednich funkcji MathLaba.\\
+\item B. Napisanie procedury w Matlabie, umożliwiającej wykreślenie charakterystyki
+impulsowej i charakterystyki czasowej na podstawie opisu w przestrzeni stanu.\\
+	\begin{eqnarray} 
+		\dot{x}(t=n \Delta t ) = {x_{n+1}-x_{n} \over {\Delta t}}
+	\end{eqnarray}
+	\begin{eqnarray} 
+		x_{n}=x(t=n \Delta t)
+	\end{eqnarray}
+	\begin{eqnarray} 
+		u_{n}=u(t=n \Delta t)
+	\end{eqnarray}
+	\begin{eqnarray} 
+		y_{n}=y(t=n \Delta t)
+	\end{eqnarray}\\
+	Dodatkowo korzystamy z:\\
+	\begin{eqnarray} 
+		\nonumber \dot{x}_{n}=Ax_{n}+Bu_{n}
+		\nonumber y_{n}=Cx_{n}
+	\end{eqnarray}\\
+	Otrzymujemy układ dyskretny:\\
+	\begin{eqnarray} 
+		\nonumber {x}_{n+1}=(Ax_{n}+Bu_{n}) \Delta t +x_{n}
+		\nonumber y_{n}=Cx_{n}
+	\end{eqnarray}\\
+	Taki układ można już zastosować do napisania funkcji:
+\begin{lstlisting}[caption=funkcja mImpulse.m]
+function p=mImpulse( A,B,C, dt, n)
+	y = zeros(1,n);
+	x = zeros(size(A),n);
+	x(1,1)=1;
+	t = 0:dt:dt*(n-1);
+	u=1;
+	for i=1:n
+		y(1,i) = C*x(:,i);
+		x(:,i+1) = (A*x(:,i)+B*u)*dt + x(:,i);
+		u = 0;
+	end
+	p=plot(t,y(1,:))
+end
+\end{lstlisting}
+Funkcja zwraca wykres charakterystyki impulsowej. Na wejście dostaje parametry opisu A,B,C,
+wartość dyskretnego przejścia dt oraz ilość kroków (przedział wykresu [0, dt*(n-1)]). Po pierwszej
+iteracji wartość u jest zmieniana z 1 na 0 co odpowiada impulsowi. %COPY
 
+\begin{lstlisting}[caption=funkcja mStep.m]
+function p=mStep( A,B,C, dt, n)
+	y = zeros(1,n);
+	x = zeros(size(A),n);
+	t = 0:dt:dt*(n-1);
+	u=1;
+	for i=1:n
+		y(1,i) = C*x(:,i);
+		x(:,i+1) = (A*x(:,i)+B*u)*dt + x(:,i);
+	end
+	p=plot(t,y(1,:))
+end
+\end{lstlisting}
+Funkcja zwraca wykres charakterystyki skokowej. Na wejście dostaje parametry opisu A,B,C, wartość
+dyskretnego przejścia dt oraz ilość kroków (przedział wykresu [0, dt*(n-1)]). Wartość u stale jest
+równa 1 co odpowiada sygnałowi skoku.%COPY
+
+	
+
+\item C. Narysowanie przebiegu obu charakterystyk w czasie, z wykorzystaniem procedur
+napisanych w p. B\\
+\item D. Porównanie charakterystyk wyznaczonych w p. C z odpowiednimi charakterystykami
+uzyskanymi w p. A.\\
+
+\end{enumerate}
 \section{Zadanie 3 \textit{\small Wyznaczanie parametrów członów dynamicznych}}\label{sec:zad3}
+
+Przepisane dla inercyjnego:
+	\begin{eqnarray} 
+		g(t)={k \over T} e^{-{t \over T}}
+	\end{eqnarray}\\
+
 
 \end{document}
