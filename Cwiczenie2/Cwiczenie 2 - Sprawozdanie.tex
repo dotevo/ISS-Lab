@@ -8,12 +8,38 @@
 \addtolength{\voffset}{-2cm}
 \addtolength{\textwidth}{2cm}
 \addtolength{\textheight}{3cm}
-
-\def\figurename{Rys.}
-
 \usepackage{setspace}
 \usepackage{indentfirst}
 \usepackage{graphicx}
+
+\lstset{
+    language=Matlab,
+    basicstyle=\scriptsize,
+    aboveskip={1.5\baselineskip},
+    columns=fixed,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=4,
+    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=single,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    identifierstyle=\ttfamily,
+    keywordstyle=\color[rgb]{0,0,1},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    captionpos=b,
+    escapeinside={\%*}{*)}
+}
+
+\def\figurename{Rys.}
+\def\lstlistingname{Fun.}
 
 \title{Informatyczne Systemy Sterowania \\ \large Ćwiczenie 2: Systemy regulacji - Regulator PID}
 
@@ -93,7 +119,33 @@ a_{0} = 4
 oraz zadanej wartości wyjścia $y^{*} = 1$.
 
 \subsubsection{Regulator P.}
-
+Aby zasymulować regulator P musieliśmy ustawić wartości parametru całkującego i różniczkującego na $T_{i}=0$, $T_{d}=0$. \\
+Następnie wykorzystując poniższą funkcję przetestowaliśmy zachowanie regulatora P dla różnych wartości parametru $k$.
+\begin{lstlisting}[caption=Funkcja testująca regulator P.]
+function testP(start, step, stop)
+load_system('model.mdl');
+hold on;
+k = start;
+i = 0;
+color = char('r', 'k', 'b', 'g', 'y', 'm');
+set_param('model/Gain1', 'Gain', num2str(0));
+set_param('model/Gain2', 'Gain', num2str(0));
+while (k <= stop)
+    set_param('model/Gain', 'Gain', num2str(k));
+    sim('model.mdl');
+    wy = simout.signals.values;
+    figure(1);
+    plot(tout, wy, 'Color', color(mod(i,6)+1));
+    i = i + 1;
+    q(i) = sum(wy.^2)/length(wy);
+    ka(i) = k;
+    k = k + step;
+end
+figure(2);
+plot(ka, q);
+end
+\end{lstlisting}
+W ten sposób otrzymalismy następujące wykresy:
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW2-regulatorP-eu.png}
@@ -108,6 +160,33 @@ oraz zadanej wartości wyjścia $y^{*} = 1$.
 \end{figure}
 %TODO
 \subsubsection{Regulator PI.}
+Aby zasymulować regulator PI musieliśmy ustawić wartości parametru proporcjonalnego i różniczkującego na $k=2$, $T_{d}=0$. \\
+Następnie wykorzystując poniższą funkcję przetestowaliśmy zachowanie regulatora PI dla różnych wartości parametru $T_{i}=0$.
+\begin{lstlisting}[caption=Funkcja testująca regulator PI.]
+function testPI(start, step, stop)
+load_system('model.mdl');
+hold on;
+ti = start;
+i = 0;
+color = char('r', 'k', 'b', 'g', 'y', 'm');
+set_param('model/Gain', 'Gain', num2str(2));
+set_param('model/Gain2', 'Gain', num2str(0));
+while (ti <= stop)
+    set_param('model/Gain1', 'Gain', num2str(ti));
+    sim('model.mdl');
+    wy = simout.signals.values;
+    figure(1);
+    plot(tout, wy, 'Color', color(mod(i,6)+1));
+    i = i + 1;
+    q(i) = sum(wy.^2)/length(wy);
+    tei(i) = ti;
+    ti = ti + step;
+end
+figure(2);
+plot(tei, q);
+end
+\end{lstlisting}
+W ten sposób otrzymalismy następujące wykresy:
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW2-regulatorPI-eu.png}
@@ -122,6 +201,33 @@ oraz zadanej wartości wyjścia $y^{*} = 1$.
 \end{figure}
 %TODO
 \subsubsection{Regulator PID.}
+Aby zasymulować regulator P musieliśmy ustawić wartości parametru proporcjonalnego i całkujacego na $k=2$, $T_{i}=1$. \\
+Następnie wykorzystując poniższą funkcję przetestowaliśmy zachowanie regulatora P dla różnych wartości parametru $T_{d}$.
+\begin{lstlisting}[caption=Funkcja testująca regulator P.]
+function testPID(start, step, stop)
+load_system('model.mdl');
+hold on;
+td = start;
+i = 0;
+color = char('r', 'k', 'b', 'g', 'y', 'm');
+set_param('model/Gain', 'Gain', num2str(2));
+set_param('model/Gain1', 'Gain', num2str(1));
+while (td <= stop)
+    set_param('model/Gain2', 'Gain', num2str(td));
+    sim('model.mdl');
+    wy = simout.signals.values;
+    figure(1);
+    plot(tout, wy, 'Color', color(mod(i,6)+1));
+    i = i + 1;
+    q(i) = sum(wy.^2)/length(wy);
+    tede(i) = td;
+    td = td + step;
+end
+figure(2);
+plot(tede, q);
+end
+\end{lstlisting}
+W ten sposób otrzymalismy następujące wykresy:
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW2-regulatorPID-eu.png}

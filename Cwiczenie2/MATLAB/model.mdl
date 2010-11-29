@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.16"
+    ComputedModelVersion    "1.17"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "TC"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Nov 29 00:53:51 2010"
-  RTWModifiedTimeStamp	  212891265
-  ModelVersionFormat	  "1.%<AutoIncrement:16>"
+  LastModifiedDate	  "Mon Nov 29 12:32:55 2010"
+  RTWModifiedTimeStamp	  212934770
+  ModelVersionFormat	  "1.%<AutoIncrement:17>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.10.0"
 	  StartTime		  "0.0"
-	  StopTime		  "200.0"
+	  StopTime		  "100.0"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -692,7 +692,7 @@ Model {
   }
   System {
     Name		    "model"
-    Location		    [968, 50, 1912, 1042]
+    Location		    [968, 82, 1912, 1051]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -750,7 +750,7 @@ Model {
       Name		      "Gain2"
       SID		      4
       Position		      [140, 300, 170, 330]
-      Gain		      "2.4"
+      Gain		      "-0.8"
       ParameterDataTypeMode   "Inherit via internal rule"
       ParameterDataType	      "fixdt(1, 16)"
       ParameterScaling	      "2^0"
@@ -775,8 +775,8 @@ Model {
       Ports		      [1]
       Position		      [695, 119, 725, 151]
       Floating		      off
-      Location		      [87, 56, 1013, 1009]
-      Open		      off
+      Location		      [13, 401, 927, 1017]
+      Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
@@ -790,7 +790,6 @@ Model {
       Name		      "Step"
       SID		      8
       Position		      [545, 300, 575, 330]
-      After		      "2"
       SampleTime	      "0"
     }
     Block {
