@@ -1,0 +1,150 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+\addtolength{\hoffset}{-1cm}
+\addtolength{\voffset}{-2cm}
+\addtolength{\textwidth}{2cm}
+\addtolength{\textheight}{3cm}
+
+\def\figurename{Rys.}
+
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\title{Informatyczne Systemy Sterowania \\ \large Ćwiczenie 2: Systemy regulacji - Regulator PID}
+
+\author{Adam Jordanek 168139, Tomasz Klimek 168092}
+
+\begin{document}
+\maketitle
+
+\section{Wstęp}\label{sec:wstęp}
+\subsection{Cel ćwiczenia}
+Celem tego ćwiczenia jest poznanie podstawowej struktury systemu sterowania z typową formą algorytmu regulacji PID, oraz zapoznanie się z częścią pakietu M\small ATLAB \normalsize - Simulinkiem, oraz jego możliwości w zakresie modelowania i analizy systemów regulacji.
+%Więcej?
+
+\subsection{Plan badań} 
+\begin{enumerate}
+	\item Symulacja systemu regulacji
+	\begin{enumerate}
+		\item Regulator P. Zbadać wpływ wartości wzmocnienia regulatora na działanie systemu. 
+	    \item Regulator   PI.   Zbadać  wpływ   wartości   parametru   całkowania   na   działanie   systemu 
+       (dla ustalonej wartości parametru $k$). 
+    	\item Regulator PID. Zbadać wpływ wartości parametru różniczkowania na działanie 
+       systemu (dla ustalonych wartości parametrów $k$ i $T_i$). 
+	\end{enumerate}
+	\item Dobór optymalnych parametrów regulatora. Sporządzenie wykresów:
+	\begin{enumerate}
+		\item dla regulatora P. 
+    	\item dla regulatora PI przy trzech różnych ustalonych wartościach parametru $k$.  
+    	\item dla regulatora PID przy trzech różnych wartościach parametru oraz ustalonej wartości parametru $k$.
+	\end{enumerate}
+	\item Dobór parametrów regulatora PID według zasad Zieglera–Nicholsa
+	\begin{enumerate}
+		\item Doświadczalnie znaleźć współczynnik wzmocnienia, dla którego układ traci stabilność.
+		\item Ustalić okres oscylacji i wzmocnienie krytyczne.
+		\item Według odpowiednich rekomendacji określić wartości parametrów regulatora PID.
+	\end{enumerate}
+\end{enumerate}
+Zadania należy wykonać dla obiektu o podanej transmitancji operatorowej:
+\begin{equation} \label{eqn:transOS}
+G(s) = \frac{b}{s^3 + a_2 s^2 + a_1 s + a_0}
+\end{equation}
+%Copy/Paste z treści zadania...
+
+\newpage
+\section{Realizacja planu i wyniki}
+
+%---------------------------------------------------------------------------------------------------------------------
+%
+%ZADANIE 1
+%
+%---------------------------------------------------------------------------------------------------------------------
+\subsection{Symulacja systemu regulacji.}\label{sec:zad1}
+System regulacji będziemy symulować przy użyciu programu Simulink będącego częścią pakietu M\small ATLAB. \\
+\normalsize Schemat systemu służącego nam do symulacji przedstawiony został na poniższym rysunku.
+
+\begin{figure}[h]
+    \centering
+	\includegraphics[width=120mm]{CW2-schemat.png}
+	\caption{Schemat symulacji obiektu z regulatorem PID}
+    \label{fig:Rysunek}
+\end{figure}
+
+Wartości błędu regulacji $\varepsilon(t)$ mogą być odczytywane zarówno na wykresie $Scope$ jak i z poziomu M\small ATLABA \normalsize dzięki obiektowi $simout$.
+
+Regulator PID jest opisany następującą transmitancją:
+\begin{equation} \label{eqn:transPID}
+G(s) = k + {T_{i} \over s} + T_{d}s ,
+\end{equation}
+gdzie $k$ to współczynnik wzmocnienia, $T_{i}$ to parametr członu całkującego, a $T_{d}$ to parametr członu różniczkującego.
+
+Podczas ćwiczenia przyjęliśmy następujące wartości parametrów transmitancji obiektu sterowania (\ref{eqn:transOS}): 
+\begin{equation} \label{eqn:paramTransOS}
+b = 1,
+a_{2} = 2, 
+a_{1} = 3, 
+a_{0} = 4
+\end{equation}
+oraz zadanej wartości wyjścia $y^{*} = 1$.
+
+\subsubsection{Regulator P.}
+
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW2-regulatorP-eu.png}
+	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora P dla wartości ujemnych k.}
+    \label{fig:regulatorPeu}
+\end{figure}
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW2-regulatorP-ed.png}
+	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora P dla wartości dodatnich k.}
+    \label{fig:regulatorPed}
+\end{figure}
+%TODO
+\subsubsection{Regulator PI.}
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW2-regulatorPI-eu.png}
+	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora P dla wartości ujemnych $T_{i}$.}
+    \label{fig:regulatorPeu}
+\end{figure}
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW2-regulatorPI-ed.png}
+	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora P dla wartości dodatnich $T_{i}$.}
+    \label{fig:regulatorPed}
+\end{figure}
+%TODO
+\subsubsection{Regulator PID.}
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW2-regulatorPID-eu.png}
+	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora P dla wartości ujemnych $T_{d}$.}
+    \label{fig:regulatorPeu}
+\end{figure}
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW2-regulatorPID-ed.png}
+	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora P dla wartości dodatnich $T_{d}$.}
+    \label{fig:regulatorPed}
+\end{figure}
+%TODO
+
+\subsection{Dobór optymalnych parametrów regulatora.}\label{sec:zad2}
+\subsubsection{Regulator P.}
+%TODO
+\subsubsection{Regulator PI.}
+%TODO
+\subsubsection{Regulator PID.}
+%TODO
+\subsection{Zastosowanie zasad Zieglera-Nicholsa.}\label{sec:zad3}
+
+\section{Wnioski}
+
+\end{document}

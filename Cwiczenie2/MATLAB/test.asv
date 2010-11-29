@@ -1,0 +1,19 @@
+function test(start, step, stop)
+load_system('model.mdl');
+hold on;
+k = start;
+i = 1;
+color = char('r', 'b', 'k', 'green', 'yellow');
+while (k <= stop)
+    set_param('model/Gain', 'Gain', num2str(k));
+    sim('model.mdl');
+    wy = simout.signals.values;
+    figure(1);
+    p = plot(wy, color(mod(i,4)+1));
+    q(i) = sum(wy.^2)/length(wy);
+    i = i + 1;
+    k = k + step;
+end
+figure(2);
+plot(q);
+end
