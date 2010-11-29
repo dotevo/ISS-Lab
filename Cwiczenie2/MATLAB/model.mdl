@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.17"
+    ComputedModelVersion    "1.21"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "TC"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Nov 29 12:32:55 2010"
-  RTWModifiedTimeStamp	  212934770
-  ModelVersionFormat	  "1.%<AutoIncrement:17>"
+  LastModifiedDate	  "Mon Nov 29 21:52:32 2010"
+  RTWModifiedTimeStamp	  212968333
+  ModelVersionFormat	  "1.%<AutoIncrement:21>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.10.0"
 	  StartTime		  "0.0"
-	  StopTime		  "100.0"
+	  StopTime		  "500.0"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -692,7 +692,7 @@ Model {
   }
   System {
     Name		    "model"
-    Location		    [968, 82, 1912, 1051]
+    Location		    [970, 82, 1910, 1021]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -734,7 +734,7 @@ Model {
       Name		      "Gain1"
       SID		      3
       Position		      [140, 225, 170, 255]
-      Gain		      "0.1"
+      Gain		      "0.35"
       ParameterDataTypeMode   "Inherit via internal rule"
       ParameterDataType	      "fixdt(1, 16)"
       ParameterScaling	      "2^0"
@@ -750,7 +750,7 @@ Model {
       Name		      "Gain2"
       SID		      4
       Position		      [140, 300, 170, 330]
-      Gain		      "-0.8"
+      Gain		      "90"
       ParameterDataTypeMode   "Inherit via internal rule"
       ParameterDataType	      "fixdt(1, 16)"
       ParameterScaling	      "2^0"
@@ -775,8 +775,8 @@ Model {
       Ports		      [1]
       Position		      [695, 119, 725, 151]
       Floating		      off
-      Location		      [13, 401, 927, 1017]
-      Open		      on
+      Location		      [1, 48, 1921, 1049]
+      Open		      off
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
