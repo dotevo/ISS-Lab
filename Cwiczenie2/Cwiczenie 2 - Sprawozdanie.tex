@@ -120,7 +120,7 @@ oraz zadanej wartości wyjścia $y^{*} = 1$.
 
 \subsubsection{Regulator P.}
 Aby zasymulować regulator P musieliśmy ustawić wartości parametru całkującego i różniczkującego na $T_{i}=0$, $T_{d}=0$. \\
-Następnie wykorzystując poniższą funkcję przetestowaliśmy zachowanie regulatora P dla różnych wartości parametru $k$.
+Następnie wykorzystując poniższą funkcję przetestowaliśmy zachowanie regulatora P dla różnych wartości parametru $k$. \\
 \begin{lstlisting}[caption=Funkcja testująca regulator P.]
 function testP(start, step, stop)
 load_system('model.mdl');
@@ -145,23 +145,28 @@ figure(2);
 plot(ka, q);
 end
 \end{lstlisting}
-W ten sposób otrzymalismy następujące wykresy:
+W ten sposób otrzymalismy następujące wykresy: \\
 \begin{figure}[!h]
     \centering
-	\includegraphics[width=120mm]{CW2-regulatorP-eu.png}
+	\includegraphics[width=140mm]{CW2-regulatorP-eu.png}
 	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora P dla wartości ujemnych k.}
     \label{fig:regulatorPeu}
 \end{figure}
 \begin{figure}[!h]
     \centering
-	\includegraphics[width=120mm]{CW2-regulatorP-ed.png}
+	\includegraphics[width=140mm]{CW2-regulatorP-ed.png}
 	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora P dla wartości dodatnich k.}
     \label{fig:regulatorPed}
 \end{figure}
-%TODO
+\\ Z wykresu \ref{fig:regulatorPeu}, oraz \ref{fig:regulatorPed} możemy zauważyć, że:
+\begin{itemize}
+	\item Dla ujemnych wartości parametru $k$ drgania po pewnym czasie ustają, a wykres $\varepsilon(t)$ stabilizuje się na pewnym poziomie większym od żądanej wartości $y*$, a poziom ten jest tym większy im mniejsza jest wartość parametru $k$.
+	\item Dla wartości dodatnich wykres $\varepsilon(t)$ przyjmuje postać drgań oscylujących wokół wartości ~0.6. Dla wartości $k$ mniejszych od 2 amplituda tych drgań maleje, natomiast rośnie dla wartości większych od 2. Dla $k=2$ amplituda tych drgań jest stała.
+	\item Regulator P nie jest efektywny, ponieważ wykres funkcji $\varepsilon(t)$ oscyluje poniżej wartości $y*$, ale nie wokół 0.
+\end{itemize}
 \subsubsection{Regulator PI.}
 Aby zasymulować regulator PI musieliśmy ustawić wartości parametru proporcjonalnego i różniczkującego na $k=2$, $T_{d}=0$. \\
-Następnie wykorzystując poniższą funkcję przetestowaliśmy zachowanie regulatora PI dla różnych wartości parametru $T_{i}=0$.
+Następnie wykorzystując poniższą funkcję przetestowaliśmy zachowanie regulatora PI dla różnych wartości parametru $T_{i}=0$. \\
 \begin{lstlisting}[caption=Funkcja testująca regulator PI.]
 function testPI(start, step, stop)
 load_system('model.mdl');
@@ -186,23 +191,28 @@ figure(2);
 plot(tei, q);
 end
 \end{lstlisting}
-W ten sposób otrzymalismy następujące wykresy:
+W ten sposób otrzymalismy następujące wykresy: \\
 \begin{figure}[!h]
     \centering
-	\includegraphics[width=120mm]{CW2-regulatorPI-eu.png}
-	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora P dla wartości ujemnych $T_{i}$.}
-    \label{fig:regulatorPeu}
+	\includegraphics[width=140mm]{CW2-regulatorPI-eu.png}
+	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora PI dla wartości ujemnych $T_{i}$.}
+    \label{fig:regulatorPIeu}
 \end{figure}
 \begin{figure}[!h]
     \centering
-	\includegraphics[width=120mm]{CW2-regulatorPI-ed.png}
-	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora P dla wartości dodatnich $T_{i}$.}
-    \label{fig:regulatorPed}
+	\includegraphics[width=140mm]{CW2-regulatorPI-ed.png}
+	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora PI dla wartości dodatnich $T_{i}$.}
+    \label{fig:regulatorPIed}
 \end{figure}
-%TODO
+\newpage Z wykresu \ref{fig:regulatorPIeu}, oraz \ref{fig:regulatorPIed} możemy zauważyć, że:
+\begin{itemize}
+	\item Dla ujemnych wartości parametru $T_{i}$ wartości funkcji $\varepsilon(t)$ szybko rosną. Tempo w jakim wzrasta jest tym większe im mniejszą wartość ma parametr $T_{i}$.
+	\item Dla wartości dodatnich wykres $\varepsilon(t)$ przyjmuje postać drgań, które z początku oscylują tak jak przy regulatorze P, lecz z czasem oscylują wokół wartości coraz bliższej 0. Tempo w jakim zbliża się do 0 jest tym większe im większą wartość ma parametr $T_{i}$. Amplituda drgań z czasem wzrasta.
+	\item Regulator PI jest bardziej efektywny niż regulator P, ponieważ wykres funkcji $\varepsilon(t)$ oscyluje bliżej 0.
+\end{itemize}
 \subsubsection{Regulator PID.}
 Aby zasymulować regulator P musieliśmy ustawić wartości parametru proporcjonalnego i całkujacego na $k=2$, $T_{i}=1$. \\
-Następnie wykorzystując poniższą funkcję przetestowaliśmy zachowanie regulatora P dla różnych wartości parametru $T_{d}$.
+Następnie wykorzystując poniższą funkcję przetestowaliśmy zachowanie regulatora P dla różnych wartości parametru $T_{d}$. \\
 \begin{lstlisting}[caption=Funkcja testująca regulator P.]
 function testPID(start, step, stop)
 load_system('model.mdl');
@@ -227,20 +237,25 @@ figure(2);
 plot(tede, q);
 end
 \end{lstlisting}
-W ten sposób otrzymalismy następujące wykresy:
+W ten sposób otrzymalismy następujące wykresy: \\
 \begin{figure}[!h]
     \centering
-	\includegraphics[width=120mm]{CW2-regulatorPID-eu.png}
-	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora P dla wartości ujemnych $T_{d}$.}
-    \label{fig:regulatorPeu}
+	\includegraphics[width=140mm]{CW2-regulatorPID-eu.png}
+	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora PID dla wartości ujemnych $T_{d}$.}
+    \label{fig:regulatorPIDeu}
 \end{figure}
 \begin{figure}[!h]
     \centering
-	\includegraphics[width=120mm]{CW2-regulatorPID-ed.png}
-	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora P dla wartości dodatnich $T_{d}$.}
-    \label{fig:regulatorPed}
+	\includegraphics[width=140mm]{CW2-regulatorPID-ed.png}
+	\caption{Wykres przebiegu funkcji $\varepsilon(t)$ regulatora PID dla wartości dodatnich $T_{d}$.}
+    \label{fig:regulatorPIDed}
 \end{figure}
-%TODO
+\\ Z wykresu \ref{fig:regulatorPIDeu}, oraz \ref{fig:regulatorPIDed} możemy zauważyć, że:
+\begin{itemize}
+	\item Dla ujemnych wartości parametru $k$ wykres $\varepsilon(t)$ przyjmuje postać drgań, których amplituda z czasem rośnie. Tempo tego wzrostu jest tym większe im mniejszą wartość ma parametr $T_{d}$.
+	\item Dla wartości dodatnich wykres $\varepsilon(t)$ przyjmuje postać drgań, które oscylują tak jak przy regulatorze PI, lecz z czasem amplituda maleje. Tempo w jakim ona maleje tym większe im większą wartość ma parametr $T_{d}$.
+	\item Regulator PID jest efektywny, ponieważ wykres funkcji $\varepsilon(t)$ oscyluje bliżej 0 niż regulator P, a amplituda drgań, która w regulatorze PI się zwiększała tutaj zanika.
+\end{itemize}
 
 \subsection{Dobór optymalnych parametrów regulatora.}\label{sec:zad2}
 \subsubsection{Regulator P.}
