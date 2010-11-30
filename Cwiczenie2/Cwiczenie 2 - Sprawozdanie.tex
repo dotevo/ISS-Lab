@@ -413,6 +413,32 @@ W ten sposób otrzymalismy następujące wykresy: \\
 \newpage Wartością optymalną parametru $T_{d}$ jest minimum funkcji $Q(T_{d})$, więc z wykresu \ref{fig:regulatorPIDti15opt1}, \ref{fig:regulatorPIDti15opt2}, \ref{fig:regulatorPIDti35opt1}, \ref{fig:regulatorPIDti35opt2}, \ref{fig:regulatorPIDti100opt1}, oraz \ref{fig:regulatorPIDti100opt2} możemy odczytać, że zarówno dla $T_{i}=0.15$ jak i dla $T_{i}=0.35$, oraz $T_{i}=1, T_{d} \approx 65$.
 
 \subsection{Zastosowanie zasad Zieglera-Nicholsa.}\label{sec:zad3}
+Doświadczalnie znalezienie współczynnika wzocniania dla którego układ traci stabilność.
+Ustalenie Okresu oscylacji oraz wzmocnienia krytycznego.
+Określić wartości parametrów regulatora PID.
+
+Wartości parametrów:
+$T_{i}=1$
+$T_{d}=65$
+
+Po wielu próbach otrzymaliśmy wynik, który  pokazuje, że dla wartości k=....... układj jest niestabilny. Co jest pokazane na wykresach.
+WYKRESY
+
+Aby wyznaczyć okres oscylacji oraz wzmocnienie krytyczne, korzystamy z metody  strojenia Zieglera-Nicholsa. W tej metodzie kryterium strojenia odbywa się poprzez ocenę układu, który znajduje się na granicy stabilności.
+Metoda ta może być zastosowana tylko w wypadku gdy możliwe jest znalezienie wzmocnienia przy którym wykres Nyquista przecina punkt krytyczny lub linia pierwiastka przecina oś liczb urojonych. Najprościej to ustalić eksperymentalnie (muszą występować oscylacje o stałej amplitudzie)
+WYKRES dla ukłądu na granicy stablilności
+
+\begin{tabular}{ | l | c | c | c | c | c | c | }
+\hline
+  Typ regulatora & \multicolumn{6}{|c|}{Optymalne wartości parametrów} \\   \hline
+   & \multicolumn{3}{|c|}{Próba skokowa} & \multicolumn{3}{|c|}{Granica stabilności} \\   \hline
+   & $K_{p}$ & $T_{i}$ & $T_{d}$ & $K_{p}$ & $T_{i}$ & $T_{d}$\\   \hline
+   P & 1/a & - & - & $0.5K_{kr}$ & - & - \\   \hline
+   PI & 0.9/a & $3 T_{d}$ & - & $0.45K_{kr}$ & $T_{osc}/1.2$ & - \\   \hline
+   PID & 1.2/a & $2T_{d}$ & $0.5T_d$ & $0.6K_{kr}$ & $T_{osc}/2$ & $T_{osc}/8$ \\   \hline
+\hline
+\end{tabular}
+
 
 \section{Wnioski}
 
