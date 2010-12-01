@@ -415,18 +415,29 @@ W ten sposób otrzymalismy następujące wykresy: \\
 \subsection{Zastosowanie zasad Zieglera-Nicholsa.}\label{sec:zad3}
 Doświadczalnie znalezienie współczynnika wzocniania dla którego układ traci stabilność.
 Ustalenie Okresu oscylacji oraz wzmocnienia krytycznego.
-Określić wartości parametrów regulatora PID.
+Określić wartości parametrów regulatora PID.\\
+\\
+Wartości parametrów:\\
+$T_{i}=9$\\
+$T_{d}=3$\\
+\\
+Po wielu próbach otrzymaliśmy wynik, który  pokazuje, że dla wartości k=0.5 układ jest niestabilny. Co jest pokazane na wykresach.\\
 
-Wartości parametrów:
-$T_{i}=1$
-$T_{d}=65$
-
-Po wielu próbach otrzymaliśmy wynik, który  pokazuje, że dla wartości k=....... układj jest niestabilny. Co jest pokazane na wykresach.
-WYKRESY
+\begin{figure}[h]
+    \centering
+	\includegraphics[width=130mm]{CW2-Z3-y.png}
+	\caption{Charakterystyka y(t)}
+    \label{fig:z3-fy}
+\end{figure}
+\begin{figure}[h]
+    \centering
+	\includegraphics[width=130mm]{CW2-Z3-e.png}
+	\caption{Charakterystyka e(t)}
+    \label{fig:z3-fe}
+\end{figure}
 
 Aby wyznaczyć okres oscylacji oraz wzmocnienie krytyczne, korzystamy z metody  strojenia Zieglera-Nicholsa. W tej metodzie kryterium strojenia odbywa się poprzez ocenę układu, który znajduje się na granicy stabilności.
 Metoda ta może być zastosowana tylko w wypadku gdy możliwe jest znalezienie wzmocnienia przy którym wykres Nyquista przecina punkt krytyczny lub linia pierwiastka przecina oś liczb urojonych. Najprościej to ustalić eksperymentalnie (muszą występować oscylacje o stałej amplitudzie)
-WYKRES dla ukłądu na granicy stablilności
 
 \begin{tabular}{ | l | c | c | c | c | c | c | }
 \hline
@@ -438,8 +449,45 @@ WYKRES dla ukłądu na granicy stablilności
    PID & 1.2/a & $2T_{d}$ & $0.5T_d$ & $0.6K_{kr}$ & $T_{osc}/2$ & $T_{osc}/8$ \\   \hline
 \hline
 \end{tabular}
+\\
+Doświadczalnie wyznaczyliśmy, że układ znajduje się na granicy stabilności dla k=1.8 \\
+\begin{figure}[h]
+    \centering
+	\includegraphics[width=130mm]{CW2-Z3-y2.png}
+	\caption{Charakterystyka y(t)}
+    \label{fig:z3-fy2}
+\end{figure}
+\begin{figure}[h]
+    \centering
+	\includegraphics[width=130mm]{CW2-Z3-e2.png}
+	\caption{Charakterystyka e(t)}
+    \label{fig:z3-fe2}
+\end{figure}
 
+Na podstawie wykresy można wyznaczyć Tosc
+\begin{figure}[h]
+    \centering
+	\includegraphics[width=130mm]{CW2-Z3-tosc.png}
+	\caption{Charakterystyka y(t) do wyznaczenia Tosc}
+    \label{fig:z3-fe2}
+\end{figure}
+Które wynosi:\\
+Tosc=2.7\\
+Otrzymany wynik to:\\
+k=1.08\\
+Ti=1.35\\
+Td=0,4375
+\\
+Uzyskana charakterystyka to:\\
+\begin{figure}[h]
+    \centering
+	\includegraphics[width=130mm]{CW2-Z3-wyn.png}
+	\caption{Charakterystyka y(t)}
+    \label{fig:z3-wyn}
+\end{figure}
 
 \section{Wnioski}
+Po wykonaniu ćwiczenia zauważyliśmy pewne właściwości parametrów i jak ich zmiana wpływa na regulator. Sterowanie proporcionalne (k) ma wpływ na zmniejszenie czasu narastania oraz zmniejszanie uchybu, lecz nie daje dobrego efektu.
+Zaś strowanie całkujące (Ti) ma wpływ na eliminowanie uchybu w stanie ustalonym, wadą zaś jest pogorszenie odpowiedzi w czasie narastania i przed czasem ustalonym. Sterowanie różniczkujące (Td) ma wpływ na zwiększenie stabilności układu, zmienijszając przeregulowanie i poprawiając odpowiedź między stanami. Dobór tych parametów jest niezwykle ważny dla układu regulacji, nieodpowiednie ich dobranie może powodować złe działanie lub nawet destabilizację układu.
 
 \end{document}
