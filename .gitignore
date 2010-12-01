@@ -4,4 +4,6 @@
 *.log
 *.out
 *.ps
+*.autosave
 *.db
+
