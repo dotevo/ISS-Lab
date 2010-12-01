@@ -413,7 +413,7 @@ W ten sposób otrzymalismy następujące wykresy: \\
 \newpage Wartością optymalną parametru $T_{d}$ jest minimum funkcji $Q(T_{d})$, więc z wykresu \ref{fig:regulatorPIDti15opt1}, \ref{fig:regulatorPIDti15opt2}, \ref{fig:regulatorPIDti35opt1}, \ref{fig:regulatorPIDti35opt2}, \ref{fig:regulatorPIDti100opt1}, oraz \ref{fig:regulatorPIDti100opt2} możemy odczytać, że zarówno dla $T_{i}=0.15$ jak i dla $T_{i}=0.35$, oraz $T_{i}=1, T_{d} \approx 65$.
 
 \subsection{Zastosowanie zasad Zieglera-Nicholsa.}\label{sec:zad3}
-Doświadczalnie znalezienie współczynnika wzocniania dla którego układ traci stabilność.
+Doświadczalnie znalezienie współczynnika wzmocnienia dla którego układ traci stabilność.
 Ustalenie Okresu oscylacji oraz wzmocnienia krytycznego.
 Określić wartości parametrów regulatora PID.\\
 \\
@@ -435,7 +435,7 @@ Po wielu próbach otrzymaliśmy wynik, który  pokazuje, że dla wartości k=0.5
 	\caption{Charakterystyka e(t) dla układu niestablinego}
     \label{fig:z3-fe}
 \end{figure}
-
+\newpage
 Aby wyznaczyć okres oscylacji oraz wzmocnienie krytyczne, korzystamy z metody  strojenia Zieglera-Nicholsa. W tej metodzie kryterium strojenia odbywa się poprzez ocenę układu, który znajduje się na granicy stabilności.
 Metoda ta może być zastosowana tylko w wypadku gdy możliwe jest znalezienie wzmocnienia przy którym wykres Nyquista przecina punkt krytyczny lub linia pierwiastka przecina oś liczb urojonych. Najprościej to ustalić eksperymentalnie (muszą występować oscylacje o stałej amplitudzie)
 
@@ -492,7 +492,7 @@ Uzyskana charakterystyka to:\\
 	\caption{Charakterystyka y(t)}
     \label{fig:z3-wyn}
 \end{figure}
-
+\newpage
 \section{Wnioski}
 Po wykonaniu ćwiczenia zauważyliśmy pewne właściwości parametrów i jak ich zmiana wpływa na regulator. Sterowanie proporcionalne (k) ma wpływ na zmniejszenie czasu narastania oraz zmniejszanie uchybu, lecz nie daje dobrego efektu.
 Zaś strowanie całkujące (Ti) ma wpływ na eliminowanie uchybu w stanie ustalonym, wadą zaś jest pogorszenie odpowiedzi w czasie narastania i przed czasem ustalonym. Sterowanie różniczkujące (Td) ma wpływ na zwiększenie stabilności układu, zmienijszając przeregulowanie i poprawiając odpowiedź między stanami. Dobór tych parametów jest niezwykle ważny dla układu regulacji, nieodpowiednie ich dobranie może powodować złe działanie lub nawet destabilizację układu.
