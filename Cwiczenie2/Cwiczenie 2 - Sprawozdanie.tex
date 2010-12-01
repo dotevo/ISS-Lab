@@ -423,22 +423,23 @@ $T_{d}=3$\\
 \\
 Po wielu próbach otrzymaliśmy wynik, który  pokazuje, że dla wartości k=0.5 układ jest niestabilny. Co jest pokazane na wykresach.\\
 
-\begin{figure}[h]
+\begin{figure}[!h]
     \centering
 	\includegraphics[width=130mm]{CW2-Z3-y.png}
-	\caption{Charakterystyka y(t)}
+	\caption{Charakterystyka y(t) dla układu niestablinego}
     \label{fig:z3-fy}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[!h]
     \centering
 	\includegraphics[width=130mm]{CW2-Z3-e.png}
-	\caption{Charakterystyka e(t)}
+	\caption{Charakterystyka e(t) dla układu niestablinego}
     \label{fig:z3-fe}
 \end{figure}
 
 Aby wyznaczyć okres oscylacji oraz wzmocnienie krytyczne, korzystamy z metody  strojenia Zieglera-Nicholsa. W tej metodzie kryterium strojenia odbywa się poprzez ocenę układu, który znajduje się na granicy stabilności.
 Metoda ta może być zastosowana tylko w wypadku gdy możliwe jest znalezienie wzmocnienia przy którym wykres Nyquista przecina punkt krytyczny lub linia pierwiastka przecina oś liczb urojonych. Najprościej to ustalić eksperymentalnie (muszą występować oscylacje o stałej amplitudzie)
 
+\begin{figure}[!h]
 \begin{tabular}{ | l | c | c | c | c | c | c | }
 \hline
   Typ regulatora & \multicolumn{6}{|c|}{Optymalne wartości parametrów} \\   \hline
@@ -449,37 +450,43 @@ Metoda ta może być zastosowana tylko w wypadku gdy możliwe jest znalezienie w
    PID & 1.2/a & $2T_{d}$ & $0.5T_d$ & $0.6K_{kr}$ & $T_{osc}/2$ & $T_{osc}/8$ \\   \hline
 \hline
 \end{tabular}
-\\
-Doświadczalnie wyznaczyliśmy, że układ znajduje się na granicy stabilności dla k=1.8 \\
-\begin{figure}[h]
+	\caption{Tabela Zieglera-Nicholsa}
+\end{figure}
+
+Doświadczalnie wyznaczyliśmy, że układ znajduje się na granicy stabilności dla k=1.8 
+\begin{figure}[htbp]
     \centering
 	\includegraphics[width=130mm]{CW2-Z3-y2.png}
-	\caption{Charakterystyka y(t)}
+	\caption{Charakterystyka y(t) dla układu na granicy stabilności}
     \label{fig:z3-fy2}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
 	\includegraphics[width=130mm]{CW2-Z3-e2.png}
-	\caption{Charakterystyka e(t)}
+	\caption{Charakterystyka e(t) dla ukłądu na granicy stabilności}
     \label{fig:z3-fe2}
 \end{figure}
 
-Na podstawie wykresy można wyznaczyć Tosc
-\begin{figure}[h]
+Na podstawie wykresy można wyznaczyć $T_{osc}$
+\begin{figure}[!h]
     \centering
 	\includegraphics[width=130mm]{CW2-Z3-tosc.png}
 	\caption{Charakterystyka y(t) do wyznaczenia Tosc}
     \label{fig:z3-fe2}
 \end{figure}
+\newline
 Które wynosi:\\
-Tosc=2.7\\
+Tosc=2.7
+\newline
 Otrzymany wynik to:\\
-k=1.08\\
-Ti=1.35\\
-Td=0,4375
-\\
+\begin{eqnarray}
+\nonumber k=1.08\\
+\nonumber Ti=1.35\\
+\nonumber Td=0,4375\\
+\end{eqnarray}
+\newpage
 Uzyskana charakterystyka to:\\
-\begin{figure}[h]
+\begin{figure}[!h]
     \centering
 	\includegraphics[width=130mm]{CW2-Z3-wyn.png}
 	\caption{Charakterystyka y(t)}
