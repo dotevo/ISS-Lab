@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.24"
+    ComputedModelVersion    "1.29"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "dotevo"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Dec 05 14:26:58 2010"
-  RTWModifiedTimeStamp	  213226626
-  ModelVersionFormat	  "1.%<AutoIncrement:24>"
+  LastModifiedDate	  "Sun Dec 05 17:36:51 2010"
+  RTWModifiedTimeStamp	  213471408
+  ModelVersionFormat	  "1.%<AutoIncrement:29>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -547,7 +547,7 @@ Model {
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition    " [ 520, 225, 1400, 855 ] "
+      ConfigPrmDlgPosition    " [ 210, 89, 1071, 656 ] "
     }
     PropName		    "ConfigurationSets"
   }
@@ -698,7 +698,7 @@ Model {
   }
   System {
     Name		    "dwuZ"
-    Location		    [259, 208, 867, 564]
+    Location		    [626, 366, 1234, 722]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -712,7 +712,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    34
+    SIDHighWatermark	    35
     Block {
       BlockType		      BusCreator
       Name		      "Bus\nCreator"
@@ -728,7 +728,7 @@ Model {
       Name		      "Gain"
       SID		      17
       Position		      [170, 150, 200, 180]
-      Gain		      "10"
+      Gain		      "8"
       ParameterDataTypeMode   "Inherit via internal rule"
       ParameterDataType	      "fixdt(1, 16)"
       ParameterScaling	      "2^0"
@@ -800,22 +800,22 @@ Model {
     }
     Block {
       BlockType		      ToWorkspace
-      Name		      "To Workspace"
-      SID		      11
+      Name		      "To Workspace1"
+      SID		      34
       Ports		      [1]
-      Position		      [490, 148, 525, 182]
-      VariableName	      "e"
+      Position		      [240, 224, 275, 256]
+      VariableName	      "u"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
       SaveFormat	      "Structure"
     }
     Block {
       BlockType		      ToWorkspace
-      Name		      "To Workspace1"
-      SID		      34
+      Name		      "To Workspace2"
+      SID		      35
       Ports		      [1]
-      Position		      [240, 224, 275, 256]
-      VariableName	      "u"
+      Position		      [500, 150, 560, 180]
+      VariableName	      "e"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
       SaveFormat	      "Structure"
@@ -852,10 +852,6 @@ Model {
       SrcPort		      1
       Points		      [15, 0]
       Branch {
-	DstBlock		"To Workspace"
-	DstPort			1
-      }
-      Branch {
 	Points			[0, -105; -325, 0]
 	Branch {
 	  Labels		  [2, 0]
@@ -868,6 +864,10 @@ Model {
 	  DstBlock		  "Bus\nCreator"
 	  DstPort		  1
 	}
+      }
+      Branch {
+	DstBlock		"To Workspace2"
+	DstPort			1
       }
     }
     Line {

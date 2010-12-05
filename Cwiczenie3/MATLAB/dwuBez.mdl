@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.24"
+    ComputedModelVersion    "1.27"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "dotevo"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Dec 05 14:25:18 2010"
-  RTWModifiedTimeStamp	  213459781
-  ModelVersionFormat	  "1.%<AutoIncrement:24>"
+  LastModifiedDate	  "Sun Dec 05 17:37:01 2010"
+  RTWModifiedTimeStamp	  213471417
+  ModelVersionFormat	  "1.%<AutoIncrement:27>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -712,7 +712,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    32
+    SIDHighWatermark	    33
     Block {
       BlockType		      BusCreator
       Name		      "Bus\nCreator"
@@ -728,7 +728,7 @@ Model {
       Name		      "Gain"
       SID		      17
       Position		      [170, 150, 200, 180]
-      Gain		      "3"
+      Gain		      "4.5"
       ParameterDataTypeMode   "Inherit via internal rule"
       ParameterDataType	      "fixdt(1, 16)"
       ParameterScaling	      "2^0"
@@ -754,8 +754,8 @@ Model {
       Ports		      [1]
       Position		      [240, 229, 270, 261]
       Floating		      off
-      Location		      [80, 239, 737, 721]
-      Open		      on
+      Location		      [80, 276, 737, 758]
+      Open		      off
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
@@ -795,7 +795,18 @@ Model {
       SID		      11
       Ports		      [1]
       Position		      [490, 150, 550, 180]
-      VariableName	      "simout"
+      VariableName	      "e"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace1"
+      SID		      33
+      Ports		      [1]
+      Position		      [225, 85, 285, 115]
+      VariableName	      "u"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
       SaveFormat	      "Structure"
@@ -859,6 +870,11 @@ Model {
       Branch {
 	Points			[0, 70]
 	DstBlock		"Bus\nCreator"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -65]
+	DstBlock		"To Workspace1"
 	DstPort			1
       }
     }
