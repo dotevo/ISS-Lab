@@ -1,12 +1,12 @@
 Model {
-  Name			  "model"
+  Name			  "dwuBez"
   Version		  7.5
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.23"
+    ComputedModelVersion    "1.24"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "168092"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "TC"
+  LastModifiedBy	  "dotevo"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Dec 02 21:17:47 2010"
-  RTWModifiedTimeStamp	  213225279
-  ModelVersionFormat	  "1.%<AutoIncrement:23>"
+  LastModifiedDate	  "Sun Dec 05 14:25:18 2010"
+  RTWModifiedTimeStamp	  213459781
+  ModelVersionFormat	  "1.%<AutoIncrement:24>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -697,8 +697,8 @@ Model {
     }
   }
   System {
-    Name		    "model"
-    Location		    [970, 82, 1910, 1021]
+    Name		    "dwuBez"
+    Location		    [233, 162, 834, 542]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -754,7 +754,7 @@ Model {
       Ports		      [1]
       Position		      [240, 229, 270, 261]
       Floating		      off
-      Location		      [1, 48, 1921, 1049]
+      Location		      [80, 239, 737, 721]
       Open		      on
       NumInputPorts	      "1"
       List {

@@ -3,6 +3,7 @@
 *.dvi
 *.log
 *.out
+*.asv
 *.ps
 *.autosave
 *.db

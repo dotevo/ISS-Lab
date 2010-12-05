@@ -23,9 +23,9 @@ Model {
   Creator		  "168092"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "TC"
+  LastModifiedBy	  "dotevo"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Dec 02 21:50:37 2010"
+  LastModifiedDate	  "Sun Dec 05 14:26:58 2010"
   RTWModifiedTimeStamp	  213226626
   ModelVersionFormat	  "1.%<AutoIncrement:24>"
   ConfigurationManager	  "None"
@@ -698,7 +698,7 @@ Model {
   }
   System {
     Name		    "dwuZ"
-    Location		    [1302, 82, 1910, 1021]
+    Location		    [259, 208, 867, 564]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
