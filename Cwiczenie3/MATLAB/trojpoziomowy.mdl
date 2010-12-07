@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.30"
+    ComputedModelVersion    "1.31"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "168092"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "TC"
+  LastModifiedBy	  "dotevo"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Dec 07 18:50:32 2010"
-  RTWModifiedTimeStamp	  213648629
-  ModelVersionFormat	  "1.%<AutoIncrement:30>"
+  LastModifiedDate	  "Wed Dec 08 00:20:17 2010"
+  RTWModifiedTimeStamp	  213664531
+  ModelVersionFormat	  "1.%<AutoIncrement:31>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -698,7 +698,7 @@ Model {
   }
   System {
     Name		    "trojpoziomowy"
-    Location		    [970, 82, 1910, 1021]
+    Location		    [157, 70, 1097, 764]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -744,8 +744,8 @@ Model {
       Name		      "Relay1"
       SID		      32
       Position		      [80, 115, 110, 145]
-      OnSwitchValue	      "0.15"
-      OffSwitchValue	      "0.15"
+      OnSwitchValue	      "4.6"
+      OffSwitchValue	      "-2.6"
       OutDataType	      "fixdt(1, 16)"
       OutScaling	      "2^0"
     }
@@ -754,8 +754,8 @@ Model {
       Name		      "Relay2"
       SID		      35
       Position		      [80, 190, 110, 220]
-      OnSwitchValue	      "-0.15"
-      OffSwitchValue	      "-0.15"
+      OnSwitchValue	      "2.6"
+      OffSwitchValue	      "-4.6"
       OnOutputValue	      "0"
       OffOutputValue	      "-1"
       OutDataType	      "fixdt(1, 16)"

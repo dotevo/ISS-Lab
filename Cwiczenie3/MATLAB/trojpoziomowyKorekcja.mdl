@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.35"
+    ComputedModelVersion    "1.36"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "dotevo"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Dec 07 23:17:35 2010"
-  RTWModifiedTimeStamp	  213664652
-  ModelVersionFormat	  "1.%<AutoIncrement:35>"
+  LastModifiedDate	  "Wed Dec 08 00:20:33 2010"
+  RTWModifiedTimeStamp	  213668426
+  ModelVersionFormat	  "1.%<AutoIncrement:36>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -745,7 +745,7 @@ Model {
       Name		      "Constant"
       SID		      43
       Position		      [105, 250, 135, 280]
-      Value		      "0"
+      Value		      "20"
       OutDataType	      "fixdt(1, 16)"
       OutScaling	      "2^0"
     }
@@ -770,8 +770,8 @@ Model {
       Name		      "Relay1"
       SID		      32
       Position		      [80, 115, 110, 145]
-      OnSwitchValue	      "0"
-      OffSwitchValue	      "0"
+      OnSwitchValue	      "11"
+      OffSwitchValue	      "-9"
       OutDataType	      "fixdt(1, 16)"
       OutScaling	      "2^0"
     }
@@ -780,8 +780,8 @@ Model {
       Name		      "Relay2"
       SID		      35
       Position		      [80, 190, 110, 220]
-      OnSwitchValue	      "0"
-      OffSwitchValue	      "0"
+      OnSwitchValue	      "9"
+      OffSwitchValue	      "-11"
       OnOutputValue	      "0"
       OffOutputValue	      "-1"
       OutDataType	      "fixdt(1, 16)"

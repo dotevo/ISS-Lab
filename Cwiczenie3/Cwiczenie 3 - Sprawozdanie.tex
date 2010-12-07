@@ -349,19 +349,23 @@ Aby zbadać wpływ zakresu histerezy na wykres $\varepsilon(t)$ wywołamy funkcj
 \newpage
 \subsection{Zastosowanie członów korekcyjnych.}\label{sec:zad2}
 W tym zadaniu dodatkowo dodaliśmy człony korekcyjne, do poprzednich układów. Do układu została dodana również wartość stała.
+
 \subsubsection{Modyfikacja systemów z zadania 1}\label{sec:zad2_1}
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-schemat-2k.png}
-	\caption{fig:Schemat regulatora dwupolożeniowego z korekcją.}
+	\caption{Schemat regulatora dwupolożeniowego z korekcją.}
     \label{fig:Rysunek}
 \end{figure}
+
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-schemat-3k.png}
-	\caption{fig:Schemat regulatora trojpolożeniowego z korekcją.}
+	\caption{Schemat regulatora trojpolożeniowego z korekcją.}
     \label{fig:Rysunek}
 \end{figure}
+\newpage
+
 \subsubsection{Doświadczalny dobor parametrów członu korekcyjnego.}\label{sec:zad2_2}
 \begin{enumerate}
 		\item Regulator dwupołożeniowy.
@@ -392,13 +396,18 @@ while (start+step*i <= stop)
 end
 end
 \end{lstlisting}
+
 Analogicznie do testowania K i C
+
 \begin{lstlisting}[caption=set param dla K.]
 set_param('dwupoziomowyKorekcja/Transfer Fcn2', 'Numerator', num2str(start+step*i));
 \end{lstlisting}
+
 \begin{lstlisting}[caption=set param dla C.]
 set_param('dwupoziomowyKorekcja/Constant', 'value', num2str(start+step*i));
 \end{lstlisting}
+
+\newpage
 
 Dla układu z histerezą, otrzymaliśmy następujące wykresy:
 \begin{figure}[!h]
@@ -419,8 +428,17 @@ Dla układu z histerezą, otrzymaliśmy następujące wykresy:
 	\caption{Zmiana C przy stałym k=1 i Tk=1}
     \label{fig:Rysunek}
 \end{figure}
+Widać, że układ najlepiej zachoduje się gdy K=1 i Tk=1.
+Da takich parametrów wykres dla a=0.5 wygląda:
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW3-korekcja-dwupolozeniowy-e_a.png}
+	\caption{Przy zmianie a}
+    \label{fig:Rysunek}
+\end{figure}
 
-Widać, że układ najlepiej zachoduje się gdy Kk=1 i T=1.
+
+\newpage
 
 Dla układu bez histerezy otrzymaliśmy bardzo podobne wyniki:
 \begin{figure}[!h]
@@ -437,55 +455,66 @@ Dla układu bez histerezy otrzymaliśmy bardzo podobne wyniki:
     \label{fig:Rysunek}
 \end{figure}
 
-\begin{figure}[!h]
-    \centering
-	\includegraphics[width=120mm]{CW3-korekcja-dwupolozeniowy-e_a.png}
-	\caption{Przy zmianie a}
-    \label{fig:Rysunek}
-\end{figure}
-
-
-
 		\item Regulator trójpołożeniowy
 		
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-korekcja-trojpolozeniowy-e_Tk.png}
-	\caption{Przy zmianie a}
+	\caption{Przy zmianie Tk}
     \label{fig:Rysunek}
 \end{figure}
 
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-korekcja-trojpolozeniowy-e_k.png}
-	\caption{Przy zmianie a}
+	\caption{Przy zmianie K}
     \label{fig:Rysunek}
 \end{figure}
 
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-korekcja-trojpolozeniowy-e_C.png}
-	\caption{Przy zmianie a}
+	\caption{Przy zmianie C}
     \label{fig:Rysunek}
 \end{figure}
-
 Stała nie wpływa na wynik.
+Przy zmianie 'a' wykres wyglada:
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW3-korekcja-trojpolozeniowyBH-e_a.png}
+	\caption{Przy zmianie K}
+    \label{fig:Rysunek}
+\end{figure}
+%TODO---------
+%PORÓWNANIE WYKRESU Z KOREKCJA I BEZ
+
+
+\newpage
 
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-korekcja-trojpolozeniowyBH-e_Tk.png}
-	\caption{Przy zmianie a}
+	\caption{Przy zmianie Tk}
     \label{fig:Rysunek}
 \end{figure}
 
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-korekcja-trojpolozeniowyBH-e_k.png}
-	\caption{Przy zmianie a}
+	\caption{Przy zmianie K}
+    \label{fig:Rysunek}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW3-korekcja-trojpolozeniowyBH-e_a.png}
+	\caption{}
     \label{fig:Rysunek}
 \end{figure}
 
 \end{enumerate}
+
+\newpage
 
 \section{Wnioski.}\label{sec:wnioski}
 TODO!!
