@@ -219,6 +219,49 @@ Aby zbadać wpływ zakresu histerezy na wykres $\varepsilon(t)$ wywołamy funkcj
 
 \subsubsection{Regulator trójpołożeniowy bez histerezy}\label{sec:r3bh}%----------------------------------------------------------
 
+System regulacji będziemy symulować jak w poprzednich zadaniach przy użyciu programu Simulink będącego częścią pakietu M\small ATLAB. \\
+\normalsize Schemat systemu służącego nam do symulacji przedstawiony został na poniższym rysunku.
+
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW3-schemat-3.png}
+	\caption{Schemat symulacji regulatora trójpołożeniowego.}
+    \label{fig:Rysunek}
+\end{figure}
+
+Aby zasymulować regulator trójpołożeniowy bez histerezy musimy ustawić parametry 'On' i 'Off' obiektów 'Relay1' i 'Relay2' na wartość 0.
+\newpage Za przeprowadzenie testu odpowiedzialna jest poniższa funkcja.
+
+\begin{lstlisting}[caption=Funkcja testująca regulator dwupoziomowy bez histerezy.]
+function testTrojpoziomowy(n, step, stop, flag)
+load_system('trojpoziomowy.mdl');
+hold on;
+set_param('trojpoziomowy/Relay1', 'Off_switch_value', num2str(n));
+set_param('trojpoziomowy/Relay1', 'On_switch_value', num2str(n));
+set_param('trojpoziomowy/Relay2', 'Off_switch_value', num2str(-n));
+set_param('trojpoziomowy/Relay2', 'On_switch_value', num2str(-n));
+
+sim('trojpoziomowy.mdl');
+
+figure(1);
+uwy= u.signals.values;    
+plot(tout, uwy, '-k');
+
+figure(2);
+
+if flag
+    hold on;
+    plot([0 30], [n n], '-r');
+    plot([0 30], [-n -n], '-r');
+end
+
+ewy= e.signals.values;    
+plot(tout, ewy, '-k');
+end
+\end{lstlisting}
+
+Po wywołaniu tej funkcji otrzymaliśmy poniższe wykresy.
+
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-trojpolozeniowy-e-n015-a0.png}
@@ -227,7 +270,14 @@ Aby zbadać wpływ zakresu histerezy na wykres $\varepsilon(t)$ wywołamy funkcj
     \label{fig:Rysunek}
 \end{figure}
 
+\newpage Widzimy z nich, że wykres błędu oscyluje z czasem coraz bliżej zera, więc wartość na wyjściu jest blisko pożądanej, lecz z czasem rośnie również częstotliwość przełączania regulatora, przez co znacznie rośnie jego zużycie i maleje żywotność.
+
 \subsubsection{Regulator trójpołożeniowy z histerezą}\label{sec:r3h}%----------------------------------------------------------
+
+%TODO-----------------------------------
+%Opis działania histerezy
+%Dokończyć rysunek (podpisać osie, etc)
+%---------------------------------------
 
 \begin{figure}[!h]
     \centering
@@ -235,6 +285,50 @@ Aby zbadać wpływ zakresu histerezy na wykres $\varepsilon(t)$ wywołamy funkcj
 	\caption{Jak działa histereza trójpoziomowa.}
     \label{fig:Rysunek}
 \end{figure}
+
+Symulacje regulatora trójpołożeniowego z histerezą przeprowadzimy na tym samym modelu, który posłużył nam w zadaniu \ref{sec:r3bh}, jednak w obiektach 'Relay1' i 'Relay2' parametry 'On' i 'Off' będą różne, dzięki czemu ustawimy żądaną histerezę.
+Za przeprowadzenie testu odpowiedzialna jest poniższa funkcja.
+
+\begin{lstlisting}[caption=Funkcja testująca regulator dwupoziomowy z histerezą.]
+function testTrojpoziomowy(n, step, stop, flag)
+load_system('trojpoziomowy.mdl');
+hold on;
+i=1;
+color = char('y', 'k', 'b', 'r', 'g', 'm');
+
+while (step*i <= stop)
+    set_param('trojpoziomowy/Relay1', 'Off_switch_value', num2str(n-step*i));
+    set_param('trojpoziomowy/Relay1', 'On_switch_value', num2str(n+step*i));
+    set_param('trojpoziomowy/Relay2', 'Off_switch_value', num2str(-(n+step*i)));
+    set_param('trojpoziomowy/Relay2', 'On_switch_value', num2str(-(n-step*i)));
+
+    sim('trojpoziomowy.mdl');
+    figure(1);
+    uwy= u.signals.values;    
+    plot(tout, uwy, 'Color', color(mod(i,6)+1));
+
+    figure(2);
+    ewy= e.signals.values;    
+    plot(tout, ewy, 'Color', color(mod(i,6)+1));
+
+    if flag
+        hold on;
+        plot([0 30], [n n], '-r');
+        plot([0 30], [-n -n], '-r');
+        plot([0 30], [n+step*i n+step*i], strcat('--', color(mod(i,6)+1)));
+        plot([0 30], [n-step*i n-step*i], strcat('--', color(mod(i,6)+1)));
+        plot([0 30], [-(n-step*i) -(n-step*i)], strcat('--', color(mod(i,6)+1)));
+        plot([0 30], [-(n+step*i) -(n+step*i)], strcat('--', color(mod(i,6)+1)));
+    end
+
+    i=i+1;
+    hold all;
+end
+end
+\end{lstlisting}
+
+
+Po wywołaniu powyższej funkcji dla wartości (0.15, 0.05, 0.06, true) otrzymaliśmy poniższe wykresy.
 
 \begin{figure}[!h]
     \centering
@@ -244,12 +338,20 @@ Aby zbadać wpływ zakresu histerezy na wykres $\varepsilon(t)$ wywołamy funkcj
     \label{fig:Rysunek}
 \end{figure}
 
+Widzimy na nich, że amplituda oscylacji błędu wokół zera z czasem stabilizuje się, a liczba przełączeń znacznie maleje w stosunku do regulatora trójpołożeniowego bez histerezy, a więc i wydłuża się jego żywotnosć. \\
+Aby zbadać wpływ zakresu histerezy na wykres $\varepsilon(t)$ wywołamy funkcję dla wartości (0.15, 0.05, 0.16, false), w wyniku czego otrzymamy poniższe wykresy.
+
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-trojpolozeniowy-e-n015.png}
 	\caption{Pokazujemy jak się zmienia przy rosnącym $a$.}
     \label{fig:Rysunek}
 \end{figure}
+
+\newpage Widzimy na nich, że w miarę zwiększania zakresu histerezy rośnie amplituda oscylacji wokół zera wykresu błędu, oraz maleje częstotliwość przełączeń regulatora.
+
+
+
 %---------------------------------------------------------------------------------------------------------------------
 %ZADANIE 2
 %---------------------------------------------------------------------------------------------------------------------

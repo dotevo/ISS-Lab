@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.28"
+    ComputedModelVersion    "1.31"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "168092"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "dotevo"
+  LastModifiedBy	  "TC"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Dec 07 20:20:39 2010"
-  RTWModifiedTimeStamp	  213653953
-  ModelVersionFormat	  "1.%<AutoIncrement:28>"
+  LastModifiedDate	  "Tue Dec 07 21:01:39 2010"
+  RTWModifiedTimeStamp	  213655518
+  ModelVersionFormat	  "1.%<AutoIncrement:31>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -715,7 +715,7 @@ Model {
   }
   System {
     Name		    "dwupoziomowyKorekcja"
-    Location		    [59, 79, 667, 773]
+    Location		    [59, 82, 667, 776]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -729,7 +729,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    39
+    SIDHighWatermark	    40
     Block {
       BlockType		      BusCreator
       Name		      "Bus\nCreator"
@@ -745,7 +745,7 @@ Model {
       Name		      "Constant"
       SID		      39
       Position		      [100, 245, 130, 275]
-      Value		      "0.5"
+      Value		      "-5"
       OutDataType	      "fixdt(1, 16)"
       OutScaling	      "2^0"
     }
