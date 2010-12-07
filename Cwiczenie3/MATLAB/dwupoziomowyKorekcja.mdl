@@ -1,12 +1,12 @@
 Model {
-  Name			  "czlonKdwuZ"
+  Name			  "dwupoziomowyKorekcja"
   Version		  7.5
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.27"
+    ComputedModelVersion    "1.28"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "168092"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "TC"
+  LastModifiedBy	  "dotevo"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Dec 07 16:51:50 2010"
-  RTWModifiedTimeStamp	  213641504
-  ModelVersionFormat	  "1.%<AutoIncrement:27>"
+  LastModifiedDate	  "Tue Dec 07 20:20:39 2010"
+  RTWModifiedTimeStamp	  213653953
+  ModelVersionFormat	  "1.%<AutoIncrement:28>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -596,6 +596,23 @@ Model {
       NonVirtualBus	      off
     }
     Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Inherit from 'Constant value'"
+      OutDataType	      "fixdt(1,16,0)"
+      ConRadixGroup	      "Use specified scaling"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
       BlockType		      Gain
       Gain		      "1"
       Multiplication	      "Element-wise(K.*u)"
@@ -697,8 +714,8 @@ Model {
     }
   }
   System {
-    Name		    "czlonKdwuZ"
-    Location		    [336, 82, 944, 776]
+    Name		    "dwupoziomowyKorekcja"
+    Location		    [59, 79, 667, 773]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -712,7 +729,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    36
+    SIDHighWatermark	    39
     Block {
       BlockType		      BusCreator
       Name		      "Bus\nCreator"
@@ -722,6 +739,15 @@ Model {
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant"
+      SID		      39
+      Position		      [100, 245, 130, 275]
+      Value		      "0.5"
+      OutDataType	      "fixdt(1, 16)"
+      OutScaling	      "2^0"
     }
     Block {
       BlockType		      Gain
@@ -781,6 +807,22 @@ Model {
       Time		      "0"
       After		      "5"
       SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Sum"
+      SID		      38
+      Ports		      [2, 1]
+      Position		      [205, 250, 225, 270]
+      ShowName		      off
+      IconShape		      "round"
+      Inputs		      "++|"
+      InputSameDT	      off
+      OutDataTypeMode	      "Inherit via internal rule"
+      OutDataType	      "fixdt(1, 16)"
+      OutScaling	      "2^0"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
     }
     Block {
       BlockType		      Sum
@@ -893,14 +935,13 @@ Model {
     Line {
       SrcBlock		      "Gain"
       SrcPort		      1
-      Points		      [5, 0]
+      Points		      [10, 0]
       Branch {
 	DstBlock		"Transfer Fcn1"
 	DstPort			1
       }
       Branch {
-	Points			[0, 95]
-	DstBlock		"Transfer Fcn2"
+	DstBlock		"Sum"
 	DstPort			1
       }
     }
@@ -927,6 +968,18 @@ Model {
       SrcBlock		      "Transfer Fcn2"
       SrcPort		      1
       DstBlock		      "Sum1"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Sum"
+      SrcPort		      1
+      DstBlock		      "Transfer Fcn2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Constant"
+      SrcPort		      1
+      DstBlock		      "Sum"
       DstPort		      2
     }
     Annotation {
