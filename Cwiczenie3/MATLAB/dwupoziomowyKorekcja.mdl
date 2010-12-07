@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.31"
+    ComputedModelVersion    "1.34"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "168092"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "TC"
+  LastModifiedBy	  "dotevo"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Dec 07 21:01:39 2010"
-  RTWModifiedTimeStamp	  213655518
-  ModelVersionFormat	  "1.%<AutoIncrement:31>"
+  LastModifiedDate	  "Tue Dec 07 22:40:22 2010"
+  RTWModifiedTimeStamp	  213662419
+  ModelVersionFormat	  "1.%<AutoIncrement:34>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.10.0"
 	  StartTime		  "0.0"
-	  StopTime		  "30.0"
+	  StopTime		  "200"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -715,7 +715,7 @@ Model {
   }
   System {
     Name		    "dwupoziomowyKorekcja"
-    Location		    [59, 82, 667, 776]
+    Location		    [224, 161, 832, 683]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -770,8 +770,8 @@ Model {
       Name		      "Relay1"
       SID		      32
       Position		      [100, 150, 130, 180]
-      OnSwitchValue	      "0.4"
-      OffSwitchValue	      "-0.4"
+      OnSwitchValue	      "0"
+      OffSwitchValue	      "0"
       OutDataType	      "fixdt(1, 16)"
       OutScaling	      "2^0"
     }
@@ -880,7 +880,8 @@ Model {
       BlockType		      TransferFcn
       Name		      "Transfer Fcn2"
       SID		      36
-      Position		      [300, 241, 345, 279]
+      Position		      [320, 241, 365, 279]
+      Numerator		      "1"
       Denominator	      "[1 1]"
     }
     Line {
@@ -927,7 +928,7 @@ Model {
 	DstPort			2
       }
       Branch {
-	Points			[0, 165]
+	Points			[315, 0; 0, 165]
 	DstBlock		"To Workspace1"
 	DstPort			1
       }
