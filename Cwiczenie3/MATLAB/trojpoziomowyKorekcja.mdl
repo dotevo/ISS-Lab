@@ -1,12 +1,12 @@
 Model {
-  Name			  "czlonKtrojBez"
+  Name			  "trojpoziomowyKorekcja"
   Version		  7.5
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.32"
+    ComputedModelVersion    "1.34"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "168092"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "TC"
+  LastModifiedBy	  "dotevo"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Dec 07 16:50:15 2010"
-  RTWModifiedTimeStamp	  213641397
-  ModelVersionFormat	  "1.%<AutoIncrement:32>"
+  LastModifiedDate	  "Tue Dec 07 20:48:05 2010"
+  RTWModifiedTimeStamp	  213655684
+  ModelVersionFormat	  "1.%<AutoIncrement:34>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -596,6 +596,23 @@ Model {
       NonVirtualBus	      off
     }
     Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Inherit from 'Constant value'"
+      OutDataType	      "fixdt(1,16,0)"
+      ConRadixGroup	      "Use specified scaling"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
       BlockType		      Gain
       Gain		      "1"
       Multiplication	      "Element-wise(K.*u)"
@@ -697,7 +714,7 @@ Model {
     }
   }
   System {
-    Name		    "czlonKtrojBez"
+    Name		    "trojpoziomowyKorekcja"
     Location		    [213, 82, 1153, 776]
     Open		    on
     ModelBrowserVisibility  off
@@ -712,7 +729,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "156"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    41
+    SIDHighWatermark	    43
     Block {
       BlockType		      BusCreator
       Name		      "Bus\nCreator"
@@ -722,6 +739,14 @@ Model {
       ShowName		      off
       Inputs		      "3"
       DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant"
+      SID		      43
+      Position		      [105, 250, 135, 280]
+      OutDataType	      "fixdt(1, 16)"
+      OutScaling	      "2^0"
     }
     Block {
       BlockType		      Gain
@@ -796,6 +821,22 @@ Model {
     }
     Block {
       BlockType		      Sum
+      Name		      "Sum"
+      SID		      42
+      Ports		      [2, 1]
+      Position		      [200, 255, 220, 275]
+      ShowName		      off
+      IconShape		      "round"
+      Inputs		      "++|"
+      InputSameDT	      off
+      OutDataTypeMode	      "Inherit via internal rule"
+      OutDataType	      "fixdt(1, 16)"
+      OutScaling	      "2^0"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Sum
       Name		      "Sum1"
       SID		      10
       Ports		      [3, 1]
@@ -841,7 +882,7 @@ Model {
       Name		      "To Workspace1"
       SID		      34
       Ports		      [1]
-      Position		      [170, 249, 205, 281]
+      Position		      [170, 329, 205, 361]
       VariableName	      "u"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -886,14 +927,14 @@ Model {
     Line {
       SrcBlock		      "Gain"
       SrcPort		      1
-      Points		      [10, 0]
+      Points		      [0, 0]
       Branch {
 	DstBlock		"Transfer Fcn1"
 	DstPort			1
       }
       Branch {
-	Points			[0, 100]
-	DstBlock		"Transfer Fcn2"
+	Points			[0, 75]
+	DstBlock		"Sum"
 	DstPort			1
       }
     }
@@ -986,6 +1027,18 @@ Model {
       Points		      [115, 0]
       DstBlock		      "Sum1"
       DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Sum"
+      SrcPort		      1
+      DstBlock		      "Transfer Fcn2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Constant"
+      SrcPort		      1
+      DstBlock		      "Sum"
+      DstPort		      2
     }
     Annotation {
       Position		      [207, 160]
