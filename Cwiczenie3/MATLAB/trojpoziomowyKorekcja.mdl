@@ -1,12 +1,12 @@
 Model {
-  Name			  "trojBez"
+  Name			  "czlonKtrojBez"
   Version		  7.5
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.30"
+    ComputedModelVersion    "1.32"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "TC"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Dec 02 22:41:01 2010"
-  RTWModifiedTimeStamp	  213230366
-  ModelVersionFormat	  "1.%<AutoIncrement:30>"
+  LastModifiedDate	  "Tue Dec 07 16:50:15 2010"
+  RTWModifiedTimeStamp	  213641397
+  ModelVersionFormat	  "1.%<AutoIncrement:32>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -697,8 +697,8 @@ Model {
     }
   }
   System {
-    Name		    "trojBez"
-    Location		    [970, 82, 1910, 1021]
+    Name		    "czlonKtrojBez"
+    Location		    [213, 82, 1153, 776]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -712,7 +712,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "156"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    40
+    SIDHighWatermark	    41
     Block {
       BlockType		      BusCreator
       Name		      "Bus\nCreator"
@@ -789,7 +789,7 @@ Model {
       BlockType		      Step
       Name		      "Step"
       SID		      8
-      Position		      [330, 225, 360, 255]
+      Position		      [330, 210, 360, 240]
       Time		      "0"
       After		      "2.5"
       SampleTime	      "0"
@@ -798,11 +798,11 @@ Model {
       BlockType		      Sum
       Name		      "Sum1"
       SID		      10
-      Ports		      [2, 1]
-      Position		      [430, 155, 450, 175]
+      Ports		      [3, 1]
+      Position		      [430, 215, 450, 235]
       ShowName		      off
       IconShape		      "round"
-      Inputs		      "|-+"
+      Inputs		      "-++"
       InputSameDT	      off
       OutDataTypeMode	      "Inherit via internal rule"
       OutDataType	      "fixdt(1, 16)"
@@ -830,7 +830,7 @@ Model {
       Name		      "To Workspace"
       SID		      11
       Ports		      [1]
-      Position		      [490, 148, 525, 182]
+      Position		      [490, 208, 525, 242]
       VariableName	      "e"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -841,7 +841,7 @@ Model {
       Name		      "To Workspace1"
       SID		      34
       Ports		      [1]
-      Position		      [240, 224, 275, 256]
+      Position		      [170, 249, 205, 281]
       VariableName	      "u"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -861,25 +861,41 @@ Model {
       Position		      [235, 146, 280, 184]
       Denominator	      "[5 1]"
     }
+    Block {
+      BlockType		      TransferFcn
+      Name		      "Transfer Fcn2"
+      SID		      41
+      Position		      [275, 246, 320, 284]
+      Denominator	      "[1 1]"
+    }
     Line {
       SrcBlock		      "Transfer Fcn"
       SrcPort		      1
       Points		      [5, 0]
       Branch {
-	DstBlock		"Sum1"
-	DstPort			1
-      }
-      Branch {
 	Points			[0, 0]
 	DstBlock		"Bus\nCreator"
 	DstPort			3
+      }
+      Branch {
+	Points			[65, 0]
+	DstBlock		"Sum1"
+	DstPort			1
       }
     }
     Line {
       SrcBlock		      "Gain"
       SrcPort		      1
-      DstBlock		      "Transfer Fcn1"
-      DstPort		      1
+      Points		      [10, 0]
+      Branch {
+	DstBlock		"Transfer Fcn1"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 100]
+	DstBlock		"Transfer Fcn2"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Transfer Fcn1"
@@ -896,13 +912,13 @@ Model {
     Line {
       SrcBlock		      "Sum1"
       SrcPort		      1
-      Points		      [15, 0]
+      Points		      [15, 0; 0, 0]
       Branch {
 	DstBlock		"To Workspace"
 	DstPort			1
       }
       Branch {
-	Points			[0, -105; -315, 0]
+	Points			[0, -165; -315, 0]
 	Branch {
 	  Points		  [0, 30]
 	  DstBlock		  "Bus\nCreator"
@@ -926,7 +942,6 @@ Model {
     Line {
       SrcBlock		      "Step"
       SrcPort		      1
-      Points		      [75, 0]
       DstBlock		      "Sum1"
       DstPort		      2
     }
@@ -946,7 +961,6 @@ Model {
 	  DstPort		  1
 	}
 	Branch {
-	  Points		  [0, 75]
 	  DstBlock		  "To Workspace1"
 	  DstPort		  1
 	}
@@ -965,6 +979,13 @@ Model {
       Points		      [25, 0]
       DstBlock		      "Sum2"
       DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Transfer Fcn2"
+      SrcPort		      1
+      Points		      [115, 0]
+      DstBlock		      "Sum1"
+      DstPort		      3
     }
     Annotation {
       Position		      [207, 160]

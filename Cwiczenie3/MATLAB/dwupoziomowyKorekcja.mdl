@@ -1,12 +1,12 @@
 Model {
-  Name			  "czlonKtrojBez"
+  Name			  "czlonKdwuZ"
   Version		  7.5
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.31"
+    ComputedModelVersion    "1.27"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "168092"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "dotevo"
+  LastModifiedBy	  "TC"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Dec 05 13:51:09 2010"
-  RTWModifiedTimeStamp	  213457846
-  ModelVersionFormat	  "1.%<AutoIncrement:31>"
+  LastModifiedDate	  "Tue Dec 07 16:51:50 2010"
+  RTWModifiedTimeStamp	  213641504
+  ModelVersionFormat	  "1.%<AutoIncrement:27>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.10.0"
 	  StartTime		  "0.0"
-	  StopTime		  "40.0"
+	  StopTime		  "30.0"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -697,8 +697,8 @@ Model {
     }
   }
   System {
-    Name		    "czlonKtrojBez"
-    Location		    [213, 73, 1153, 767]
+    Name		    "czlonKdwuZ"
+    Location		    [336, 82, 944, 776]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -710,17 +710,17 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "156"
+    ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    41
+    SIDHighWatermark	    36
     Block {
       BlockType		      BusCreator
       Name		      "Bus\nCreator"
       SID		      33
-      Ports		      [3, 1]
-      Position		      [390, 81, 395, 119]
+      Ports		      [2, 1]
+      Position		      [180, 81, 185, 119]
       ShowName		      off
-      Inputs		      "3"
+      Inputs		      "2"
       DisplayOption	      "bar"
     }
     Block {
@@ -743,21 +743,9 @@ Model {
       BlockType		      Relay
       Name		      "Relay1"
       SID		      32
-      Position		      [80, 115, 110, 145]
-      OnSwitchValue	      "0.1"
-      OffSwitchValue	      "0.1"
-      OutDataType	      "fixdt(1, 16)"
-      OutScaling	      "2^0"
-    }
-    Block {
-      BlockType		      Relay
-      Name		      "Relay2"
-      SID		      35
-      Position		      [80, 190, 110, 220]
-      OnSwitchValue	      "-0.1"
-      OffSwitchValue	      "-0.1"
-      OnOutputValue	      "0"
-      OffOutputValue	      "-1"
+      Position		      [100, 150, 130, 180]
+      OnSwitchValue	      "0.4"
+      OffSwitchValue	      "-0.4"
       OutDataType	      "fixdt(1, 16)"
       OutScaling	      "2^0"
     }
@@ -766,13 +754,13 @@ Model {
       Name		      "Scope"
       SID		      6
       Ports		      [1]
-      Position		      [425, 83, 455, 117]
+      Position		      [240, 83, 270, 117]
       Floating		      off
-      Location		      [1, 48, 1921, 1049]
+      Location		      [4, 307, 1267, 753]
       Open		      off
       NumInputPorts	      "1"
       TickLabels	      "on"
-      ZoomMode		      "xonly"
+      ZoomMode		      "yonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
@@ -789,9 +777,9 @@ Model {
       BlockType		      Step
       Name		      "Step"
       SID		      8
-      Position		      [390, 330, 420, 360]
+      Position		      [325, 315, 355, 345]
       Time		      "0"
-      After		      "2.5"
+      After		      "5"
       SampleTime	      "0"
     }
     Block {
@@ -799,25 +787,10 @@ Model {
       Name		      "Sum1"
       SID		      10
       Ports		      [3, 1]
-      Position		      [430, 155, 450, 175]
+      Position		      [430, 250, 450, 270]
       ShowName		      off
       IconShape		      "round"
-      Inputs		      "|-+-"
-      InputSameDT	      off
-      OutDataTypeMode	      "Inherit via internal rule"
-      OutDataType	      "fixdt(1, 16)"
-      OutScaling	      "2^0"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
-      BlockType		      Sum
-      Name		      "Sum2"
-      SID		      36
-      Ports		      [2, 1]
-      Position		      [130, 155, 150, 175]
-      ShowName		      off
-      IconShape		      "round"
+      Inputs		      "-++"
       InputSameDT	      off
       OutDataTypeMode	      "Inherit via internal rule"
       OutDataType	      "fixdt(1, 16)"
@@ -830,7 +803,7 @@ Model {
       Name		      "To Workspace"
       SID		      11
       Ports		      [1]
-      Position		      [490, 148, 525, 182]
+      Position		      [490, 243, 525, 277]
       VariableName	      "e"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -841,7 +814,7 @@ Model {
       Name		      "To Workspace1"
       SID		      34
       Ports		      [1]
-      Position		      [225, 329, 260, 361]
+      Position		      [195, 314, 230, 346]
       VariableName	      "u"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -852,47 +825,81 @@ Model {
       Name		      "Transfer Fcn"
       SID		      12
       Position		      [320, 146, 365, 184]
-      Denominator	      "[10 1]"
+      Denominator	      "[2 1]"
     }
     Block {
       BlockType		      TransferFcn
       Name		      "Transfer Fcn1"
       SID		      16
       Position		      [235, 146, 280, 184]
-      Denominator	      "[5 1]"
+      Denominator	      "[2 1]"
     }
     Block {
       BlockType		      TransferFcn
       Name		      "Transfer Fcn2"
-      SID		      41
-      Position		      [285, 236, 330, 274]
+      SID		      36
+      Position		      [300, 241, 345, 279]
       Denominator	      "[1 1]"
     }
     Line {
       SrcBlock		      "Transfer Fcn"
       SrcPort		      1
-      Points		      [5, 0]
+      Points		      [70, 0]
+      DstBlock		      "Sum1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sum1"
+      SrcPort		      1
+      Points		      [10, 0]
       Branch {
-	Points			[44, 0]
-	DstBlock		"Sum1"
+	DstBlock		"To Workspace"
 	DstPort			1
       }
       Branch {
-	Points			[0, 0]
+	Points			[0, -200; -320, 0]
+	Branch {
+	  Labels		  [2, 0]
+	  Points		  [-90, 0; 0, 105]
+	  DstBlock		  "Relay1"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, 30]
+	  DstBlock		  "Bus\nCreator"
+	  DstPort		  1
+	}
+      }
+    }
+    Line {
+      SrcBlock		      "Relay1"
+      SrcPort		      1
+      Points		      [10, 0]
+      Branch {
+	DstBlock		"Gain"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -55]
 	DstBlock		"Bus\nCreator"
-	DstPort			3
+	DstPort			2
+      }
+      Branch {
+	Points			[0, 165]
+	DstBlock		"To Workspace1"
+	DstPort			1
       }
     }
     Line {
       SrcBlock		      "Gain"
       SrcPort		      1
-      Points		      [10, 0]
+      Points		      [5, 0]
       Branch {
 	DstBlock		"Transfer Fcn1"
 	DstPort			1
       }
       Branch {
-	Points			[0, 90]
+	Points			[0, 95]
 	DstBlock		"Transfer Fcn2"
 	DstPort			1
       }
@@ -910,96 +917,26 @@ Model {
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Sum1"
-      SrcPort		      1
-      Points		      [15, 0]
-      Branch {
-	DstBlock		"To Workspace"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, -105; -315, 0]
-	Branch {
-	  Points		  [0, 30]
-	  DstBlock		  "Bus\nCreator"
-	  DstPort		  1
-	}
-	Branch {
-	  Labels		  [2, 0]
-	  Points		  [-100, 0; 0, 70]
-	  Branch {
-	    Points		    [0, 75]
-	    DstBlock		    "Relay2"
-	    DstPort		    1
-	  }
-	  Branch {
-	    DstBlock		    "Relay1"
-	    DstPort		    1
-	  }
-	}
-      }
-    }
-    Line {
       SrcBlock		      "Step"
       SrcPort		      1
-      Points		      [-6, 0]
+      Points		      [80, 0]
       DstBlock		      "Sum1"
-      DstPort		      2
-    }
-    Line {
-      SrcBlock		      "Sum2"
-      SrcPort		      1
-      Points		      [0, 0]
-      Branch {
-	Points			[0, -65]
-	DstBlock		"Bus\nCreator"
-	DstPort			2
-      }
-      Branch {
-	Points			[0, 0]
-	Branch {
-	  DstBlock		  "Gain"
-	  DstPort		  1
-	}
-	Branch {
-	  Points		  [0, 180]
-	  DstBlock		  "To Workspace1"
-	  DstPort		  1
-	}
-      }
-    }
-    Line {
-      SrcBlock		      "Relay1"
-      SrcPort		      1
-      Points		      [25, 0]
-      DstBlock		      "Sum2"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Relay2"
-      SrcPort		      1
-      Points		      [25, 0]
-      DstBlock		      "Sum2"
-      DstPort		      2
+      DstPort		      3
     }
     Line {
       SrcBlock		      "Transfer Fcn2"
       SrcPort		      1
-      Points		      [105, 0]
       DstBlock		      "Sum1"
-      DstPort		      3
+      DstPort		      2
     }
     Annotation {
       Position		      [207, 160]
     }
     Annotation {
+      Position		      [416, 317]
+    }
+    Annotation {
       Position		      [276, 213]
-    }
-    Annotation {
-      Position		      [214, 96]
-    }
-    Annotation {
-      Position		      [238, 108]
     }
   }
 }
