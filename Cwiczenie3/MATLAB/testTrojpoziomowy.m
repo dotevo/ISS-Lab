@@ -2,7 +2,7 @@ function testTrojpoziomowy(n, step, stop, flag)
 load_system('trojpoziomowy.mdl');
 hold on;
 i=1;
-color = char('y', 'k', 'b', 'g', 'r', 'm');
+color = char('y', 'k', 'b', 'r', 'g', 'm');
 
 if step ~= 0
     while (step*i <= stop)
@@ -42,7 +42,9 @@ else
     set_param('trojpoziomowy/Relay1', 'On_switch_value', num2str(n));
     set_param('trojpoziomowy/Relay2', 'Off_switch_value', num2str(-n));
     set_param('trojpoziomowy/Relay2', 'On_switch_value', num2str(-n));
+    
     sim('trojpoziomowy.mdl');
+    
     figure(1);
     uwy= u.signals.values;    
     plot(tout, uwy, '-k');
@@ -60,7 +62,6 @@ else
     end
     
     ewy= e.signals.values;    
-    plot(tout, ewy, '-k');  
-
+    plot(tout, ewy, '-k');
 end
 end

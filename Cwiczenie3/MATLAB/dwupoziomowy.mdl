@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.33"
+    ComputedModelVersion    "1.34"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "TC"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Dec 07 18:47:03 2010"
-  RTWModifiedTimeStamp	  213648422
-  ModelVersionFormat	  "1.%<AutoIncrement:33>"
+  LastModifiedDate	  "Tue Dec 07 21:01:50 2010"
+  RTWModifiedTimeStamp	  213656508
+  ModelVersionFormat	  "1.%<AutoIncrement:34>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.10.0"
 	  StartTime		  "0.0"
-	  StopTime		  "20.0"
+	  StopTime		  "30.0"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -744,8 +744,8 @@ Model {
       Name		      "Relay1"
       SID		      32
       Position		      [100, 150, 130, 180]
-      OnSwitchValue	      "0"
-      OffSwitchValue	      "0"
+      OnSwitchValue	      "2"
+      OffSwitchValue	      "-2"
       OutDataType	      "fixdt(1, 16)"
       OutScaling	      "2^0"
     }
