@@ -108,7 +108,7 @@ System regulacji będziemy symulować przy użyciu programu Simulink będącego 
 Aby zasymulować regulator dwupołożeniowy bez histerezy musimy ustawić parametry 'On' i 'Off' obiektu 'Relay1' na wartość 0. \\
 Za przeprowadzenie testu odpowiedzialna jest poniższa funkcja.
 
-\begin{lstlisting}[caption=Funkcja testująca regulator dwupoziomowy bez histerezy.]
+\begin{lstlisting}[caption=Funkcja testująca regulator dwupołożeniowy bez histerezy.]
 function testDwupoziomowy1(step, flag)
 load_system('dwupoziomowy.mdl');
 hold on;
@@ -139,7 +139,7 @@ Po wywołaniu tej funkcji otrzymaliśmy poniższe wykresy.
     \centering
 	\includegraphics[width=120mm]{CW3-dwupolozeniowy-e-a0.png}
 	\includegraphics[width=120mm]{CW3-dwupolozeniowy-u-a0.png}
-	\caption{Wykresy $\varepsilon(t)$, oraz $u(t)$ dla regulatora dwupoziomowego bez histerezy.}
+	\caption{Wykresy $\varepsilon(t)$, oraz $u(t)$ dla regulatora dwupołożeniowego bez histerezy.}
     \label{fig:Rysunek}
 \end{figure}
 
@@ -147,10 +147,7 @@ Po wywołaniu tej funkcji otrzymaliśmy poniższe wykresy.
 
 \subsubsection{Regulator dwupołożeniowy z histerezą}\label{sec:r2h}%----------------------------------------------------------
 
-%TODO-----------------------------------
-%Opis działania histerezy
-%Dokończyć rysunek (podpisać osie, etc)
-%---------------------------------------
+Histereza dwupoziomowa sprawia, że przełączanie stanu z wysokiego na niski nie zachodzi przy tej samej wartości co przełączanie stanu z niskiego na wysoki. Jej działanie przedstawione zostało na poniższym obrazku.
 
 \begin{figure}[!h]
     \centering
@@ -162,7 +159,7 @@ Po wywołaniu tej funkcji otrzymaliśmy poniższe wykresy.
 Symulacje regulatora dwupoziomowego z histerezą przeprowadzimy na tym samym modelu, który posłużył nam w zadaniu \ref{sec:r2bh}, jednak w obiekcie 'Relay1' parametry 'On' i 'Off' będą różne, dzięki czemu ustawimy żądaną histerezę.\newpage
 Za przeprowadzenie testu odpowiedzialna jest poniższa funkcja.
 
-\begin{lstlisting}[caption=Funkcja testująca regulator dwupoziomowy z histerezą.]
+\begin{lstlisting}[caption=Funkcja testująca regulator dwupołożeniowy z histerezą.]
 function testDwupoziomowy2(step, stop, flag)
 load_system('dwupoziomowy.mdl');
 hold on;
@@ -201,17 +198,17 @@ Po wywołaniu powyższej funkcji dla wartości (0.5, 0.6, true) otrzymaliśmy po
     \centering
 	\includegraphics[width=120mm]{CW3-dwupolozeniowy-e-a05.png}
 	\includegraphics[width=120mm]{CW3-dwupolozeniowy-u-a05.png}
-	\caption{Wykresy $\varepsilon(t)$, oraz $u(t)$ dla regulatora dwupoziomowego z histerezą.}
+	\caption{Wykresy $\varepsilon(t)$, oraz $u(t)$ dla regulatora dwupołożeniowego z histerezą.}
     \label{fig:Rysunek}
 \end{figure}
 
-Widzimy na nich, że amplituda oscylacji błędu wokół zera z czasem stabilizuje się, a liczba przełączeń znacznie maleje w stosunku do regulatora dwupoziomowego bez histerezy, a więc i wydłuża się jego żywotnosć. \\
+Widzimy na nich, że amplituda oscylacji błędu wokół zera z czasem stabilizuje się, a liczba przełączeń znacznie maleje w stosunku do regulatora dwupołożeniowego bez histerezy, a więc i wydłuża się jego żywotnosć. \\
 Aby zbadać wpływ zakresu histerezy na wykres $\varepsilon(t)$ wywołamy funkcję dla wartości (0.5, 2, false), w wyniku czego otrzymamy poniższe wykresy.
 
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-dwupolozeniowy-e.png}
-	\caption{Pokazujemy jak się zmienia przy rosnącym $a$.}
+	\caption{Wykres $\varepsilon(t)$ dla regulatora dwupołożeniowego z histerezą przy rosnącym $a$.}
     \label{fig:Rysunek}
 \end{figure}
 
@@ -232,7 +229,7 @@ System regulacji będziemy symulować jak w poprzednich zadaniach przy użyciu p
 Aby zasymulować regulator trójpołożeniowy bez histerezy musimy ustawić parametry 'On' i 'Off' obiektów 'Relay1' i 'Relay2' na wartość 0.
 \newpage Za przeprowadzenie testu odpowiedzialna jest poniższa funkcja.
 
-\begin{lstlisting}[caption=Funkcja testująca regulator dwupoziomowy bez histerezy.]
+\begin{lstlisting}[caption=Funkcja testująca regulator trójpołożeniowy bez histerezy.]
 function testTrojpoziomowy(n, step, stop, flag)
 load_system('trojpoziomowy.mdl');
 hold on;
@@ -266,7 +263,7 @@ Po wywołaniu tej funkcji otrzymaliśmy poniższe wykresy.
     \centering
 	\includegraphics[width=120mm]{CW3-trojpolozeniowy-e-n015-a0.png}
 	\includegraphics[width=120mm]{CW3-trojpolozeniowy-u-n015-a0.png}
-	\caption{Pokazujemy kiedy się przełącza.}
+	\caption{Wykresy $\varepsilon(t)$, oraz $u(t)$ dla regulatora trójpołożeniowego bez histerezy.}
     \label{fig:Rysunek}
 \end{figure}
 
@@ -274,10 +271,7 @@ Po wywołaniu tej funkcji otrzymaliśmy poniższe wykresy.
 
 \subsubsection{Regulator trójpołożeniowy z histerezą}\label{sec:r3h}%----------------------------------------------------------
 
-%TODO-----------------------------------
-%Opis działania histerezy
-%Dokończyć rysunek (podpisać osie, etc)
-%---------------------------------------
+Histereza trójpoziomowa to nic innego niż połączenie dwóch histerez dwupoziomowych. Jej działanie przedstawione zostało na poniższym obrazku.
 
 \begin{figure}[!h]
     \centering
@@ -289,7 +283,7 @@ Po wywołaniu tej funkcji otrzymaliśmy poniższe wykresy.
 Symulacje regulatora trójpołożeniowego z histerezą przeprowadzimy na tym samym modelu, który posłużył nam w zadaniu \ref{sec:r3bh}, jednak w obiektach 'Relay1' i 'Relay2' parametry 'On' i 'Off' będą różne, dzięki czemu ustawimy żądaną histerezę.
 Za przeprowadzenie testu odpowiedzialna jest poniższa funkcja.
 
-\begin{lstlisting}[caption=Funkcja testująca regulator dwupoziomowy z histerezą.]
+\begin{lstlisting}[caption=Funkcja testująca regulator trójpołożeniowy z histerezą.]
 function testTrojpoziomowy(n, step, stop, flag)
 load_system('trojpoziomowy.mdl');
 hold on;
@@ -327,14 +321,13 @@ end
 end
 \end{lstlisting}
 
-
 Po wywołaniu powyższej funkcji dla wartości (0.15, 0.05, 0.06, true) otrzymaliśmy poniższe wykresy.
 
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-trojpolozeniowy-e-n015-a005.png}
 	\includegraphics[width=120mm]{CW3-trojpolozeniowy-u-n015-a005.png}
-	\caption{Pokazujemy kiedy się przełącza.}
+	\caption{Wykresy $\varepsilon(t)$, oraz $u(t)$ dla regulatora trójpołożeniowego z histerezą.}
     \label{fig:Rysunek}
 \end{figure}
 
@@ -344,7 +337,7 @@ Aby zbadać wpływ zakresu histerezy na wykres $\varepsilon(t)$ wywołamy funkcj
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-trojpolozeniowy-e-n015.png}
-	\caption{Pokazujemy jak się zmienia przy rosnącym $a$.}
+	\caption{Wykres $\varepsilon(t)$ dla regulatora trójpołożeniowego z histerezą przy rosnącym $a$.}
     \label{fig:Rysunek}
 \end{figure}
 
