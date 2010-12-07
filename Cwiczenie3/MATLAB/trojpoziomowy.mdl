@@ -1,12 +1,12 @@
 Model {
-  Name			  "trojZ"
+  Name			  "trojpoziomowy"
   Version		  7.5
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.28"
+    ComputedModelVersion    "1.30"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "TC"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Dec 02 22:41:06 2010"
-  RTWModifiedTimeStamp	  213229675
-  ModelVersionFormat	  "1.%<AutoIncrement:28>"
+  LastModifiedDate	  "Tue Dec 07 18:50:32 2010"
+  RTWModifiedTimeStamp	  213648629
+  ModelVersionFormat	  "1.%<AutoIncrement:30>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.10.0"
 	  StartTime		  "0.0"
-	  StopTime		  "30.0"
+	  StopTime		  "60.0"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -697,7 +697,7 @@ Model {
     }
   }
   System {
-    Name		    "trojZ"
+    Name		    "trojpoziomowy"
     Location		    [970, 82, 1910, 1021]
     Open		    on
     ModelBrowserVisibility  off
@@ -744,8 +744,8 @@ Model {
       Name		      "Relay1"
       SID		      32
       Position		      [80, 115, 110, 145]
-      OnSwitchValue	      "0.2"
-      OffSwitchValue	      "0.1"
+      OnSwitchValue	      "0.15"
+      OffSwitchValue	      "0.15"
       OutDataType	      "fixdt(1, 16)"
       OutScaling	      "2^0"
     }
@@ -754,8 +754,8 @@ Model {
       Name		      "Relay2"
       SID		      35
       Position		      [80, 190, 110, 220]
-      OnSwitchValue	      "-0.1"
-      OffSwitchValue	      "-0.2"
+      OnSwitchValue	      "-0.15"
+      OffSwitchValue	      "-0.15"
       OnOutputValue	      "0"
       OffOutputValue	      "-1"
       OutDataType	      "fixdt(1, 16)"

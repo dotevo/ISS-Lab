@@ -1,12 +1,12 @@
 Model {
-  Name			  "dwuZ"
+  Name			  "dwupoziomowy"
   Version		  7.5
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.29"
+    ComputedModelVersion    "1.33"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "168092"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "dotevo"
+  LastModifiedBy	  "TC"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Dec 05 17:36:51 2010"
-  RTWModifiedTimeStamp	  213471408
-  ModelVersionFormat	  "1.%<AutoIncrement:29>"
+  LastModifiedDate	  "Tue Dec 07 18:47:03 2010"
+  RTWModifiedTimeStamp	  213648422
+  ModelVersionFormat	  "1.%<AutoIncrement:33>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.10.0"
 	  StartTime		  "0.0"
-	  StopTime		  "30.0"
+	  StopTime		  "20.0"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -697,7 +697,7 @@ Model {
     }
   }
   System {
-    Name		    "dwuZ"
+    Name		    "dwupoziomowy"
     Location		    [626, 366, 1234, 722]
     Open		    on
     ModelBrowserVisibility  off
@@ -744,8 +744,8 @@ Model {
       Name		      "Relay1"
       SID		      32
       Position		      [100, 150, 130, 180]
-      OnSwitchValue	      "0.4"
-      OffSwitchValue	      "-0.4"
+      OnSwitchValue	      "0"
+      OffSwitchValue	      "0"
       OutDataType	      "fixdt(1, 16)"
       OutScaling	      "2^0"
     }
@@ -756,7 +756,7 @@ Model {
       Ports		      [1]
       Position		      [240, 83, 270, 117]
       Floating		      off
-      Location		      [9, 56, 1272, 1041]
+      Location		      [1, 48, 1921, 1049]
       Open		      off
       NumInputPorts	      "1"
       TickLabels	      "on"
