@@ -1,11 +1,11 @@
-function testDwupoziomowyKorekcja(step, stop)
+function testDwupoziomowyKorekcja(start,step, stop)
 load_system('dwupoziomowyKorekcja.mdl');
 hold on;
 i=1;
 color = char('y', 'k', 'b', 'g', 'r', 'm');
 
-while (step*i <= stop)
-        set_param('dwupoziomowyKorekcja/Constant', 'value', num2str(step*i));
+while (start+step*i <= stop)
+        set_param('dwupoziomowyKorekcja/Constant', 'value', num2str(start+step*i));
         sim('dwupoziomowyKorekcja.mdl');
         figure(1);
         uwy= u.signals.values;    
