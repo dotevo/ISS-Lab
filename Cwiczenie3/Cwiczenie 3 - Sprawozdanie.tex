@@ -75,16 +75,8 @@ Celem tego ćwiczenia jest symulacja działania systemu regulacji z przekaźnika
 
 \subsection{Podział zadań. (?)} 
 \begin{enumerate}
-		\item Jordanek Adam
-		\begin{enumerate}
-			\item Podpunkt jakiś
-			\item Inny podpunkt
- 		\end{enumerate}
-		\item Klimek Tomasz
-		\begin{enumerate}
-			\item Zbudowanie modeli
-			\item Coś
- 		\end{enumerate}
+		\item Jordanek Adam - napisanie funkcji, opracowanie zadania 2, współpraca przy pozostałej części sprawozdania.
+		\item Klimek Tomasz - budowa modeli systemów, opracowanie zadania 1, współpraca przy pozostałej części sprawozdania.
 \end{enumerate}
 
 \newpage
@@ -94,9 +86,12 @@ Celem tego ćwiczenia jest symulacja działania systemu regulacji z przekaźnika
 %--------------------------------------------------------------------------------------------------------------------------------
 \subsection{Symulacja systemu regulacji. Dobór parametrów regulatora.}\label{sec:zad1}
 
-\subsubsection{Regulator dwupołożeniowy bez histerezy}\label{sec:r2bh}%----------------------------------------------------------
-System regulacji będziemy symulować przy użyciu programu Simulink będącego częścią pakietu M\small ATLAB. \\
-\normalsize Schemat systemu służącego nam do symulacji przedstawiony został na poniższym rysunku.
+System regulacji będziemy symulować przy użyciu programu Simulink będącego częścią pakietu M\small ATLAB.\normalsize
+
+\subsubsection{Regulator dwupołożeniowy bez histerezy}\label{sec:r2bh}
+%--------------------------------------------------------------------------------------------------------------------------------
+
+Schemat systemu służącego nam do symulacji regulatora dwupołożeniowego przedstawiony został na poniższym rysunku.
 
 \begin{figure}[!h]
     \centering
@@ -145,7 +140,8 @@ Po wywołaniu tej funkcji otrzymaliśmy poniższe wykresy.
 
 \newpage Widzimy z nich, że wykres błędu oscyluje z czasem coraz bliżej zera, więc wartość na wyjściu jest blisko pożądanej, lecz z czasem rośnie również częstotliwość przełączania regulatora, przez co znacznie rośnie jego zużycie i maleje żywotność.
 
-\subsubsection{Regulator dwupołożeniowy z histerezą}\label{sec:r2h}%----------------------------------------------------------
+\subsubsection{Regulator dwupołożeniowy z histerezą}\label{sec:r2h}
+%--------------------------------------------------------------------------------------------------------------------------------
 
 Histereza dwupoziomowa sprawia, że przełączanie stanu z wysokiego na niski nie zachodzi przy tej samej wartości co przełączanie stanu z niskiego na wysoki. Jej działanie przedstawione zostało na poniższym obrazku.
 
@@ -214,10 +210,10 @@ Aby zbadać wpływ zakresu histerezy na wykres $\varepsilon(t)$ wywołamy funkcj
 
 \newpage Widzimy na nich, że w miarę zwiększania zakresu histerezy rośnie amplituda oscylacji wykresu błędu wokół zera, oraz maleje częstotliwość przełączeń regulatora.
 
-\subsubsection{Regulator trójpołożeniowy bez histerezy}\label{sec:r3bh}%----------------------------------------------------------
+\subsubsection{Regulator trójpołożeniowy bez histerezy}\label{sec:r3bh}
+%--------------------------------------------------------------------------------------------------------------------------------
 
-System regulacji będziemy symulować jak w poprzednich zadaniach przy użyciu programu Simulink będącego częścią pakietu M\small ATLAB. \\
-\normalsize Schemat systemu służącego nam do symulacji przedstawiony został na poniższym rysunku.
+\normalsize Schemat systemu służącego nam do symulacji regulatora trójpołożeniowego przedstawiony został na poniższym rysunku.
 
 \begin{figure}[!h]
     \centering
@@ -267,9 +263,11 @@ Po wywołaniu tej funkcji otrzymaliśmy poniższe wykresy.
     \label{fig:Rysunek}
 \end{figure}
 
-\newpage Widzimy z nich, że wykres błędu oscyluje z czasem coraz bliżej zera, więc wartość na wyjściu jest blisko pożądanej, lecz z czasem rośnie również częstotliwość przełączania regulatora, przez co znacznie rośnie jego zużycie i maleje żywotność.
+\newpage Widzimy z nich, że wykres błędu oscyluje z czasem coraz bliżej zera, więc wartość na wyjściu jest blisko pożądanej, lecz z czasem rośnie również częstotliwość przełączania regulatora, przez co znacznie rośnie jego zużycie i maleje żywotność. \\
+Widzimy również, że regulator trójpołożeniowy w stan niski wszedł tylko raz, a później przełączał się tylko na stan wysoki i zerowy. Dzieje się tak, ponieważ przełączenia regulatora z czasem są coraz krótsze, więc tempo malenia wartości błędu nie ma szans wzrosnąć na tyle, aby 'przelecieć' siłą bezwładności systemu do wartości $-n$, gdzie nastąpiłoby przełączenie na stan niski. 
 
-\subsubsection{Regulator trójpołożeniowy z histerezą}\label{sec:r3h}%----------------------------------------------------------
+\subsubsection{Regulator trójpołożeniowy z histerezą}\label{sec:r3h}
+%--------------------------------------------------------------------------------------------------------------------------------
 
 Histereza trójpoziomowa to nic innego niż połączenie dwóch histerez dwupoziomowych. Jej działanie przedstawione zostało na poniższym obrazku.
 
@@ -286,27 +284,21 @@ Za przeprowadzenie testu odpowiedzialna jest poniższa funkcja.
 \begin{lstlisting}[caption=Funkcja testująca regulator trójpołożeniowy z histerezą.]
 function testTrojpoziomowy(n, step, stop, flag)
 load_system('trojpoziomowy.mdl');
-hold on;
-i=1;
+hold on; i=1;
 color = char('y', 'k', 'b', 'r', 'g', 'm');
-
 while (step*i <= stop)
     set_param('trojpoziomowy/Relay1', 'Off_switch_value', num2str(n-step*i));
     set_param('trojpoziomowy/Relay1', 'On_switch_value', num2str(n+step*i));
     set_param('trojpoziomowy/Relay2', 'Off_switch_value', num2str(-(n+step*i)));
     set_param('trojpoziomowy/Relay2', 'On_switch_value', num2str(-(n-step*i)));
-
     sim('trojpoziomowy.mdl');
     figure(1);
     uwy= u.signals.values;    
     plot(tout, uwy, 'Color', color(mod(i,6)+1));
-
     figure(2);
     ewy= e.signals.values;    
     plot(tout, ewy, 'Color', color(mod(i,6)+1));
-
     if flag
-        hold on;
         plot([0 30], [n n], '-r');
         plot([0 30], [-n -n], '-r');
         plot([0 30], [n+step*i n+step*i], strcat('--', color(mod(i,6)+1)));
@@ -314,7 +306,6 @@ while (step*i <= stop)
         plot([0 30], [-(n-step*i) -(n-step*i)], strcat('--', color(mod(i,6)+1)));
         plot([0 30], [-(n+step*i) -(n+step*i)], strcat('--', color(mod(i,6)+1)));
     end
-
     i=i+1;
     hold all;
 end
@@ -346,7 +337,7 @@ Aby zbadać wpływ zakresu histerezy na wykres $\varepsilon(t)$ wywołamy funkcj
 %---------------------------------------------------------------------------------------------------------------------
 %ZADANIE 2
 %---------------------------------------------------------------------------------------------------------------------
-\newpage
+
 \subsection{Zastosowanie członów korekcyjnych.}\label{sec:zad2}
 W tym zadaniu dodatkowo dodaliśmy człony korekcyjne, do poprzednich układów. Do układu została dodana również wartość stała.
 
