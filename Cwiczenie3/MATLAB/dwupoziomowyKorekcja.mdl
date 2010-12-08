@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.36"
+    ComputedModelVersion    "1.38"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "dotevo"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Dec 08 00:15:20 2010"
-  RTWModifiedTimeStamp	  213668117
-  ModelVersionFormat	  "1.%<AutoIncrement:36>"
+  LastModifiedDate	  "Wed Dec 08 09:19:06 2010"
+  RTWModifiedTimeStamp	  213700743
+  ModelVersionFormat	  "1.%<AutoIncrement:38>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -770,8 +770,8 @@ Model {
       Name		      "Relay1"
       SID		      32
       Position		      [100, 150, 130, 180]
-      OnSwitchValue	      "1"
-      OffSwitchValue	      "-1"
+      OnSwitchValue	      "0"
+      OffSwitchValue	      "0"
       OutDataType	      "fixdt(1, 16)"
       OutScaling	      "2^0"
     }
@@ -856,7 +856,7 @@ Model {
       Name		      "To Workspace1"
       SID		      34
       Ports		      [1]
-      Position		      [195, 314, 230, 346]
+      Position		      [195, 329, 230, 361]
       VariableName	      "u"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -928,7 +928,7 @@ Model {
 	DstPort			2
       }
       Branch {
-	Points			[315, 0; 0, 165]
+	Points			[0, 185; 15, 0; 0, -5]
 	DstBlock		"To Workspace1"
 	DstPort			1
       }
