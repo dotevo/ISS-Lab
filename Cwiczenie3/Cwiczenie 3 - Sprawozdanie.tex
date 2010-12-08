@@ -339,7 +339,15 @@ Aby zbadać wpływ zakresu histerezy na wykres $\varepsilon(t)$ wywołamy funkcj
 %---------------------------------------------------------------------------------------------------------------------
 
 \subsection{Zastosowanie członów korekcyjnych.}\label{sec:zad2}
-W tym zadaniu dodatkowo dodaliśmy człony korekcyjne, do poprzednich układów. Do układu została dodana również wartość stała.
+Podstawową zaletą regulacji dwupołożeniowej jest prostota realizacji. Niestety, cecha ta jest
+okupiona pogorszeniem jakości parametrów regulacji w porównaniu regulacją ciągłą.
+Jedną z możliwości poprawienia jakości regulacji jest zastosowanie układu z korekcją.
+\newline
+Człon korekcyjny posiada następującą transmitancję:
+
+\begin{equation} \label{eqn:trans_czl_kor}
+	G_w={{k} \over {T_k s+1}}
+\end{equation}
 
 \subsubsection{Modyfikacja systemów z zadania 1}\label{sec:zad2_1}
 \begin{figure}[!h]
@@ -355,11 +363,17 @@ W tym zadaniu dodatkowo dodaliśmy człony korekcyjne, do poprzednich układów.
 	\caption{Schemat regulatora trojpolożeniowego z korekcją.}
     \label{fig:Rysunek}
 \end{figure}
+Człon korekcyjny włączony w obwód ujemnego sprzężenia zwrotnego przekaźnika wprowadza modyfikację sygnału
+błędu e(t), co powoduje częstsze niż bez korekcji przełączanie przekaźnika. Korekcja jest skuteczna
+wówczas gdy, prędkość narastania sygnału z korektora w jest większa od prędkości zmian wejścia (dobór kw i Tw). Zsumowanie sygnałów sprzężenia zwrotnego z obiektu i korektora oraz odjęcie ich sumy od wartości zadanej daje zastępczy sygnał błędu, którego prędkość i sposób narastania jest określona głównie przez sygnał. 
+
 \newpage
 
 \subsubsection{Doświadczalny dobor parametrów członu korekcyjnego.}\label{sec:zad2_2}
 \begin{enumerate}
 		\item Regulator dwupołożeniowy.
+		
+		Do sprawdzania regulatorów wykorzystaliśmy następujące funkcje testujące.
 		
 \begin{lstlisting}[caption=Funkcja testująca regulator dwupoziomowy z korekcją zmiana T.]
 function testDwupoziomowyKorekcjaT(start,step, stop)
@@ -400,32 +414,40 @@ set_param('dwupoziomowyKorekcja/Constant', 'value', num2str(start+step*i));
 
 \newpage
 
-Dla układu z histerezą, otrzymaliśmy następujące wykresy:
+Na początek testowany był układ z histerezą. Zadanie polegało on doświadczalnym dobraniu parametrów układu korekcyjnego.
+Parametrami nas interesującymi jest Tk, K i C gdzie C to wartość stała (blok Constant).
+
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-korekcja-dwupolozeniowy-e_Tk.png}
 	\caption{Zmiana Tk przy stałym k=1 i C=0}
     \label{fig:Rysunek}
 \end{figure}
+
+Z Wyresu można zauważyć, że dla wartości k=1, wartość optymalna Tk=1 ze względu, że nie występują duże wachania wartości, a układ szybko jest w stanie ustalonym.
+
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-korekcja-dwupolozeniowy-e_k.png}
 	\caption{Zmiana k przy stałym Tk=1 i C=0}
     \label{fig:Rysunek}
 \end{figure}
+Gdy Tk=1 najbardziej optymalne k=0.5 ze względu, że osiąga wartość 0.
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-korekcja-dwupolozeniowy-e_C_k1T1.png}
-	\caption{Zmiana C przy stałym k=1 i Tk=1}
+	\caption{Zmiana C przy stałym k=0.5 i Tk=1}
     \label{fig:Rysunek}
 \end{figure}
+Z wykresu można zauważyć, że najlepiej układ się zachowuje kiedy C jest równe 0.
 
 \newpage
-Widać, że układ najlepiej zachoduje się gdy K=1 i Tk=1.
+Widać, że układ najlepiej zachoduje się gdy K=0.5 i Tk=1.
 Da takich parametrów wykres dla a=0.5 wygląda:
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-korekcja-dwupolozeniowy-e_a.png}
+	\includegraphics[width=120mm]{CW3-korekcja-dwupolozeniowy-u_a.png}
 	\caption{Przy zmianie a}
     \label{fig:Rysunek}
 \end{figure}
@@ -437,7 +459,7 @@ Dla układu bez histerezy otrzymaliśmy bardzo podobne wyniki:
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-korekcja-dwupolozeniowyBH-e_Tk.png}
-	\caption{Zmiana Tk przy stałym k=1 i C=0}
+	\caption{Zmiana Tk przy stałym k=0.5 i C=0}
     \label{fig:Rysunek}
 \end{figure}
 
@@ -448,15 +470,12 @@ Dla układu bez histerezy otrzymaliśmy bardzo podobne wyniki:
     \label{fig:Rysunek}
 \end{figure}
 
-%TODO---------
-%PORÓWNANIE WYKRESU Z KOREKCJA I BEZ
-
-
 
 \newpage
 
 
 		\item Regulator trójpołożeniowy
+Do testowania regulatora wykorzystaliśmy funkcje z regulatora dwupołożeniowego.	Całe ćwiczenie zostało wykonane w analogiszny sposób do poprzedniego.
 		
 \begin{figure}[!h]
     \centering
@@ -478,7 +497,12 @@ Dla układu bez histerezy otrzymaliśmy bardzo podobne wyniki:
 	\caption{Przy zmianie C}
     \label{fig:Rysunek}
 \end{figure}
-Stała nie wpływa na wynik.
+Z wykresów można wywnioskować, że stała nie ma wpływu na regulację.
+\newline
+Wybrane parametry to:
+T=..
+K=..
+C=0
 \newpage
 Przy zmianie 'a' wykres wyglada:
 \begin{figure}[!h]
@@ -487,25 +511,23 @@ Przy zmianie 'a' wykres wyglada:
 	\caption{Przy zmianie a}
     \label{fig:Rysunek}
 \end{figure}
-%TODO---------
-%PORÓWNANIE WYKRESU Z KOREKCJA I BEZ
-
 
 \newpage
-
+Dla układu bez histerezy wykonaliśmy takie same pomiary.
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-korekcja-trojpolozeniowyBH-e_Tk.png}
-	\caption{Przy zmianie Tk}
+	\caption{Przy zmianie Tk bez histerezy}
     \label{fig:Rysunek}
 \end{figure}
 
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-korekcja-trojpolozeniowyBH-e_k.png}
-	\caption{Przy zmianie K}
+	\caption{Przy zmianie K bez histerezy}
     \label{fig:Rysunek}
 \end{figure}
+
 \newpage
 \begin{figure}[!h]
     \centering
