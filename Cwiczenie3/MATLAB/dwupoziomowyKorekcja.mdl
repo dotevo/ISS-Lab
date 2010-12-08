@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.40"
+    ComputedModelVersion    "1.43"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "dotevo"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Dec 08 14:02:09 2010"
-  RTWModifiedTimeStamp	  213717725
-  ModelVersionFormat	  "1.%<AutoIncrement:40>"
+  LastModifiedDate	  "Wed Dec 08 15:49:47 2010"
+  RTWModifiedTimeStamp	  213724142
+  ModelVersionFormat	  "1.%<AutoIncrement:43>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -745,7 +745,6 @@ Model {
       Name		      "Constant"
       SID		      39
       Position		      [100, 245, 130, 275]
-      Value		      "-1"
       OutDataType	      "fixdt(1, 16)"
       OutScaling	      "2^0"
     }
@@ -882,7 +881,7 @@ Model {
       SID		      36
       Position		      [320, 241, 365, 279]
       Numerator		      "0.5"
-      Denominator	      "[1 1]"
+      Denominator	      "[1.5 1]"
     }
     Line {
       SrcBlock		      "Transfer Fcn"
@@ -928,23 +927,24 @@ Model {
 	DstPort			2
       }
       Branch {
-	Points			[0, 185; 15, 0; 0, -5]
-	DstBlock		"To Workspace1"
-	DstPort			1
+	Points			[0, 40]
+	Branch {
+	  Points		  [0, 145; 15, 0; 0, -5]
+	  DstBlock		  "To Workspace1"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [70, 0]
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
       }
     }
     Line {
       SrcBlock		      "Gain"
       SrcPort		      1
-      Points		      [10, 0]
-      Branch {
-	DstBlock		"Transfer Fcn1"
-	DstPort			1
-      }
-      Branch {
-	DstBlock		"Sum"
-	DstPort			1
-      }
+      DstBlock		      "Transfer Fcn1"
+      DstPort		      1
     }
     Line {
       SrcBlock		      "Transfer Fcn1"

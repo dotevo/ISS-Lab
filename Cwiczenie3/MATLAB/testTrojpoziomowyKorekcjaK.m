@@ -9,11 +9,11 @@ legendtext1{1}='';
 while (start+step*i <= stop)
         set_param('trojpoziomowyKorekcja/Transfer Fcn2', 'Numerator', num2str(start+step*i));
         sim('trojpoziomowyKorekcja.mdl');
-        figure(1);
-        uwy= u.signals.values;    
-        plot(tout, uwy, 'Color', color(mod(i,6)+1));        
-        legendtext{i}= strcat('k=' , num2str(start+step*i));
-        legend(legendtext1);
+        %figure(1);
+        %uwy= u.signals.values;    
+        %plot(tout, uwy, 'Color', color(mod(i,6)+1));        
+        %legendtext{i}= strcat('k=' , num2str(start+step*i));
+        %legend(legendtext1);
         figure(2);
         ewy= e.signals.values;    
         plot(tout, ewy, 'Color', color(mod(i,6)+1));        
