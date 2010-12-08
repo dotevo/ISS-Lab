@@ -67,13 +67,13 @@ Celem tego ćwiczenia jest symulacja działania systemu regulacji z przekaźnika
 	\begin{enumerate}
 		\item Modyfikacja systemów z zadania 1 o korekcję w postaci członu liniowego o transmitancji: 
 			\begin{equation} \label{eqn:czlonKorekcyjny}
-				K_{k}(s) = {k_{k}} \over {T_{k}s+1}
+				K_{k}(s) = {{k_{k}} \over {T_{k}s+1}}
 			\end{equation}
 		\item Doświadczalny dobor parametrów członu korekcyjnego.
 	\end{enumerate}
 \end{enumerate}
 
-\subsection{Podział zadań. (?)} 
+\subsection{Podział zadań. } 
 \begin{enumerate}
 		\item Jordanek Adam - napisanie funkcji, opracowanie zadania 2, współpraca przy pozostałej części sprawozdania.
 		\item Klimek Tomasz - budowa modeli systemów, opracowanie zadania 1, współpraca przy pozostałej części sprawozdania.
@@ -95,7 +95,7 @@ Schemat systemu służącego nam do symulacji regulatora dwupołożeniowego prze
 
 \begin{figure}[!h]
     \centering
-	\includegraphics[width=120mm]{CW3-schemat-2.png}
+	\includegraphics[width=120mm]{CW3-schemat-2.PNG}
 	\caption{Schemat symulacji regulatora dwupołożeniowego.}
     \label{fig:Rysunek}
 \end{figure}
@@ -359,7 +359,7 @@ Człon korekcyjny posiada następującą transmitancję:
 
 \begin{figure}[!h]
     \centering
-	\includegraphics[width=120mm]{CW3-schemat-3k.png}
+	\includegraphics[width=120mm]{CW3-schemat-3k.PNG}
 	\caption{Schemat regulatora trojpolożeniowego z korekcją.}
     \label{fig:Rysunek}
 \end{figure}
@@ -528,18 +528,19 @@ Dla układu bez histerezy wykonaliśmy takie same pomiary.
     \label{fig:Rysunek}
 \end{figure}
 
-\newpage
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW3-korekcja-trojpolozeniowyBH-e_a.png}
 	\caption{Wykres układu bez histerezy z korekcja}
     \label{fig:Rysunek}
 \end{figure}
-
 \end{enumerate}
-
 \newpage
-
+\newpage
 \section{Wnioski.}\label{sec:wnioski}
-TODO!!
+Histereza pozwala nam na zmieniszenie zużycia sprzętu przez zmniejszenie częstotliwości przełączeń między stanami, kosztem odchyłów od pożądanych wartości. Wybór zakresu histerezy zależy od systemu w którym działa regulator oraz od tego jakiej dokładności wyjściowej wymaga.
+
+Regulator trójpołożeniowy pozwa na określenie 3 stanów, dzięki którym uzyskujemy większą kontrolę nad działaniem systemu.
+
+
 \end{document}
