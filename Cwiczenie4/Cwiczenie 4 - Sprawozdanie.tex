@@ -266,46 +266,8 @@ Uproszczenie:
 	d_n = sign \left[ {F([\begin{array}{ll} u_{n-1}^{(1)} + \Delta u & u_{n-1}^{(2)} + \Delta u\end{array}]) - F(u_{n-1}) \over \Delta u}\right] 
 \end{eqnarray}
 Do testowania algorytmu funkcja wyglada w następujący sposób:
-\begin{lstlisting}[caption=Funkcja testująca algorytm 2 dla obiektu 1.]
-function alg2fun1(u, kstart, kstep, kstop)
-    color = char('y', 'k', 'b', 'g', 'r', 'm');
-    hold all;
-    k = kstart;
-    c = 1;
-    
-    while(k <= kstop)
-        epsilon = 0.1;
-        delta = 0.1
-        u1(1) = u(1);
-        u2(1) = u(2);
-        y(1) = funkcja1([u(1) u(2)]);
-        i = 1;
-        d(1) = 1;
-        
-        while(epsilon < abs(d(i)))
-            a=(funkcja1([u1(i)+delta u2(i)+delta]) - funkcja1([u1(i) u2(i)]));
-            d(i+1) =  a / delta;
-            u1(i+1) = u1(i) - sign(a)*k * d(i+1);
-            u2(i+1) = u2(i) - sign(a)*k * d(i+1);
-            y(i+1)= funkcja1([u1(i) u2(i)]);
-            i = i + 1;
-        end
-        figure(1);
-        hold on;
-        plot(u1, y, '*b');
-        plot(u2, y, '*r');
-        figure(2);
-        hold on;
-        plot(d, strcat('-', color(mod(c,6)+1)));
-        c = c + 1;
-        k = k + kstep;
-        clear u1;
-        clear u2;
-        clear d;
-        clear y;
-    end
-end
-\end{lstlisting}
+
+\lstinputlisting{MATLAB/alg2fun1.m}
 
 
 \newpage Dla stałego $k=0.1$ ustawiamy różne wartości $u_0$.
@@ -344,12 +306,52 @@ Następnie zmieniane będzie $k$, a wartość stałą będzie miało  $u_0$ ($[1
 %TUUUUUUUUUU!!! PODSUMOWANIE
 
 \subsubsection{Obiekt (2).}
+
+
+
+\lstinputlisting{MATLAB/alg2fun2.m}
+
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW4-alg2fun2-u10_10-k001_01-t0-d.png}
+	\includegraphics[width=120mm]{CW4-alg2fun2-u10_10-k001_01-t0-u.png}
+	\caption{Wykres wykres wartości $d$, oraz $u^{(1)}$ i $u^{(2)}$ dla $u_0=[10 \quad 10]$ oraz $t=0$ przy zmieniającym się $k$.}
+    \label{fig:Rysunek}
+\end{figure}
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW4-alg2fun2-u10_10-k001_01-t314-d.png}
+	\includegraphics[width=120mm]{CW4-alg2fun2-u10_10-k001_01-t314-u.png}
+	\caption{Wykres wykres wartości $d$, oraz $u^{(1)}$ i $u^{(2)}$ dla $u_0=[10 \quad 10]$ oraz $t=3.14$ przy zmieniającym się $k$.}
+    \label{fig:Rysunek}
+\end{figure}
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW4-alg2fun2-u10_10-k001_01-t628-d.png}
+	\includegraphics[width=120mm]{CW4-alg2fun2-u10_10-k001_01-t628-u.png}
+	\caption{Wykres wykres wartości $d$, oraz $u^{(1)}$ i $u^{(2)}$ dla $u_0=[10 \quad 10]$ oraz $t=6.28$ przy zmieniającym się $k$.}
+    \label{fig:Rysunek}
+\end{figure}
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW4-alg2fun2-u10_10-k001_01-t1256-d.png}
+	\includegraphics[width=120mm]{CW4-alg2fun2-u10_10-k001_01-t1256-u.png}
+	\caption{Wykres wykres wartości $d$, oraz $u^{(1)}$ i $u^{(2)}$ dla $u_0=[10 \quad 10]$ oraz $t=12.56$ przy zmieniającym się $k$.}
+    \label{fig:Rysunek}
+\end{figure}
+
+
+%PODSUMOWANIE !!!!!!!!!!!
+
+
 %--------------------------------------------------------------------------------------------------------------------------------
 %ZADANIE 3
 %--------------------------------------------------------------------------------------------------------------------------------
-\subsection{Symulacja systemu sterowania ekstremalnego – wersja 1. algorytmu.}
+\subsection{Symulacja systemu sterowania ekstremalnego – wersja 3. algorytmu.}
 
 \subsubsection{Obiekt (1).}
+\lstinputlisting{MATLAB/alg3fun1K.m}
+\lstinputlisting{MATLAB/alg3fun1D.m}
 
 \subsubsection{Obiekt (2).}
 \section{Wnioski.}\label{sec:wnioski}
