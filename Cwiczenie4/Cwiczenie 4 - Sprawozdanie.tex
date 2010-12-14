@@ -85,7 +85,7 @@ $a=1, b=2, c=3, A=2, B=4, \omega_1=0.5, \omega_2=0.25$
 %--------------------------------------------------------------------------------------------------------------------------------
 \subsection{Symulacja systemu sterowania ekstremalnego – wersja 1. algorytmu.}
 
-\subsubsection{Obiekt (1)}
+\subsubsection{Obiekt (1).}
 W pierwszym zadaniu do wyznaczenia ekstremów posłuży nam poniższa funkcja.
 \begin{eqnarray}
 	u_n^{(i)} = u_{n-1}^{(i)}-kd_n^{(i)}\\
@@ -98,8 +98,8 @@ Jednak dla ułatwienia ćwiczenia powyższy algorytm zmodyfikujemy do poniższej
 	d_n = {F([\begin{array}{ll} u_{n-1}^{(1)} + \Delta u & u_{n-1}^{(2)} + \Delta u\end{array}]) - F(u_{n-1}) \over \Delta u}
 \end{eqnarray}
 
-Następnie testować będziemy wpływ parametru $k$ na przebieg sterowania przy użyciu odpowiedniej funkcji.
-\begin{lstlisting}[caption=Funkcja testująca wpływ parametru $k$ na przebieg wartości $d$.]
+Następnie testować będziemy wpływ parametru $k$, oraz stanu początkowego wejścia $u_0$ na przebieg sterowania przy użyciu odpowiedniej funkcji.
+\begin{lstlisting}[caption=Funkcja testująca algorytm 1 dla obiektu 1.]
 function alg1fun1(u, kstart, kstep, kstop)
     color = char('y', 'k', 'b', 'g', 'r', 'm');
     hold all;
@@ -137,24 +137,58 @@ function alg1fun1(u, kstart, kstep, kstop)
     end
 end
 \end{lstlisting}
+\newpage Na początku sprawdzimy jaki wpływ na przebieg sterowania ma stan początkowy wejścia $u_0$, ustawiając $k=0.1$ i symulując sterowanie dla trzech różnych wartości $u_0$.
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW4-alg1fun1-u10_10-k01-d.png}
+	\includegraphics[width=120mm]{CW4-alg1fun1-u10_10-k01-u.png}
+	\caption{Wykres wykres wartości $d$, oraz $u^{(1)}$ i $u^{(2)}$ dla $u_0=[10 \quad 10]$.}
+    \label{fig:Rysunek}
+\end{figure}
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW4-alg1fun1-u10_41-k01-d.png}
+	\includegraphics[width=120mm]{CW4-alg1fun1-u10_41-k01-u.png}
+	\caption{Wykres wykres wartości $d$, oraz $u^{(1)}$ i $u^{(2)}$ dla $u_0=[10 \quad 41]$.}
+    \label{fig:Rysunek}
+\end{figure}
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW4-alg1fun1-u-24_5-k01-d.png}
+	\includegraphics[width=120mm]{CW4-alg1fun1-u-24_5-k01-u.png}
+	\caption{Wykres wykres wartości $d$, oraz $u^{(1)}$ i $u^{(2)}$ dla $u_0=[-24 \quad 5]$.}
+    \label{fig:Rysunek}
+\end{figure}
 
-\subsubsection{Obiekt (2)}
+\newpage Z powyższych wykresów możemy zauważyć, że wartości $u^{(1)}$ i $u^{(2)}$ zmieniają się tak samo, a są jedynie przesunięte względem siebie o różnicę wartości początkowych $u_0^{(1)}$ i $u_0^{(2)}$, ponieważ w uproszczonym algorytmie nie mamy oddzielnych kroków $d^{(1)}$ i $d^{(2)}$ dla nich, ale jeden krok $d$ stosowany dla obu.
+
+Następnie dla wybranych wartości początkowych wejścia $u_0$ ($[10 \quad 10]$) prześledzimy wpływ zmiany parametru $k$.
+
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW4-alg1fun1-u10_10-k001_01-d.png}
+	\caption{Wykres wykres wartości $d$ przy zmianie parametru $k$.}
+    \label{fig:Rysunek}
+\end{figure}
+
+Na powyższym wykresie możemy zauważyć, że w miarę zwiększania parametru $k$ wartości $d$ szybciej zbliżają się ku $0$.
+\subsubsection{Obiekt (2).}
 %--------------------------------------------------------------------------------------------------------------------------------
 %ZADANIE 2
 %--------------------------------------------------------------------------------------------------------------------------------
 \subsection{Symulacja systemu sterowania ekstremalnego – wersja 1. algorytmu.}
 
-\subsubsection{Obiekt (1)}
+\subsubsection{Obiekt (1).}
 
-\subsubsection{Obiekt (2)}
+\subsubsection{Obiekt (2).}
 %--------------------------------------------------------------------------------------------------------------------------------
 %ZADANIE 3
 %--------------------------------------------------------------------------------------------------------------------------------
 \subsection{Symulacja systemu sterowania ekstremalnego – wersja 1. algorytmu.}
 
-\subsubsection{Obiekt (1)}
+\subsubsection{Obiekt (1).}
 
-\subsubsection{Obiekt (2)}
+\subsubsection{Obiekt (2).}
 \section{Wnioski.}\label{sec:wnioski}
 
 \end{document}
