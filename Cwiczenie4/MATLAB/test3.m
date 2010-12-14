@@ -1,5 +1,5 @@
+%test3([-10 40],1,0.1,1);
 function test3(u,k,epsilon,delta)      
-
    %obliczanie pierwszych wartoœci :)
    u1(1) = u(1);
    u2(1) = u(2);   
