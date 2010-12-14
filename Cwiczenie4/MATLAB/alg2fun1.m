@@ -1,4 +1,4 @@
-function test2(u)
+function alg2fun1(u)
    k = 0.1;
    epsilon = 0.1;
    delta = 0.1

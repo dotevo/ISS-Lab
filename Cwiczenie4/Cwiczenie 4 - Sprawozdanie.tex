@@ -54,6 +54,7 @@ Celem  ćwiczenia jest symulacja działania systemu sterowania ekstremalnego. St
 ekstremalnym nazywamy zadanie sterowania polegające na doprowadzeniu poprzez odpowiednią
 zmianę wielkości sterujących do ekstremalnej wartości wielkości sterowanej (lub ekstremalnych 
 wartości wielkości sterowanych w przypadku obiektu wielowyjściowego)
+
 \subsection{Plan badań} 
 \begin{enumerate}
 	\item Symulacja systemu sterowania ekstremalnego - Algorytm 1
@@ -72,7 +73,88 @@ wartości wielkości sterowanych w przypadku obiektu wielowyjściowego)
 
 \newpage
 \section{Realizacja planu i wyniki}
+W zadaniu sterować będziemy dwa obiekty przedstawione przy pomocy poniższych równań.
+\begin{eqnarray}
+	y = F(u, a, b, c) = (u^{(1)} - a)^2 + (u^{(2)} - b)^2 + c\\
+	y = F(u, a, b, c, A, B, \omega_1, \omega_2, t) = (u^{(1)} - (a + Asin(\omega_1t)))^2 + (u^{(2)} - (b + Bsin(\omega_2t)))^2 + c
+\end{eqnarray}
+Podczas ćwiczenia przyjęliśmy następujące wartości parametrów. \\
+$a=1, b=2, c=3, A=2, B=4, \omega_1=0.5, \omega_2=0.25$
+%--------------------------------------------------------------------------------------------------------------------------------
+%ZADANIE 1
+%--------------------------------------------------------------------------------------------------------------------------------
+\subsection{Symulacja systemu sterowania ekstremalnego – wersja 1. algorytmu.}
 
+\subsubsection{Obiekt (1)}
+W pierwszym zadaniu do wyznaczenia ekstremów posłuży nam poniższa funkcja.
+\begin{eqnarray}
+	u_n^{(i)} = u_{n-1}^{(i)}-kd_n^{(i)}\\
+	d_n^{(i)} = {F(u_{n-1}) - F(u_{n-2}) \over u_{n-1}^{(i)} - u_{n-2}^{(i)}}
+\end{eqnarray}
+
+Jednak dla ułatwienia ćwiczenia powyższy algorytm zmodyfikujemy do poniższej postaci.
+\begin{eqnarray}
+	u_n^{(i)} = u_{n-1}^{(i)}-kd_n\\
+	d_n = {F([\begin{array}{ll} u_{n-1}^{(1)} + \Delta u & u_{n-1}^{(2)} + \Delta u\end{array}]) - F(u_{n-1}) \over \Delta u}
+\end{eqnarray}
+
+Następnie testować będziemy wpływ parametru $k$ na przebieg sterowania przy użyciu odpowiedniej funkcji.
+\begin{lstlisting}[caption=Funkcja testująca wpływ parametru $k$ na przebieg wartości $d$.]
+function alg1fun1(u, kstart, kstep, kstop)
+    color = char('y', 'k', 'b', 'g', 'r', 'm');
+    hold all;
+    k = kstart;
+    c = 1;
+    
+    while(k <= kstop)
+        epsilon = 0.1;
+        delta = 0.1
+        u1(1) = u(1);
+        u2(1) = u(2);
+        y(1) = funkcja1([u(1) u(2)]);
+        i = 1;
+        d(1) = 1;
+        
+        while(epsilon < abs(d(i)))
+            a=(funkcja1([u1(i)+delta u2(i)+delta]) - funkcja1([u1(i) u2(i)]));
+            d(i+1) =  a / delta;
+            u1(i+1) = u1(i) - k * d(i+1);
+            u2(i+1) = u2(i) - k * d(i+1);
+            y(i+1)= funkcja1([u1(i) u2(i)]);
+            i = i + 1;
+        end
+
+        figure(1);
+        hold on;
+        plot(u1, y, '*b');  plot(u2, y, '*r');
+        figure(2);
+        hold on;
+        plot(d, strcat('-', color(mod(c,6)+1)));
+        
+        c = c + 1;
+        k = k + kstep;
+        clear u1; clear u2; clear d; clear y;
+    end
+end
+\end{lstlisting}
+
+\subsubsection{Obiekt (2)}
+%--------------------------------------------------------------------------------------------------------------------------------
+%ZADANIE 2
+%--------------------------------------------------------------------------------------------------------------------------------
+\subsection{Symulacja systemu sterowania ekstremalnego – wersja 1. algorytmu.}
+
+\subsubsection{Obiekt (1)}
+
+\subsubsection{Obiekt (2)}
+%--------------------------------------------------------------------------------------------------------------------------------
+%ZADANIE 3
+%--------------------------------------------------------------------------------------------------------------------------------
+\subsection{Symulacja systemu sterowania ekstremalnego – wersja 1. algorytmu.}
+
+\subsubsection{Obiekt (1)}
+
+\subsubsection{Obiekt (2)}
 \section{Wnioski.}\label{sec:wnioski}
 
 \end{document}
