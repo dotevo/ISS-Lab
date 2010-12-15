@@ -86,6 +86,7 @@ $a=1, b=2, c=3, A=2, B=4, \omega_1=0.5, \omega_2=0.25$
 \subsection{Symulacja systemu sterowania ekstremalnego – wersja 1. algorytmu.}
 
 \subsubsection{Obiekt (1).}
+%--------------------------------------------------------------------------------------------------------------------------------
 W pierwszym zadaniu do wyznaczenia ekstremów posłuży nam poniższa funkcja.
 \begin{eqnarray}
 	u_n^{(i)} = u_{n-1}^{(i)}-kd_n^{(i)}\\
@@ -174,7 +175,9 @@ Następnie dla wybranych wartości początkowych wejścia $u_0$ ($[10 \quad 10]$
 
 Na powyższym wykresie możemy zauważyć, że w miarę zwiększania parametru $k$ wartości $d$ szybciej zbliżają się ku $0$.
 
+\newpage
 \subsubsection{Obiekt (2).}
+%--------------------------------------------------------------------------------------------------------------------------------
 
 Wyjście drugiego obiektu w odróżnieniu od pierwszego zależy nie tylko od wejścia, ale i od czasu, więc przy sterowaniu nie wystarczy jednokrotne ustalenie wejść najlepszych do uzyskania ekstremum i należy powtarzać tę czynność co jakiś interwał czasowy. Jednak zauważyć możemy, że zmiany ekstremów w obiekcie 2 będą przebiegać okresowo, ponieważ w równaniu go opisującym czas jest argumentem funkcji sinus, dlatego też w tym ćwiczeniu rozpatrzymy przebieg sterowania dla trzech wartości parametru czasu $t$.
 
@@ -248,13 +251,15 @@ end
     \label{fig:Rysunek}
 \end{figure}
 
-\newpage Z powyższych wykresów możemy zauważyć, że zmiana czasu nie wpływa na szybkość znalezienia ekstremum, oraz, że zawsze wraz ze wzrostem parametru $k$ liczba kroków potrzebna na zanalezienie ekstremum maleje. Zobaczyć możemy również, że dla różnych wartości czasu znalezione wartości $u$ różnią się, z wyjątkiem tych dla $t=0$, oraz $t=12.56 \approx 4\pi$, ponieważ różnica między nimi wynosi właśnie $4\pi$, czyli równa jest okresowi zmian ekstremów.
+\newpage . \newpage Z powyższych wykresów możemy zauważyć, że zmiana czasu nie wpływa na szybkość znalezienia ekstremum, oraz, że zawsze wraz ze wzrostem parametru $k$ liczba kroków potrzebna na znalezienie ekstremum maleje. Zobaczyć możemy również, że dla różnych wartości czasu znalezione wartości $u$ różnią się, z wyjątkiem tych dla $t=0$, oraz $t=12.56 \approx 4\pi$, ponieważ różnica między nimi wynosi właśnie $4\pi$, czyli równa jest okresowi zmian ekstremów.
 
 %--------------------------------------------------------------------------------------------------------------------------------
 %ZADANIE 2
 %--------------------------------------------------------------------------------------------------------------------------------
 \subsection{Symulacja systemu sterowania ekstremalnego – wersja 2. algorytmu.}
+
 \subsubsection{Obiekt (1).}
+%--------------------------------------------------------------------------------------------------------------------------------
 W drugim algorytmie znak kroku zależy od pochodnej przyrostowej.
 \begin{eqnarray}
 	u_n^{(i)} = u_{n-1}^{(i)}-kd_n^{(i)}\\
@@ -344,6 +349,8 @@ Następnie zmieniane będzie $k$, a wartość stałą będzie miało  $u_0$ ($[1
 %TUUUUUUUUUU!!! PODSUMOWANIE
 
 \subsubsection{Obiekt (2).}
+%--------------------------------------------------------------------------------------------------------------------------------
+
 %--------------------------------------------------------------------------------------------------------------------------------
 %ZADANIE 3
 %--------------------------------------------------------------------------------------------------------------------------------
