@@ -1,9 +1,9 @@
-function alg3fun1K(u, dstart, dstep, dstop,k)
+function alg3fun1D(u, dstart, dstep, dstop,k)
     color = char('y', 'k', 'b', 'g', 'r', 'm');
     hold all;
     dS = dstart;
     c = 1;
-    
+    j=1;
     while(dS <= dstop)
         epsilon = 0.1;
 
@@ -38,10 +38,15 @@ function alg3fun1K(u, dstart, dstep, dstop,k)
         plot(d2, strcat('-', color(mod(c,6)+1)));
         c = c + 1;
 
+        legendtext1{j}= strcat('y=' , num2str(y(i)), ', u=[', num2str(u1(i)), ' ', num2str(u2(i)), ']');
+        legend(legendtext1);
+        j = j+1;
+        
         dS = dS + dstep;
         clear u1;
         clear u2;
-        clear d;
+        clear d1;
+        clear d2;
         clear y;
     end
 end

@@ -3,10 +3,10 @@ function alg1fun1(u, kstart, kstep, kstop)
     hold all;
     k = kstart;
     c = 1;
-    
+    j=1;
+    epsilon = 0.00001;
+    delta = 0.1;
     while(k <= kstop)
-        epsilon = 0.1;
-        delta = 0.1
         u1(1) = u(1);
         u2(1) = u(2);
         y(1) = funkcja1([u(1) u(2)]);
@@ -30,7 +30,10 @@ function alg1fun1(u, kstart, kstep, kstop)
         hold on;
         plot(d, strcat('-', color(mod(c,6)+1)));
         c = c + 1;
-
+    
+        legendtext1{j}= strcat('y=' , num2str(y(i)), ', u=[', num2str(u1(i)), ' ', num2str(u2(i)), ']');
+        legend(legendtext1);
+        j = j+1;
         k = k + kstep;
         clear u1;
         clear u2;

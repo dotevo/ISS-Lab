@@ -3,7 +3,7 @@ function alg3fun1K(u, kstart, kstep, kstop,delta)
     hold all;
     k = kstart;
     c = 1;
-    
+    j=1;
     while(k <= kstop)
         epsilon = 0.1;
 
@@ -38,10 +38,15 @@ function alg3fun1K(u, kstart, kstep, kstop,delta)
         plot(d2, strcat('-', color(mod(c,6)+1)));
         c = c + 1;
 
+        legendtext1{j}= strcat('y=' , num2str(y(i)), ', u=[', num2str(u1(i)), ' ', num2str(u2(i)), ']');
+        legend(legendtext1);
+        j = j+1;
+        
         k = k + kstep;
         clear u1;
         clear u2;
-        clear d;
+        clear d1;
+        clear d2;
         clear y;
     end
 end

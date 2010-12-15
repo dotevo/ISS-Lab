@@ -4,7 +4,7 @@ function alg2fun2(u, t, kstart, kstep, kstop)
     k = kstart;
     c = 1;    
     legendtext{1}='';
-    
+    j=1;
     while(k <= kstop)
         epsilon = 0.1;
         delta = 0.1
@@ -32,6 +32,10 @@ function alg2fun2(u, t, kstart, kstep, kstop)
         legend(legendtext);
         c = c + 1;
 
+        legendtext1{j}= strcat('y=' , num2str(y(i)), ', u=[', num2str(u1(i)), ' ', num2str(u2(i)), ']');
+        legend(legendtext1);
+        j = j+1;
+        
         k = k + kstep;
         clear u1;
         clear u2;
