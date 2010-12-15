@@ -32,7 +32,7 @@ function alg2fun2(u, t, kstart, kstep, kstop)
         legend(legendtext);
         c = c + 1;
 
-        legendtext1{j}= strcat('y=' , num2str(y(i)), ', u=[', num2str(u1(i)), ' ', num2str(u2(i)), ']');
+        legendtext1{j}= strcat('y=' , num2str(y(i)), ', u=[', num2str(u1(i)), ' ', num2str(u2(i)), '], n=',num2str(i));
         legend(legendtext1);
         j = j+1;
         
