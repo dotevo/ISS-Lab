@@ -3,7 +3,7 @@ function alg3fun1D(u, dstart, dstep, dstop,k)
     hold all;
     dS = dstart;
     c = 1;
-    j=1;
+    legendtext{1}='';
     while(dS <= dstop)
         epsilon = 0.1;
 
@@ -24,6 +24,7 @@ function alg3fun1D(u, dstart, dstep, dstop,k)
             u1(n+1)=u1(n)-k*d1(n);
             u2(n+1)=u2(n)-k*d2(n);
             e(n+1)=d1(n+1)^2+d2(n+1)^2;
+            y(n+1)= funkcja1([u1(n+1) u2(n+1)]);
             n=n+1;       
         end
         
@@ -38,9 +39,8 @@ function alg3fun1D(u, dstart, dstep, dstop,k)
         plot(d2, strcat('-', color(mod(c,6)+1)));
         c = c + 1;
 
-        legendtext1{j}= strcat('y=' , num2str(y(i)), ', u=[', num2str(u1(i)), ' ', num2str(u2(i)), ']');
-        legend(legendtext1);
-        j = j+1;
+        legendtext{c}= strcat('y=' , num2str(y(n-1)), ', u=[', num2str(u1(n-1)), ' ', num2str(u2(n-1)), ']', 'n=',num2str(n));
+        legend(legendtext);
         
         dS = dS + dstep;
         clear u1;
