@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.12"
+    ComputedModelVersion    "1.17"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "TC"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Dec 30 18:09:53 2010"
-  RTWModifiedTimeStamp	  215632611
-  ModelVersionFormat	  "1.%<AutoIncrement:12>"
+  LastModifiedDate	  "Thu Dec 30 22:34:16 2010"
+  RTWModifiedTimeStamp	  215649254
+  ModelVersionFormat	  "1.%<AutoIncrement:17>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.10.0"
 	  StartTime		  "0.0"
-	  StopTime		  "10.0"
+	  StopTime		  "100.0"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -727,6 +727,7 @@ Model {
       Name		      "Gain"
       SID		      2
       Position		      [140, 150, 170, 180]
+      Gain		      "1.8"
       ParameterDataTypeMode   "Inherit via internal rule"
       ParameterDataType	      "fixdt(1, 16)"
       ParameterScaling	      "2^0"
@@ -742,7 +743,7 @@ Model {
       Name		      "Gain1"
       SID		      3
       Position		      [140, 225, 170, 255]
-      Gain		      "0.36"
+      Gain		      "0"
       ParameterDataTypeMode   "Inherit via internal rule"
       ParameterDataType	      "fixdt(1, 16)"
       ParameterScaling	      "2^0"
@@ -758,7 +759,7 @@ Model {
       Name		      "Gain2"
       SID		      4
       Position		      [140, 300, 170, 330]
-      Gain		      "2"
+      Gain		      "0"
       ParameterDataTypeMode   "Inherit via internal rule"
       ParameterDataType	      "fixdt(1, 16)"
       ParameterScaling	      "2^0"
@@ -853,8 +854,8 @@ Model {
       Name		      "Transfer Fcn"
       SID		      11
       Position		      [480, 221, 565, 259]
-      Numerator		      "[10]"
-      Denominator	      "[1 11 10]"
+      Numerator		      "[3]"
+      Denominator	      "[1 4 3]"
     }
     Block {
       BlockType		      TransportDelay

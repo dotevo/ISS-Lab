@@ -65,6 +65,34 @@ systemu.
 \end{enumerate}
 \section{Realizacja planu i wyniki}
 
+%-------------------------------------------------------------------------------------
+%                                ZADANIE 1
+%-------------------------------------------------------------------------------------
+\subsection{Symulacja systemu sterowania szybkością transmisji}
+
+Systemem symulowanym w tym ćwiczeniu będzie system opisany w artykule "\textit{Complete Stability Region
+Characterization for PI-AQM}" , czyli system sterujący ruchem w sieci komputerowej. Z powyższego artykułu dla sieci, w której $C$ - przepustowość sieci, $N$ - ilość otwartych sieci TCP, oraz $d$ - opóźnienie pakietów, uzyskaliśmy następującą transmitancję.
+
+\begin{equation} \label{eqn:transO}
+	K_{O}(s)={B \over \left( s - \alpha \right) \left(s- \beta \right)}e^{-sd}
+\end{equation}
+
+Gdzie $\alpha = {2N \over d^{2}C}$, $\beta = {1 \over d}$ i $B = {C^2 \over 2N}$.
+
+Regulować system będziemy używając regulatorów z rodziny PID (dzięki uprzejmości prowadzącego zajęcia laboratoryjne tylko P i PID), które opisane są poniższą transmitancją.
+
+\begin{equation} \label{eqn:transR}
+	K_{R}(s) = k + {T_{i} \over s} + T_{d}s ,
+\end{equation}
+
+Ble ble ble + schemat z simulinka i do zadania 2 ;)
+
+%-------------------------------------------------------------------------------------
+%                                ZADANIE 2
+%-------------------------------------------------------------------------------------
+\subsection{Dobór optymalnego regulatora}
+
+
 \section{Wnioski.}\label{sec:wnioski}
 
 \end{document}

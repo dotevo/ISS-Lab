@@ -23,7 +23,7 @@ function test(N,C,r,p,i,d)
         set_param('PID/Transfer Fcn', 'Numerator', ['[',num2str(B),']']);        
         
         %Alfa i Beta 
-        a=2*N(j+1)/(r(j+1)^2*C(j+1));
+        a=2*N(j+1)/((r(j+1)^2)*C(j+1));
         b=1/r(j+1);
         set_param('PID/Transfer Fcn', 'Denominator', ['[1 ',num2str(a+b),' ',num2str(a*b),']']);        
         
