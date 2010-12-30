@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.2"
+    ComputedModelVersion    "1.12"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "dotevo"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "dotevo"
+  LastModifiedBy	  "TC"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Dec 30 12:55:19 2010"
-  RTWModifiedTimeStamp	  215614453
-  ModelVersionFormat	  "1.%<AutoIncrement:2>"
+  LastModifiedDate	  "Thu Dec 30 18:09:53 2010"
+  RTWModifiedTimeStamp	  215632611
+  ModelVersionFormat	  "1.%<AutoIncrement:12>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -689,10 +689,19 @@ Model {
       ContinuousStateAttributes	"''"
       Realization	      "auto"
     }
+    Block {
+      BlockType		      TransportDelay
+      DelayTime		      "1"
+      InitialOutput	      "0"
+      BufferSize	      "1024"
+      FixedBuffer	      off
+      TransDelayFeedthrough   off
+      PadeOrder		      "0"
+    }
   }
   System {
     Name		    "PID"
-    Location		    [2, 78, 1278, 750]
+    Location		    [970, 82, 1910, 1021]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -706,7 +715,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    11
+    SIDHighWatermark	    13
     Block {
       BlockType		      Derivative
       Name		      "Derivative"
@@ -718,7 +727,6 @@ Model {
       Name		      "Gain"
       SID		      2
       Position		      [140, 150, 170, 180]
-      Gain		      "2"
       ParameterDataTypeMode   "Inherit via internal rule"
       ParameterDataType	      "fixdt(1, 16)"
       ParameterScaling	      "2^0"
@@ -734,7 +742,7 @@ Model {
       Name		      "Gain1"
       SID		      3
       Position		      [140, 225, 170, 255]
-      Gain		      "0.35"
+      Gain		      "0.36"
       ParameterDataTypeMode   "Inherit via internal rule"
       ParameterDataType	      "fixdt(1, 16)"
       ParameterScaling	      "2^0"
@@ -750,7 +758,7 @@ Model {
       Name		      "Gain2"
       SID		      4
       Position		      [140, 300, 170, 330]
-      Gain		      "90"
+      Gain		      "2"
       ParameterDataTypeMode   "Inherit via internal rule"
       ParameterDataType	      "fixdt(1, 16)"
       ParameterScaling	      "2^0"
@@ -773,15 +781,19 @@ Model {
       Name		      "Scope"
       SID		      6
       Ports		      [1]
-      Position		      [695, 119, 725, 151]
+      Position		      [740, 119, 770, 151]
       Floating		      off
-      Location		      [1, 48, 1921, 1049]
+      Location		      [5, 48, 1925, 1049]
       Open		      off
       NumInputPorts	      "1"
+      ZoomMode		      "yonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
+      TimeRange		      "1.232784065652304e-005"
+      YMin		      "-0.04761522491163991"
+      YMax		      "0.05002637521367986"
       DataFormat	      "StructureWithTime"
       SampleTime	      "0"
     }
@@ -789,7 +801,8 @@ Model {
       BlockType		      Step
       Name		      "Step"
       SID		      7
-      Position		      [545, 300, 575, 330]
+      Position		      [590, 300, 620, 330]
+      After		      "4"
       SampleTime	      "0"
     }
     Block {
@@ -813,7 +826,7 @@ Model {
       Name		      "Sum1"
       SID		      9
       Ports		      [2, 1]
-      Position		      [620, 230, 640, 250]
+      Position		      [665, 230, 685, 250]
       ShowName		      off
       IconShape		      "round"
       Inputs		      "|-+"
@@ -829,7 +842,7 @@ Model {
       Name		      "To Workspace"
       SID		      10
       Ports		      [1]
-      Position		      [680, 225, 740, 255]
+      Position		      [725, 225, 785, 255]
       VariableName	      "simout"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -839,13 +852,15 @@ Model {
       BlockType		      TransferFcn
       Name		      "Transfer Fcn"
       SID		      11
-      Position		      [490, 221, 575, 259]
+      Position		      [480, 221, 565, 259]
+      Numerator		      "[10]"
+      Denominator	      "[1 11 10]"
     }
-    Line {
-      SrcBlock		      "Sum"
-      SrcPort		      1
-      DstBlock		      "Transfer Fcn"
-      DstPort		      1
+    Block {
+      BlockType		      TransportDelay
+      Name		      "Transport\nDelay"
+      SID		      12
+      Position		      [590, 225, 620, 255]
     }
     Line {
       SrcBlock		      "Step"
@@ -853,12 +868,6 @@ Model {
       Points		      [50, 0]
       DstBlock		      "Sum1"
       DstPort		      2
-    }
-    Line {
-      SrcBlock		      "Transfer Fcn"
-      SrcPort		      1
-      DstBlock		      "Sum1"
-      DstPort		      1
     }
     Line {
       SrcBlock		      "Sum1"
@@ -871,13 +880,14 @@ Model {
 	  DstPort		  1
 	}
 	Branch {
-	  Points		  [-585, 0; 0, 105; 35, 0]
+	  Points		  [-640, 0; 0, 105; 35, 0; -5, 0]
 	  Branch {
 	    Points		    [0, -75]
 	    DstBlock		    "Gain"
 	    DstPort		    1
 	  }
 	  Branch {
+	    Points		    [5, 0]
 	    DstBlock		    "Gain1"
 	    DstPort		    1
 	  }
@@ -925,8 +935,32 @@ Model {
       DstBlock		      "Derivative"
       DstPort		      1
     }
+    Line {
+      SrcBlock		      "Transfer Fcn"
+      SrcPort		      1
+      DstBlock		      "Transport\nDelay"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Transport\nDelay"
+      SrcPort		      1
+      DstBlock		      "Sum1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sum"
+      SrcPort		      1
+      DstBlock		      "Transfer Fcn"
+      DstPort		      1
+    }
     Annotation {
       Position		      [472, 235]
+    }
+    Annotation {
+      Position		      [621, 312]
+    }
+    Annotation {
+      Position		      [433, 441]
     }
   }
 }
