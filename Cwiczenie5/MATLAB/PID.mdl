@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.1"
+    ComputedModelVersion    "1.2"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "dotevo"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Dec 30 10:03:47 2010"
-  RTWModifiedTimeStamp	  215604205
-  ModelVersionFormat	  "1.%<AutoIncrement:1>"
+  LastModifiedDate	  "Thu Dec 30 12:55:19 2010"
+  RTWModifiedTimeStamp	  215614453
+  ModelVersionFormat	  "1.%<AutoIncrement:2>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -840,7 +840,6 @@ Model {
       Name		      "Transfer Fcn"
       SID		      11
       Position		      [490, 221, 575, 259]
-      Denominator	      "[1 2 3 4]"
     }
     Line {
       SrcBlock		      "Sum"
