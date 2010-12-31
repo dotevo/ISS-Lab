@@ -74,7 +74,7 @@ Systemem symulowanym w tym ćwiczeniu będzie system opisany w artykule "\textit
 Characterization for PI-AQM}" , czyli system sterujący ruchem w sieci komputerowej. Z powyższego artykułu dla sieci, w której $C$ - przepustowość sieci, $N$ - ilość otwartych sieci TCP, oraz $d$ - opóźnienie pakietów, uzyskaliśmy następującą transmitancję.
 
 \begin{equation} \label{eqn:transO}
-	K_{O}(s)={B \over \left( s - \alpha \right) \left(s- \beta \right)}e^{-sd}
+	K_{O}(s)={B \over (s + \alpha) (s + \beta)}e^{-sd}
 \end{equation}
 
 Gdzie $\alpha = {2N \over d^{2}C}$, $\beta = {1 \over d}$ i $B = {C^2 \over 2N}$.
@@ -85,13 +85,63 @@ Regulować system będziemy używając regulatorów z rodziny PID (dzięki uprze
 	K_{R}(s) = k + {T_{i} \over s} + T_{d}s ,
 \end{equation}
 
-Ble ble ble + schemat z simulinka i do zadania 2 ;)
+Aby zasymulować system w Simulinku musieliśmy wymnożyć mianownik transmitancji obiektu tak, aby można było przedstawić go w postaci 2 bloczków (\textit{Transfer Fnc} i \textit{Transport Delay}).
+
+\begin{equation} \label{eqn:transO}
+	K_{O}(s)={B \over s^{2} + (\alpha + \beta)s + \alpha \beta}e^{-sd}
+\end{equation}
+
+\newpage
+Gotowy schemat służący nam do symulacji przedstawiony jest na poniższym obrazku.
+
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW5-model-systemu.png}
+	\caption{Schemat systemu służący nam do symulacji.}
+    \label{fig:Rysunek}
+\end{figure}
 
 %-------------------------------------------------------------------------------------
 %                                ZADANIE 2
 %-------------------------------------------------------------------------------------
 \subsection{Dobór optymalnego regulatora}
 
+Przy doborze optymalnego regulatora i jego parametrów używaliśmy poniższej prostej funkcji napisanej w Matlabie.
+
+%--------------
+%zmieniłem trochę funkcję, żeby była czytelniejsza, z resztą i tak w większości wywoływałem ją dla 3:3,2:2, etc. ;)
+%--------------
+\begin{lstlisting}[caption=Funkcja testująca system.]
+function test(N,C,r,p,i,d)
+    load_system('PID.mdl');
+    set_param('PID/Gain', 'Gain', num2str(p));   
+    set_param('PID/Gain1', 'Gain', num2str(i));   
+    set_param('PID/Gain2', 'Gain', num2str(d));
+   
+    set_param('PID/Transport Delay', 'DelayTime', num2str(r);        
+        
+    B=C(j+1)/2*N(j+1);
+    set_param('PID/Transfer Fcn', 'Numerator', ['[',num2str(B),']']);        
+        
+    %Alfa i Beta 
+    a=2*N/((r^2)*C);
+    b=1/r;
+    set_param('PID/Transfer Fcn', 'Denominator', ['[1 ',num2str(a+b),' ',num2str(a*b),']']);        
+        
+    sim('PID.mdl');
+    wy = simout.signals.values;    
+  	plot(tout, wy, '-k');
+end
+\end{lstlisting}
+
+Aby zacząć testować system wybraliśmy parametry obiektu, dla których przeprowadzaliśmy dalsze testy, Mianowicie wybraliśmy $C = 3$, $N = 2$, $d = 1$
+
+\newpage
+\subsubsection{Regulator P}
+
+Tutaj coś, że wywołujemy dla (C,N,d,p,0,0), żeby mieć regulator P, a potem parę wykresów żeby dobrać k...
+
+\subsubsection{Regulator PID}
 
 \section{Wnioski.}\label{sec:wnioski}
 

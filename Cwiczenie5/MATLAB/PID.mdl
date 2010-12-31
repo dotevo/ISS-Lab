@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.17"
+    ComputedModelVersion    "1.18"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "TC"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Dec 30 22:34:16 2010"
-  RTWModifiedTimeStamp	  215649254
-  ModelVersionFormat	  "1.%<AutoIncrement:17>"
+  LastModifiedDate	  "Thu Dec 30 23:16:47 2010"
+  RTWModifiedTimeStamp	  215650084
+  ModelVersionFormat	  "1.%<AutoIncrement:18>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -743,7 +743,7 @@ Model {
       Name		      "Gain1"
       SID		      3
       Position		      [140, 225, 170, 255]
-      Gain		      "0"
+      Gain		      "0.2"
       ParameterDataTypeMode   "Inherit via internal rule"
       ParameterDataType	      "fixdt(1, 16)"
       ParameterScaling	      "2^0"
@@ -759,7 +759,6 @@ Model {
       Name		      "Gain2"
       SID		      4
       Position		      [140, 300, 170, 330]
-      Gain		      "0"
       ParameterDataTypeMode   "Inherit via internal rule"
       ParameterDataType	      "fixdt(1, 16)"
       ParameterScaling	      "2^0"
