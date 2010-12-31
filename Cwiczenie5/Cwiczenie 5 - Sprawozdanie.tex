@@ -112,20 +112,20 @@ Przy doborze optymalnego regulatora i jego parametrów używaliśmy poniższej p
 %zmieniłem trochę funkcję, żeby była czytelniejsza, z resztą i tak w większości wywoływałem ją dla 3:3,2:2, etc. ;)
 %--------------
 \begin{lstlisting}[caption=Funkcja testująca system.]
-function test(N,C,r,p,i,d)
+function test(N,C,d,P,I,D)
     load_system('PID.mdl');
-    set_param('PID/Gain', 'Gain', num2str(p));   
-    set_param('PID/Gain1', 'Gain', num2str(i));   
-    set_param('PID/Gain2', 'Gain', num2str(d));
+    set_param('PID/Gain', 'Gain', num2str(P));   
+    set_param('PID/Gain1', 'Gain', num2str(I));   
+    set_param('PID/Gain2', 'Gain', num2str(D));
    
-    set_param('PID/Transport Delay', 'DelayTime', num2str(r);        
+    set_param('PID/Transport Delay', 'DelayTime', num2str(d);        
         
     B=C(j+1)/2*N(j+1);
     set_param('PID/Transfer Fcn', 'Numerator', ['[',num2str(B),']']);        
         
     %Alfa i Beta 
-    a=2*N/((r^2)*C);
-    b=1/r;
+    a=2*N/((d^2)*C);
+    b=1/d;
     set_param('PID/Transfer Fcn', 'Denominator', ['[1 ',num2str(a+b),' ',num2str(a*b),']']);        
         
     sim('PID.mdl');
@@ -134,15 +134,41 @@ function test(N,C,r,p,i,d)
 end
 \end{lstlisting}
 
-Aby zacząć testować system wybraliśmy parametry obiektu, dla których przeprowadzaliśmy dalsze testy, Mianowicie wybraliśmy $C = 3$, $N = 2$, $d = 1$
+Aby zacząć testować system wybraliśmy parametry obiektu, dla których przeprowadzaliśmy dalsze testy, Mianowicie wybraliśmy $N = 3$, $C = 2$, $d = 1$
 
 \newpage
 \subsubsection{Regulator P}
 
-Tutaj coś, że wywołujemy dla (C,N,d,p,0,0), żeby mieć regulator P, a potem parę wykresów żeby dobrać k...
+Symulując system z regulatorem P wywoływaliśmy funkcję test, podając wartość $0$ dla parametrów $I$, oraz $D$. W ten sposób uzyskalismy poniższe wykresy.
+
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW5-N3C2d1-k-03-06.png}
+	\includegraphics[width=120mm]{CW5-N3C2d1-k1-225.png}
+	\caption{Wykresy przebiegu błędu regulacji przy zmianie parametru $k$}
+    \label{fig:symulacjaP}
+\end{figure}
+
+Na wykresach \ref{fig:symulacjaP} możemy zaobserwować, że:
+\begin{itemize}
+	\item Dla ujemnych wartości parametru $k$ wartość błędu szybko stabilizuje się na pewnym poziomie. Poziom ten jest tym większy, im mniejsza jest wartość parametru $k$.
+	\item Dla małych ($<1.8$) dodatnich wartości parametru $k$ wartość błędu również szybko stabilizuje się na pewnym poziomie, a poziom ten jest tym mniejszy, im większa jest wartość parametru $k$.
+	\item Dla większych wartości dodatnich ($>1.8$) wykres wartości błędu regulacji wolniej stabilizuje się, a dla $k \approx 2.23$ przybiera kształt drgań o stałej amplitudzie. Powyżej tej wartości amplituda drgań z czasem rośnie.
+\end{itemize}
 
 \subsubsection{Regulator PID}
 
-\section{Wnioski.}\label{sec:wnioski}
+\subsection{Korekcja}
+
+\begin{eqnarray}
+	\nonumber \left[ \begin{array}{llllll}
+		. & . & . & . & . & . \\
+		. & Tutaj & powinien & byc & przyklejony & . \\
+		. & lizak & . & . & . & . \\
+		. & . & . & . & . & .
+	\end{array}\right]
+\end{eqnarray}
+
+\section{Wnioski}\label{sec:wnioski}
 
 \end{document}

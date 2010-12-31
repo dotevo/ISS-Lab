@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.18"
+    ComputedModelVersion    "1.19"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "TC"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Dec 30 23:16:47 2010"
-  RTWModifiedTimeStamp	  215650084
-  ModelVersionFormat	  "1.%<AutoIncrement:18>"
+  LastModifiedDate	  "Fri Dec 31 12:33:37 2010"
+  RTWModifiedTimeStamp	  215698344
+  ModelVersionFormat	  "1.%<AutoIncrement:19>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -720,7 +720,7 @@ Model {
       BlockType		      Derivative
       Name		      "Derivative"
       SID		      1
-      Position		      [285, 300, 315, 330]
+      Position		      [230, 300, 260, 330]
     }
     Block {
       BlockType		      Gain
@@ -774,7 +774,7 @@ Model {
       Name		      "Integrator"
       SID		      5
       Ports		      [1, 1]
-      Position		      [285, 225, 315, 255]
+      Position		      [230, 225, 260, 255]
     }
     Block {
       BlockType		      Scope
@@ -801,7 +801,7 @@ Model {
       BlockType		      Step
       Name		      "Step"
       SID		      7
-      Position		      [590, 300, 620, 330]
+      Position		      [590, 370, 620, 400]
       After		      "4"
       SampleTime	      "0"
     }
@@ -810,7 +810,7 @@ Model {
       Name		      "Sum"
       SID		      8
       Ports		      [3, 1]
-      Position		      [410, 230, 430, 250]
+      Position		      [320, 230, 340, 250]
       ShowName		      off
       IconShape		      "round"
       Inputs		      "+++"
@@ -906,7 +906,7 @@ Model {
     Line {
       SrcBlock		      "Gain"
       SrcPort		      1
-      Points		      [245, 0]
+      Points		      [155, 0]
       DstBlock		      "Sum"
       DstPort		      1
     }
@@ -925,7 +925,7 @@ Model {
     Line {
       SrcBlock		      "Derivative"
       SrcPort		      1
-      Points		      [100, 0]
+      Points		      [65, 0]
       DstBlock		      "Sum"
       DstPort		      3
     }
@@ -958,9 +958,6 @@ Model {
     }
     Annotation {
       Position		      [621, 312]
-    }
-    Annotation {
-      Position		      [433, 441]
     }
   }
 }
