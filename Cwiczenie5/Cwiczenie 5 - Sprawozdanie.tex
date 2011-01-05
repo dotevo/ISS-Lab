@@ -152,7 +152,7 @@ Na wykresach \ref{fig:symulacjaP} możemy zaobserwować, że:
 	\item Dla małych ($<1.8$) dodatnich wartości parametru $k$ wartość błędu również szybko stabilizuje się na pewnym poziomie, a poziom ten jest tym mniejszy, im większa jest wartość parametru $k$.
 	\item Dla większych wartości dodatnich ($>1.8$) wykres wartości błędu regulacji wolniej stabilizuje się, a dla $k \approx 2.23$ przybiera kształt drgań o stałej amplitudzie. Powyżej tej wartości amplituda drgań z czasem rośnie.
 \end{itemize}
-
+\newpage
 \subsubsection{Regulator PID}
 \begin{figure}[!h]
     \centering
@@ -163,7 +163,6 @@ Na wykresach \ref{fig:symulacjaP} możemy zaobserwować, że:
 
 Jest to sytuacja przedstawiona w poprzednim zadaniu, więc nie będziemy komentować.
 
-\subsubsection{Regulator PID}
 \begin{figure}[!h]
     \centering
 	\includegraphics[width=120mm]{CW5-N3C2d1-k18-ti005-09.png}
@@ -172,7 +171,6 @@ Jest to sytuacja przedstawiona w poprzednim zadaniu, więc nie będziemy komento
 \end{figure}
 
 Widać, że dzięki $T_i$ wykres zaczyna się zbliżać do 0, ale po przekroczeniu wartości $T_i \approx 0.5$ amplituda zaczyna szybko rosnąć.
-TODO: Lepiej sformułować + może jakieś więcej obserwacji.
 
 \begin{figure}[!h]
     \centering
@@ -180,21 +178,52 @@ TODO: Lepiej sformułować + może jakieś więcej obserwacji.
 	\caption{Wykresy przebiegu błędu regulacji przy zmianie parametru $T_d$}
     \label{fig:symulacjaP}
 \end{figure}
+\newpage
+Widać, że dzięki $T_d$ 'częstotliwość drgań' się zwiększa, ale znowu po przekroczeniu $T_d \approx 0.8$ układ się destabilizuje.
 
-Widać, że dzięki $T_d$ 'częstotliwość drgań' się zwiększa, ale znowu po przekroczeniu $T_d \approx 0.8$ amplituda się @%%^^&*#...
-TODO: Lepiej sformułować + może jakieś więcej obserwacji.
+\subsubsection{Metoda Zieglera-Nicholsa}\label{sec:Mzn}
+Korzystamy z metody opisanej w ćwiczeniu 2.
+\begin{figure}[!h]
+\begin{tabular}{ | l | c | c | c | c | c | c | }
+\hline
+  Typ regulatora & \multicolumn{6}{|c|}{Optymalne wartości parametrów} \\   \hline
+   & \multicolumn{3}{|c|}{Próba skokowa} & \multicolumn{3}{|c|}{Granica stabilności} \\   \hline
+   & $K_{p}$ & $T_{i}$ & $T_{d}$ & $K_{p}$ & $T_{i}$ & $T_{d}$\\   \hline
+   P & 1/a & - & - & $0.5K_{kr}$ & - & - \\   \hline
+   PI & 0.9/a & $3 T_{d}$ & - & $0.45K_{kr}$ & $T_{osc}/1.2$ & - \\   \hline
+   PID & 1.2/a & $2T_{d}$ & $0.5T_d$ & $0.6K_{kr}$ & $T_{osc}/2$ & $T_{osc}/8$ \\   \hline
+\hline
+\end{tabular}
+	\caption{Tabela Zieglera-Nicholsa}
+\end{figure}
+Ustaliliśmy $K_{kr}$ dla wartości:\\
+$T_i = 0.5$\\
+$T_d = 0.8$ \\
+i wynosi 2.16
 
-\subsection{Korekcja}
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW5-ZN-gs.png}
+	\caption{Wykres ukłądu na granicy stabilności}
+    \label{fig:symulacjaP}
+\end{figure}
 
-\begin{eqnarray}
-	\nonumber \left[ \begin{array}{llllll}
-		. & . & . & . & . & . \\
-		. & Tutaj & powinien & byc & przyklejony & . \\
-		. & lizak & . & . & . & . \\
-		. & . & . & . & . & .
-	\end{array}\right]
-\end{eqnarray}
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW5-ZN-osc.png}
+	\caption{Okres oscylacji}
+    \label{fig:symulacjaP}
+\end{figure}
+\newpage
+Rozwiązanie:\\
+$K = 1.95$\\
+$T_i = 1,625$\\
+$T_d = 0.40625$ \\
+
+
+
+
 
 \section{Wnioski}\label{sec:wnioski}
-
+Ćwiczenie wykazało, że zastosowanie PID w celu regulacji transferu sieci zapewnia poprawne działanie oraz prostotę wykonania. Zaś zastosowanie regulatora P powoduje, że nie możemy efektywnie zarządzać siecią gdyż błąd regulacji nigdy się nie zeruje.
 \end{document}

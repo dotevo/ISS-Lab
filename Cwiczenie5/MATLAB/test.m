@@ -29,7 +29,7 @@ function test(N,C,r,p,i,d)
         
         sim('PID.mdl');
         wy = simout.signals.values;    
-        plot(tout, wy, strcat('-', color(mod(j,6)+1)));
+        plot(tout(50:100), wy(50:100), strcat('-', color(mod(j,6)+1)));
         j=j+1;
     end
 end
