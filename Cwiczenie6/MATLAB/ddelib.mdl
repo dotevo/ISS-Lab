@@ -1,0 +1,153 @@
+Library {
+  Name			  "DDElib"
+  Version		  2.20
+  BlockDefaults {
+    Orientation		    right
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    NamePlacement	    normal
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+    ShowName		    on
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    center
+    VerticalAlignment	    middle
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  System {
+    Name		    "DDElib"
+    Location		    [70, 200, 350, 376]
+    Open		    on
+    ToolBar		    off
+    StatusBar		    off
+    ScreenColor		    white
+    PaperOrientation	    landscape
+    PaperPositionMode	    auto
+    PaperType		    usletter
+    PaperUnits		    inches
+    Block {
+      BlockType		      SubSystem
+      Name		      "DDE Sink"
+      Ports		      [1, 0, 0, 0, 0]
+      Position		      [180, 50, 210, 100]
+      ShowPortLabels	      on
+      MaskType		      "DDE Sink"
+      MaskPromptString	      "DDE Service:|DDE Topic:|DDE Item:"
+      MaskStyleString	      "edit,edit,edit"
+      MaskTunableValueString  "on,on,on"
+      MaskVariables	      "service=@1;topic=@2;item=@3;"
+      MaskDisplay	      "disp('DDE')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "'excel'|'test.xls'|'r1c1'"
+      System {
+	Name			"DDE Sink"
+	Location		[334, 518, 499, 600]
+	Open			off
+	ToolBar			off
+	StatusBar		off
+	ScreenColor		white
+	PaperOrientation	landscape
+	PaperPositionMode	auto
+	PaperType		usletter
+	PaperUnits		inches
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [25, 33, 55, 47]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  "S-Function"
+	  Name			  "S-Function"
+	  Ports			  [1, 0, 0, 0, 0]
+	  Position		  [80, 25, 140, 55]
+	  FunctionName		  "sfundde"
+	  Parameters		  "service,topic,item"
+	  PortCounts		  "[]"
+	  SFunctionModules	  "''"
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "S-Function"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "DDE Source"
+      Ports		      [0, 1, 0, 0, 0]
+      Position		      [50, 50, 80, 100]
+      ShowPortLabels	      on
+      MaskType		      "DDE Sink"
+      MaskPromptString	      "DDE Service:|DDE Topic:|DDE Item:"
+      MaskStyleString	      "edit,edit,edit"
+      MaskTunableValueString  "on,on,on"
+      MaskVariables	      "service=@1;topic=@2;item=@3;"
+      MaskDisplay	      "disp('DDE')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "'excel'|'test.xls'|'r1c1'"
+      System {
+	Name			"DDE Source"
+	Location		[334, 518, 506, 619]
+	Open			off
+	ToolBar			off
+	StatusBar		off
+	ScreenColor		white
+	PaperOrientation	landscape
+	PaperPositionMode	auto
+	PaperType		usletter
+	PaperUnits		inches
+	Block {
+	  BlockType		  "S-Function"
+	  Name			  "S-Function"
+	  Ports			  [0, 1, 0, 0, 0]
+	  Position		  [15, 20, 75, 50]
+	  FunctionName		  "sfunddi"
+	  Parameters		  "service,topic,item"
+	  PortCounts		  "[]"
+	  SFunctionModules	  "''"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [100, 28, 130, 42]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "[]"
+	}
+	Line {
+	  SrcBlock		  "S-Function"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+      }
+    }
+  }
+}
