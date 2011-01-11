@@ -65,6 +65,47 @@ Aby uruchomić symulacje należy umieścić wszystkie pliki modelu Simulinka, bi
 %ZADANIE 2
 %---------------------------------------------------------------------------------------------------------------------
 \subsection{Dobór optymalnych parametrów regulatora.}\label{sec:zad2}
+\begin{enumerate}
+	\item Wyznaczenie K na granicy stabilności\\
+		Ten etap sprawił nam spore trudności, ze względu na niedokładność suwaków i wykresu.
+		\begin{figure}[!h]
+		    \centering
+			\includegraphics[width=120mm]{CW6-T130-(Kkr)-T220-T330.png}
+			\caption{Wykres}
+		    \label{fig:Rysunek}
+		\end{figure}
+		Dla nieco większych wartości otrzynaliśmy bardzo niestabilny układ.		
+		\begin{figure}[!h]
+		    \centering
+			\includegraphics[width=120mm]{CW6-T130+(Kkr)-T220-T330.png}
+			\caption{Wykres}
+		    \label{fig:Rysunek}
+		\end{figure}
+		Dlatego wybraliśmy Kkr z pierwszego wykresu.\newline
+	\item Metoda Zieglera-Nicholsa	
+\begin{figure}[!h]
+\begin{tabular}{ | l | c | c | c | c | c | c | }
+\hline
+  Typ regulatora & \multicolumn{6}{|c|}{Optymalne wartości parametrów} \\   \hline
+   & \multicolumn{3}{|c|}{Próba skokowa} & \multicolumn{3}{|c|}{Granica stabilności} \\   \hline
+   & $K_{p}$ & $T_{i}$ & $T_{d}$ & $K_{p}$ & $T_{i}$ & $T_{d}$\\   \hline
+   P & 1/a & - & - & $0.5K_{kr}$ & - & - \\   \hline
+   PI & 0.9/a & $3 T_{d}$ & - & $0.45K_{kr}$ & $T_{osc}/1.2$ & - \\   \hline
+   PID & 1.2/a & $2T_{d}$ & $0.5T_d$ & $0.6K_{kr}$ & $T_{osc}/2$ & $T_{osc}/8$ \\   \hline
+\hline
+\end{tabular}
+	\caption{Tabela Zieglera-Nicholsa}
+\end{figure}
+\newline
+Odczytane wartości z wykresu:\\
+$Kkr=30$\\
+$T_{osc}=0.625$\\
+Obliczone wartości:\\
+$K=15$\\
+$T_{i}=0.3125$\\
+$T_{d}=0.078125$\\
+\end{enumerate}
+Otrzymane wartości są tylko szacunkowe.
 
 \section{Wnioski}
 
