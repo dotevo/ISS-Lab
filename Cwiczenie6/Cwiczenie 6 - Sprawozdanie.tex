@@ -1,0 +1,72 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+\addtolength{\hoffset}{-1cm}
+\addtolength{\voffset}{-2cm}
+\addtolength{\textwidth}{2cm}
+\addtolength{\textheight}{3cm}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\def\figurename{Rys.}
+\def\lstlistingname{Fun.}
+
+\title{Informatyczne Systemy Sterowania \\ \large Ćwiczenie 6: Wizualizacja systemu sterowania}
+
+\author{Adam Jordanek 168139, Tomasz Klimek 168092}
+
+\begin{document}
+\maketitle
+
+\section{Wstęp}\label{sec:wstęp}
+\subsection{Cel ćwiczenia}
+Celem tego ćwiczenie jest zilustrowanie działania przykładowego systemu sterowania zamodelowanego w Simulinku przy użyciu oprogramowania Wonderware InTouch.
+
+\subsection{Plan badań} 
+\begin{enumerate}
+	\item Połączenie działania Simulinka z InTouchem.
+	\item Dobór optymalnych parametrów regulatora.
+\end{enumerate}
+Zadania wykonane będzie dla systemu zamodelowanego przez model Simulinka zapewniony przez prowadzącego.
+%Copy/Paste z treści zadania...
+
+\newpage
+\section{Realizacja planu i wyniki}
+
+%---------------------------------------------------------------------------------------------------------------------
+%ZADANIE 1
+%---------------------------------------------------------------------------------------------------------------------
+\subsection{Połączenie działania Simulinka z InTouchem.}\label{sec:zad1}
+Do połączenia modelu systemu sterowania z Simulina z wizualizacją w programie InTouch posłużyły nam biblioteki protokołu DDE(ang. Dynamic Data Exchange), dzięki któremu aplikacje uruchomione na jednym komputerze mogą się między sobą wymieniać wartościami zmiennych.
+
+Oprócz tego użyliśmy również modelu systemu sterowania, oraz projekt wizualizacji przebiegu sterowania programu InTouch zapewnione przez prowadzącego.
+
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW6-model.png}
+	\caption{Schemat modelu systemu sterowania z Simulinka.}
+    \label{fig:Rysunek}
+\end{figure}
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=120mm]{CW6-start.png}
+	\caption{Screen ekranu projektu programu InTouch do symulacji systemu.}
+    \label{fig:Rysunek}
+\end{figure}
+Na powyższym rysunku pokazany jest ekran służący nam do symulacji systemem sterowania. Suwaki w górnej części ekranu regulować będą wartości parametrów regulatora PID, wartość zadaną, oraz wielkość zakłóceń. Wykres w dolnej części ekranu będzie natomiast przedstawiał wykresy przebiegów temperatur pieca, grzejnika i otoczenia.
+
+Aby uruchomić symulacje należy umieścić wszystkie pliki modelu Simulinka, bibliotek DDE, oraz folder z projektem programu InTouch umieścić w jednym folderze. Najpierw należy uruchomić projekt programu InTouch w trybie 'Runtime'. Następnie należy uruchomić program Matlab i model systemu sterowania z Simulinka. Ostatnią rzeczą którą należy zrobić jest uruchomienie symulacji w okienku modelu systemu sterowania. W tym momencie oba programy zaczną ze sobą współpracować, a my będziemy mogli ustawiać parametry systemu sterowania w oknie projektu InTouch.
+
+%---------------------------------------------------------------------------------------------------------------------
+%ZADANIE 2
+%---------------------------------------------------------------------------------------------------------------------
+\subsection{Dobór optymalnych parametrów regulatora.}\label{sec:zad2}
+
+\section{Wnioski}
+
+
+\end{document}
