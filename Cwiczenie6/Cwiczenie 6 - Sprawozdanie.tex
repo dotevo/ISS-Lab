@@ -67,21 +67,21 @@ Aby uruchomić symulacje należy umieścić wszystkie pliki modelu Simulinka, bi
 \subsection{Dobór optymalnych parametrów regulatora.}\label{sec:zad2}
 \begin{enumerate}
 	\item Wyznaczenie K na granicy stabilności\\
-		Ten etap sprawił nam spore trudności, ze względu na niedokładność suwaków i wykresu.
+		Ten etap sprawił nam spore trudności, ze względu na niedokładność suwaków, przez które nie mogliśmy ustalić dokładnej wartości $K_{kr}$, oraz wykresu, przez który nie mogliśmy wyznaczyć czasu oscylacji $T_{osc}$.
 		\begin{figure}[!h]
 		    \centering
 			\includegraphics[width=120mm]{CW6-T130-(Kkr)-T220-T330.png}
-			\caption{Wykres}
+			\caption{Wykres dla K=29.79}
 		    \label{fig:Rysunek}
 		\end{figure}
-		Dla nieco większych wartości otrzynaliśmy bardzo niestabilny układ.
+		\newline Dla nieco większych wartości otrzynaliśmy bardzo niestabilny układ.
 		\begin{figure}[!h]
 		    \centering
 			\includegraphics[width=120mm]{CW6-T130+(Kkr)-T220-T330.png}
-			\caption{Wykres}
+			\caption{Wykres dla K=30.14}
 		    \label{fig:Rysunek}
 		\end{figure}
-		Dlatego wybraliśmy Kkr z pierwszego wykresu.\newpage
+		\newline Dlatego wybraliśmy $K_{kr}=30$ będące gdzieś pomiędzy wartościami przedstawionymi na powyższych wykresach.\newpage
 	\item Metoda Zieglera-Nicholsa	
 
 \begin{tabular}{ | l | c | c | c | c | c | c | }
@@ -97,7 +97,7 @@ Aby uruchomić symulacje należy umieścić wszystkie pliki modelu Simulinka, bi
 \newline
 
 Odczytane wartości z wykresu:\\
-$Kkr=30$\\
+$K({kr}=30$\\
 $T_{osc}=0.625$\\
 Obliczone wartości:\\
 $K=15$\\
